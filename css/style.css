@@ -1,6 +1,4 @@
-/* style.css - Estilos globales para todas las páginas */
-
-/* IMPORTAR FUENTE POPPINS DESDE GOOGLE FONTS */
+/* IMPORTAR FUENTE POPPINS */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 * {
@@ -11,7 +9,6 @@
 }
 
 body {
-    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: #f7f3ea;
     color: #2c2c2c;
     line-height: 1.5;
@@ -52,7 +49,6 @@ nav ul li a {
     color: #333;
     font-weight: 500;
     transition: color 0.2s;
-    font-family: 'Poppins', sans-serif;
 }
 
 nav ul li a:hover {
@@ -67,14 +63,13 @@ nav ul li a:hover {
     text-decoration: none;
     font-weight: 600;
     transition: background 0.2s;
-    font-family: 'Poppins', sans-serif;
 }
 
 .btn-header:hover {
     background: #5a0016;
 }
 
-/* FOOTER - Centrado con links lado a lado */
+/* FOOTER */
 footer {
     background: #2c2c2c;
     color: #e0e0e0;
@@ -102,7 +97,6 @@ footer {
     margin-top: 15px;
     font-size: 14px;
     opacity: 0.8;
-    font-family: 'Poppins', sans-serif;
 }
 
 .footer-redes {
@@ -113,7 +107,6 @@ footer {
 .footer-redes h4 {
     margin-bottom: 15px;
     color: white;
-    font-family: 'Poppins', sans-serif;
     font-weight: 600;
 }
 
@@ -129,7 +122,6 @@ footer {
     text-decoration: none;
     transition: color 0.2s;
     font-size: 1rem;
-    font-family: 'Poppins', sans-serif;
 }
 
 .redes-sociales a:hover {
@@ -144,7 +136,6 @@ footer {
 .footer-contacto h4 {
     margin-bottom: 15px;
     color: white;
-    font-family: 'Poppins', sans-serif;
     font-weight: 600;
 }
 
@@ -152,7 +143,6 @@ footer {
     color: #25D366;
     text-decoration: none;
     font-weight: bold;
-    font-family: 'Poppins', sans-serif;
 }
 
 .footer-bottom {
@@ -161,7 +151,6 @@ footer {
     border-top: 1px solid #444;
     font-size: 12px;
     opacity: 0.7;
-    font-family: 'Poppins', sans-serif;
 }
 
 /* Responsive */
@@ -182,18 +171,4 @@ footer {
     .redes-sociales {
         justify-content: center;
     }
-}
-
-/* Estilos generales para títulos y textos en todas las páginas */
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-}
-
-p, li, a, span, div {
-    font-family: 'Poppins', sans-serif;
-}
-
-button, .btn, .btn-reservar-bolivia, .btn-reservar-internacional, .btn-lista-espera {
-    font-family: 'Poppins', sans-serif;
 }
