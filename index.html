@@ -1,1 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camila Caballero | Asesora de Imagen & Fashion Stylist</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Estilos específicos de la página de inicio */
+        .hero-camila {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 50px;
+            padding: 60px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
+        .hero-imagen {
+            flex: 1;
+            min-width: 280px;
+            text-align: center;
+        }
+
+        .hero-imagen img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .hero-texto {
+            flex: 1.5;
+        }
+
+        .hero-texto h1 {
+            font-size: 2.5rem;
+            color: #800020;
+            margin-bottom: 15px;
+        }
+
+        .hero-texto .tagline {
+            font-size: 1.2rem;
+            color: #b87333;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .hero-texto p {
+            font-size: 1rem;
+            color: #444;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .marcas {
+            margin: 25px 0;
+            padding: 20px;
+            background: #f7f3ea;
+            border-radius: 20px;
+        }
+
+        .marcas h3 {
+            color: #800020;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .lista-marcas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .lista-marcas span {
+            background: white;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: #800020;
+            font-weight: 500;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .estadisticas {
+            display: flex;
+            justify-content: space-around;
+            margin: 30px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .estadistica {
+            text-align: center;
+        }
+
+        .estadistica .numero {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #800020;
+        }
+
+        .estadistica .texto {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .btn-servicio {
+            background: #800020;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 20px;
+            transition: transform 0.2s;
+        }
+
+        .btn-servicio:hover {
+            transform: scale(1.02);
+            background: #5a0016;
+        }
+
+        .frase {
+            font-style: italic;
+            font-size: 1.2rem;
+            color: #b87333;
+            margin-top: 30px;
+            padding: 30px;
+            background: #e3d9cb;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .enfoque {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .enfoque p {
+            font-size: 1rem;
+            color: #444;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .hero-camila {
+                flex-direction: column;
+                text-align: center;
+                padding: 40px 20px;
+            }
+            .hero-texto h1 {
+                font-size: 1.8rem;
+            }
+            .estadisticas {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="assets/logo.png" alt="Logo" style="height: 50px;">
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="#experiencias">Experiencias</a></li>
+                </ul>
+            </nav>
+            <a href="servicios.html" class="btn-header">Quiero un servicio</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-camila">
+            <div class="hero-imagen">
+                <img src="assets/camila-foto.jpg" alt="Camila Caballero - Asesora de Imagen">
+            </div>
+            <div class="hero-texto">
+                <h1>Camila Caballero</h1>
+                <div class="tagline">Asesora de Imagen & Fashion Stylist</div>
+                
+                <p>Con más de <strong>5 años de experiencia</strong> en la industria de la moda, especializada en potenciar la imagen personal de forma <strong>estratégica y auténtica</strong>. He asesorado a más de <strong>700 mujeres</strong> en Bolivia y el mundo, ayudándolas a descubrir y proyectar su mejor versión.</p>
+                
+                <div class="marcas">
+                    <h3>✨ He trabajado con marcas como:</h3>
+                    <div class="lista-marcas">
+                        <span>Mango</span>
+                        <span>Gap</span>
+                        <span>Women's Secret</span>
+                        <span>Cortefiel</span>
+                        <span>Springfield</span>
+                        <span>Femenina</span>
+                        <span>Zoe</span>
+                        <span>House of BCP</span>
+                    </div>
+                </div>
+
+                <div class="estadisticas">
+                    <div class="estadistica">
+                        <div class="numero">5+</div>
+                        <div class="texto">años de experiencia</div>
+                    </div>
+                    <div class="estadistica">
+                        <div class="numero">700+</div>
+                        <div class="texto">mujeres asesoradas</div>
+                    </div>
+                    <div class="estadistica">
+                        <div class="numero">8+</div>
+                        <div class="texto">marcas colaboradoras</div>
+                    </div>
+                </div>
+
+                <div class="enfoque">
+                    <p>💡 Mi enfoque combina <strong>estilo, identidad y confianza</strong> para lograr transformaciones reales y duraderas. No solo trabajo la estética, sino también la imagen como una <strong>estrategia integral</strong> que fortalece la seguridad, la identidad y la proyección personal de cada mujer.</p>
+                </div>
+
+                <a href="servicios.html" class="btn-servicio">✨ Quiero transformar mi imagen ✨</a>
+            </div>
+        </section>
+
+        <section id="experiencias" class="frase">
+            <p>"No se trata de seguir modas, se trata de encontrarte a ti misma a través de los colores y las formas que te hacen brillar."</p>
+            <p style="margin-top: 10px;">— Camila Caballero</p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="assets/logo.png" alt="Logo" style="height: 40px;">
+                <p>Transformando imágenes, potenciando confianza.</p>
+            </div>
+            <div class="footer-redes">
+                <h4>Sígueme</h4>
+                <div class="redes-sociales">
+                    <a href="https://www.instagram.com/camilacaballerot?igsh=MXFzeWJzNnZjZWluYw%3D%3D&utm_source=qr" target="_blank">📷 Instagram</a>
+                    <a href="https://www.facebook.com/share/1AzXtD2ey5/?mibextid=wwXIfr" target="_blank">📘 Facebook</a>
+                    <a href="https://www.tiktok.com/@camila.caballerot?_r=1&_t=ZS-95GVRi7DNnJ" target="_blank">📱 TikTok</a>
+                    <a href="https://youtube.com/@camila.caballero?si=crziNJTOOJBq2k0i" target="_blank">▶️ YouTube</a>
+                </div>
+            </div>
+            <div class="footer-contacto">
+                <h4>Contacto</h4>
+                <a href="https://wa.me/59167020314" class="whatsapp-footer">📞 +591 670 20 3 14</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Camila Caballero - Asesoría de Imagen. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
