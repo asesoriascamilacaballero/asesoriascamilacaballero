@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Servicios | Camila</title>
+    <title>Servicios | Camila Caballero</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
         .servicios-grid {
@@ -27,18 +27,18 @@
 
         .grid-servicios {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-            gap: 40px;
+            grid-template-columns: 1fr;
+            gap: 50px;
         }
 
         .servicio-card {
             display: flex;
             flex-wrap: wrap;
-            gap: 25px;
+            gap: 30px;
             background: white;
-            border-radius: 25px;
+            border-radius: 30px;
             overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
             transition: transform 0.2s;
         }
 
@@ -48,62 +48,134 @@
 
         .servicio-imagen {
             flex: 1;
-            min-width: 200px;
+            min-width: 280px;
+            background: #f7f3ea;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
         }
 
         .servicio-imagen img {
             width: 100%;
-            height: 100%;
+            max-width: 280px;
+            border-radius: 20px;
             object-fit: cover;
         }
 
         .servicio-info {
-            flex: 1.5;
-            padding: 25px;
+            flex: 2;
+            padding: 30px 30px 30px 0;
         }
 
         .servicio-info h3 {
             color: #800020;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .servicio-info .badge {
+            display: inline-block;
+            background: #e3d9cb;
+            color: #800020;
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.8rem;
             margin-bottom: 15px;
         }
 
-        .servicio-info p {
-            color: #555;
-            margin-bottom: 20px;
-            line-height: 1.5;
-        }
-
-        .servicio-info .duracion {
+        .servicio-info .modalidad {
             color: #b87333;
             font-weight: bold;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
-        .servicio-info .precio {
-            font-size: 1.5rem;
+        .servicio-info .descripcion {
+            color: #444;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .detalle-item {
+            margin: 8px 0;
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        .detalle-item strong {
+            color: #800020;
+        }
+
+        .incluye {
+            background: #f7f3ea;
+            padding: 15px 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+        }
+
+        .incluye h4 {
+            color: #800020;
+            margin-bottom: 10px;
+        }
+
+        .incluye ul {
+            margin-left: 20px;
+        }
+
+        .incluye li {
+            margin-bottom: 5px;
+            line-height: 1.4;
+        }
+
+        .experiencia {
+            background: #e3d9cb;
+            padding: 15px 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+        }
+
+        .experiencia h4 {
+            color: #800020;
+            margin-bottom: 10px;
+        }
+
+        .precio {
+            font-size: 1.8rem;
             font-weight: bold;
             color: #800020;
-            margin-bottom: 20px;
+            margin: 15px 0;
+        }
+
+        .precio small {
+            font-size: 0.9rem;
+            font-weight: normal;
+        }
+
+        .requisito {
+            background: #fff3e0;
+            padding: 10px 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-size: 0.9rem;
+            border-left: 4px solid #b87333;
         }
 
         .botones-dobles {
             display: flex;
             gap: 15px;
             flex-wrap: wrap;
-            margin-top: 10px;
+            margin-top: 20px;
         }
 
         .btn-reservar-bolivia {
             background: #800020;
             color: white;
-            padding: 10px 20px;
+            padding: 12px 25px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: bold;
             display: inline-block;
             transition: background 0.2s;
-            font-size: 14px;
         }
 
         .btn-reservar-bolivia:hover {
@@ -113,13 +185,12 @@
         .btn-reservar-internacional {
             background: #1e6f5c;
             color: white;
-            padding: 10px 20px;
+            padding: 12px 25px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: bold;
             display: inline-block;
             transition: background 0.2s;
-            font-size: 14px;
         }
 
         .btn-reservar-internacional:hover {
@@ -129,13 +200,12 @@
         .btn-lista-espera {
             background: #b87333;
             color: white;
-            padding: 10px 20px;
+            padding: 12px 25px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: bold;
             display: inline-block;
             transition: background 0.2s;
-            font-size: 14px;
         }
 
         .btn-lista-espera:hover {
@@ -143,11 +213,8 @@
         }
 
         @media (max-width: 768px) {
-            .grid-servicios {
-                grid-template-columns: 1fr;
-            }
-            .servicio-card {
-                flex-direction: column;
+            .servicio-info {
+                padding: 20px;
             }
             .botones-dobles {
                 flex-direction: column;
@@ -179,16 +246,36 @@
 
             <div class="grid-servicios">
 
-                <!-- Servicio 1: Colorimetría -->
+                <!-- SERVICIO 1: COLORIMETRÍA 24 HORAS -->
                 <div class="servicio-card">
                     <div class="servicio-imagen">
                         <img src="assets/servicios/colorimetria.PNG" alt="Colorimetría">
                     </div>
                     <div class="servicio-info">
-                        <h3>🎨 Colorimetría</h3>
-                        <p>Descubre tu paleta de colores ideal. Identificamos tu temporada y los tonos que realzan tu belleza natural.</p>
-                        <div class="duracion">⏱️ Duración: 2 horas</div>
-                        <div class="precio">Bs. 450</div>
+                        <h3>🎨 Colorimetría 24 horas</h3>
+                        <div class="modalidad">📍 Presencial en La Paz | 💻 Virtual en otras ciudades y el mundo</div>
+                        <div class="descripcion">Análisis de colorimetría personalizado. Identificación de subtono, contraste y luminosidad.</div>
+                        
+                        <div class="incluye">
+                            <h4>📦 ¿Qué incluye?</h4>
+                            <ul>
+                                <li>Paleta de color personalizada (estación de color)</li>
+                                <li>Recomendaciones de color para: vestuario, maquillaje (labial, rubor, ojos), color de cabello</li>
+                                <li>Guía personalizada + Círculo cromático y paleta</li>
+                                <li>Clase pregrabada de combinación de color</li>
+                            </ul>
+                        </div>
+
+                        <div class="experiencia">
+                            <h4>✨ Así será tu experiencia</h4>
+                            <ul>
+                                <li><strong>Primera fase:</strong> Descubrimos tus colores con un análisis de colorimetría</li>
+                                <li><strong>Segunda fase:</strong> Recibes tu guía de colores personalizada, paleta de color y círculo cromático</li>
+                                <li><strong>Tercera fase:</strong> Accederás a una clase pregrabada para aprender a usar tus colores</li>
+                            </ul>
+                        </div>
+
+                        <div class="precio">Bs. 230 <small>/ $39 USD</small></div>
                         <div class="botones-dobles">
                             <a href="pago-bolivia.html?servicio=colorimetria" class="btn-reservar-bolivia">🇧🇴 Pago Bolivia</a>
                             <a href="pago-mundo.html?servicio=colorimetria" class="btn-reservar-internacional">🌎 Pago Internacional</a>
@@ -196,66 +283,29 @@
                     </div>
                 </div>
 
-                <!-- Servicio 2: Asesoría Grupal -->
-                <div class="servicio-card">
-                    <div class="servicio-imagen">
-                        <img src="assets/servicios/asesoriasgrupales.jpg" alt="Asesoría Grupal">
-                    </div>
-                    <div class="servicio-info">
-                        <h3>👥 Asesoría Grupal</h3>
-                        <p>Sesión grupal para aprender sobre colorimetría y estilo. Ideal para amigas, familia o equipos de trabajo.</p>
-                        <div class="duracion">⏱️ Duración: 3 horas</div>
-                        <div class="precio">Bs. 350 por persona</div>
-                        <div class="botones-dobles">
-                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSf7OwDWWS0Txg5X-b_MXMEMoIuuEv2wPlvxmEpvGsf9_cCB6A/viewform?usp=publish-editor" target="_blank" class="btn-lista-espera">📋 Lista de Espera</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Servicio 3: Diseño de Imagen -->
-                <div class="servicio-card">
-                    <div class="servicio-imagen">
-                        <img src="assets/servicios/disenodeimagen.PNG" alt="Diseño de Imagen">
-                    </div>
-                    <div class="servicio-info">
-                        <h3>✨ Diseño de Imagen</h3>
-                        <p>Transformación completa de tu imagen personal. Incluye análisis de color, morfología y estilo.</p>
-                        <div class="duracion">⏱️ Duración: 3 sesiones</div>
-                        <div class="precio">Bs. 1200</div>
-                        <div class="botones-dobles">
-                            <a href="pago-bolivia.html?servicio=diseno" class="btn-reservar-bolivia">🇧🇴 Pago Bolivia</a>
-                            <a href="pago-mundo.html?servicio=diseno" class="btn-reservar-internacional">🌎 Pago Internacional</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Servicio 4: Armario Inteligente -->
-                <div class="servicio-card">
-                    <div class="servicio-imagen">
-                        <img src="assets/servicios/armariointeligente.jpg" alt="Armario Inteligente">
-                    </div>
-                    <div class="servicio-info">
-                        <h3>👗 Armario Inteligente</h3>
-                        <p>Limpieza estratégica de armario + 15 looks digitales con tus prendas. Maximiza el potencial de tu ropa.</p>
-                        <div class="duracion">⏱️ Duración: 3 horas presencial + 40 min online</div>
-                        <div class="precio">Bs. 650</div>
-                        <div class="botones-dobles">
-                            <a href="pago-bolivia.html?servicio=armario" class="btn-reservar-bolivia">🇧🇴 Pago Bolivia</a>
-                            <a href="pago-mundo.html?servicio=armario" class="btn-reservar-internacional">🌎 Pago Internacional</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Servicio 5: Styling Pro -->
+                <!-- SERVICIO 2: STYLING PRO -->
                 <div class="servicio-card">
                     <div class="servicio-imagen">
                         <img src="assets/servicios/stylingpro.jpg" alt="Styling Pro">
                     </div>
                     <div class="servicio-info">
-                        <h3>🔥 Styling Pro</h3>
-                        <p>Asesoría de styling avanzada para ocasiones especiales, eventos o renovación de imagen completa.</p>
-                        <div class="duracion">⏱️ Duración: 2 horas</div>
-                        <div class="precio">Bs. 550</div>
+                        <h3>✨ Styling Pro</h3>
+                        <div class="modalidad">📍 Presencial en La Paz | 💻 Virtual en otras ciudades y el mundo</div>
+                        <div class="descripcion">Define tu estilo personal y entiende qué te favorece según tu cuerpo, para vestirte con seguridad, intención y coherencia.</div>
+                        
+                        <div class="incluye">
+                            <h4>📦 ¿Qué incluye?</h4>
+                            <ul>
+                                <li>Estilo personal (líneas, esencia, referentes)</li>
+                                <li>Tipo de cuerpo + ilusiones ópticas para potenciar tu figura</li>
+                                <li>Prendas clave que te favorecen según tu silueta</li>
+                                <li>Qué evitar (errores comunes)</li>
+                                <li>Guía base para construir outfits con intención</li>
+                                <li>Guía personalizada de estilo + recomendaciones + referencias visuales</li>
+                            </ul>
+                        </div>
+
+                        <div class="precio">Bs. 250 <small>/ $35 USD</small></div>
                         <div class="botones-dobles">
                             <a href="pago-bolivia.html?servicio=styling" class="btn-reservar-bolivia">🇧🇴 Pago Bolivia</a>
                             <a href="pago-mundo.html?servicio=styling" class="btn-reservar-internacional">🌎 Pago Internacional</a>
@@ -263,20 +313,170 @@
                     </div>
                 </div>
 
-                <!-- Servicio 6: Personal Shopper -->
+                <!-- SERVICIO 3: DISEÑO DE IMAGEN (4 semanas) -->
+                <div class="servicio-card">
+                    <div class="servicio-imagen">
+                        <img src="assets/servicios/disenodeimagen.PNG" alt="Diseño de Imagen">
+                    </div>
+                    <div class="servicio-info">
+                        <h3>🦋 Diseño de Imagen - 4 semanas</h3>
+                        <div class="modalidad">📍 Presencial en La Paz | 💻 Virtual en otras ciudades y el mundo</div>
+                        
+                        <div class="incluye">
+                            <h4>📅 SESIÓN 1 – Diagnóstico de Imagen (1 hora presencial)</h4>
+                            <ul>
+                                <li>Marca personal, estilo personal, tipo de cuerpo + ilusiones ópticas</li>
+                                <li>Tipo de rostro (accesorios, corte de cabello y gafas)</li>
+                                <li>Colorimetría (test personalizado, color cabello, maquillaje)</li>
+                                <li><strong>Entrega:</strong> Workbook + Paleta de color personalizada</li>
+                            </ul>
+                        </div>
+
+                        <div class="incluye">
+                            <h4>📅 SESIÓN 2 – Estrategia de Armario (50 min virtual)</h4>
+                            <ul>
+                                <li>Psicología del color aplicada, combinaciones estratégicas</li>
+                                <li>Armario inteligente, método para multiplicar looks</li>
+                                <li><strong>Entrega:</strong> Herramienta para limpieza de armario</li>
+                            </ul>
+                        </div>
+
+                        <div class="incluye">
+                            <h4>📅 SESIÓN 3 – Implementación (50 min virtual)</h4>
+                            <ul>
+                                <li>Armamos looks juntas, armario digital en app</li>
+                                <li>Recomendaciones de compras inteligentes</li>
+                                <li><strong>Entrega:</strong> Guía personalizada + Armario digital + Challenge 21 días + 7 ebooks + Dónde comprar</li>
+                            </ul>
+                        </div>
+
+                        <div class="incluye">
+                            <h4>📅 SESIÓN 4 – Automaquillaje Diario (50 min virtual)</h4>
+                            <ul>
+                                <li>Preparación de la piel, base natural, cejas, ojos sencillos</li>
+                                <li>Rubor + labios, revisión de cosmetiquero</li>
+                            </ul>
+                        </div>
+
+                        <div class="experiencia">
+                            <h4>🎁 BONUS</h4>
+                            <p>Sesión virtual de 30 minutos de seguimiento después de 3 meses del servicio.</p>
+                        </div>
+
+                        <div class="precio">Bs. 720 <small>/ $119 USD</small></div>
+                        <div class="botones-dobles">
+                            <a href="pago-bolivia.html?servicio=diseno" class="btn-reservar-bolivia">🇧🇴 Pago Bolivia</a>
+                            <a href="pago-mundo.html?servicio=diseno" class="btn-reservar-internacional">🌎 Pago Internacional</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SERVICIO 4: ARMARIO INTELIGENTE (solo La Paz) -->
+                <div class="servicio-card">
+                    <div class="servicio-imagen">
+                        <img src="assets/servicios/armariointeligente.jpg" alt="Armario Inteligente">
+                    </div>
+                    <div class="servicio-info">
+                        <h3>👗 Armario Inteligente</h3>
+                        <div class="modalidad">📍 ÚNICAMENTE PRESENCIAL EN LA PAZ</div>
+                        <div class="descripcion">Limpieza estratégica de armario + 15 looks digitales con tus prendas.</div>
+                        
+                        <div class="incluye">
+                            <h4>📦 Material</h4>
+                            <ul>
+                                <li>Armario digital</li>
+                                <li>15 looks con tus prendas</li>
+                                <li>Lista de prendas que recomiendo comprar</li>
+                                <li>BONUS: clase pregrabada de cómo combinar colores</li>
+                            </ul>
+                        </div>
+
+                        <div class="experiencia">
+                            <h4>✨ SESIÓN 1 (Presencial - 3 horas)</h4>
+                            <p>Conversamos sobre tus objetivos de imagen personal. Realizamos una limpieza estratégica de armario, optimizando cada prenda.</p>
+                            <h4 style="margin-top: 15px;">✨ SESIÓN 2 (Online - 40 minutos)</h4>
+                            <p>Crearemos 15 looks en tu armario digital. Te enseñaré a usar la app para organizar tus outfits.</p>
+                        </div>
+
+                        <div class="requisito">
+                            ⚠️ <strong>Pre requisito:</strong> Para acceder a Armario Inteligente, es requisito haber completado previamente el curso de <strong>Styling Pro</strong> (Tipo de Cuerpo y Estilo), ya que es la base para realizar una depuración de armario con sentido.
+                        </div>
+
+                        <div class="precio">Bs. 650</div>
+                        <a href="pago-bolivia.html?servicio=armario" class="btn-reservar-bolivia">🇧🇴 Pago Bolivia (solo presencial)</a>
+                    </div>
+                </div>
+
+                <!-- SERVICIO 5: PERSONAL SHOPPER (solo La Paz) -->
                 <div class="servicio-card">
                     <div class="servicio-imagen">
                         <img src="assets/servicios/personalshopper.jpg" alt="Personal Shopper">
                     </div>
                     <div class="servicio-info">
                         <h3>🛍️ Personal Shopper</h3>
-                        <p>Acompañamiento personalizado para comprar prendas que realmente necesitas y te favorecen.</p>
-                        <div class="duracion">⏱️ Duración: 2 horas</div>
-                        <div class="precio">Bs. 500</div>
-                        <div class="botones-dobles">
-                            <a href="pago-bolivia.html?servicio=shopping" class="btn-reservar-bolivia">🇧🇴 Pago Bolivia</a>
-                            <a href="pago-mundo.html?servicio=shopping" class="btn-reservar-internacional">🌎 Pago Internacional</a>
+                        <div class="modalidad">📍 ÚNICAMENTE PRESENCIAL EN LA PAZ</div>
+                        <div class="descripcion">Compra estratégica, inteligente y alineada a tu estilo, evitando compras impulsivas.</div>
+                        
+                        <div class="incluye">
+                            <h4>📦 ¿Qué incluye?</h4>
+                            <ul>
+                                <li>Planificación previa según estilo, necesidades y presupuesto</li>
+                                <li>Acompañamiento en compras (tiendas seleccionadas)</li>
+                                <li>Selección de prendas clave que realmente vas a usar</li>
+                                <li>Asesoría en tiempo real (fit, combinaciones, decisiones)</li>
+                                <li>Creación de looks con las prendas compradas</li>
+                                <li>Organización de outfits en app</li>
+                                <li>Base de armario más funcional y combinable</li>
+                            </ul>
                         </div>
+
+                        <div class="requisito">
+                            ⚠️ <strong>Prerrequisito:</strong> Haber tomado <strong>Styling Pro</strong> o la sesión de <strong>Armario Inteligente</strong> (limpieza de armario).
+                        </div>
+
+                        <div class="precio">Bs. 500</div>
+                        <a href="pago-bolivia.html?servicio=shopping" class="btn-reservar-bolivia">🇧🇴 Pago Bolivia (solo presencial)</a>
+                    </div>
+                </div>
+
+                <!-- SERVICIO 6: ASESORÍA GRUPAL - GLOW UP PRO -->
+                <div class="servicio-card">
+                    <div class="servicio-imagen">
+                        <img src="assets/servicios/asesoriasgrupales.jpg" alt="Asesoría Grupal - Glow Up Pro">
+                    </div>
+                    <div class="servicio-info">
+                        <h3>✨ Glow Up Pro - Asesoría Grupal</h3>
+                        <div class="modalidad">📍 Presencial en La Paz | Próximamente en SCZ, CBB y Oruro</div>
+                        <div class="descripcion">Un taller exclusivo para mujeres que quieren verse y sentirse imparables. Eleva tu autoestima, confianza y estilo con herramientas de imagen estratégica.</div>
+                        
+                        <div class="incluye">
+                            <h4>📦 Contenido</h4>
+                            <ul>
+                                <li>Marca personal</li>
+                                <li>Estilo personal</li>
+                                <li>Tipo de cuerpo</li>
+                                <li>Colorimetría (incluye test personalizado básico)</li>
+                                <li>Psicología del color y combinaciones</li>
+                                <li>Armario inteligente</li>
+                            </ul>
+                        </div>
+
+                        <div class="incluye">
+                            <h4>📦 Material</h4>
+                            <ul>
+                                <li>Workbook para la clase</li>
+                                <li>Paleta de color personalizada</li>
+                                <li>7 ebooks de regalo</li>
+                                <li>Test online tipo de rostro</li>
+                                <li>Challenge de 21 días (videos)</li>
+                                <li>Incluye certificado digital</li>
+                            </ul>
+                        </div>
+
+                        <div class="precio">
+                            Bs. 320 <small>| Preventa Bs. 280</small>
+                        </div>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSf7OwDWWS0Txg5X-b_MXMEMoIuuEv2wPlvxmEpvGsf9_cCB6A/viewform?usp=publish-editor" target="_blank" class="btn-lista-espera">📋 Lista de Espera</a>
                     </div>
                 </div>
 
