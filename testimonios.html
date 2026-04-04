@@ -1,1 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonios | Camila Caballero</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .testimonios-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
 
+        .imagen-principal {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .imagen-principal img {
+            max-width: 100%;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .testimonios-titulo {
+            text-align: center;
+            color: #800020;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .testimonios-subtitulo {
+            text-align: center;
+            color: #666;
+            margin-bottom: 50px;
+            font-size: 1.1rem;
+        }
+
+        /* Carrusel */
+        .carrusel-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .carrusel-slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carrusel-slide {
+            min-width: 100%;
+            box-sizing: border-box;
+        }
+
+        .carrusel-slide img {
+            width: 100%;
+            display: block;
+        }
+
+        /* Botones del carrusel */
+        .carrusel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(128, 0, 32, 0.7);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            border-radius: 50%;
+            transition: background 0.3s;
+            z-index: 10;
+        }
+
+        .carrusel-btn:hover {
+            background: #800020;
+        }
+
+        .btn-prev {
+            left: 15px;
+        }
+
+        .btn-next {
+            right: 15px;
+        }
+
+        /* Indicadores/dots */
+        .carrusel-dots {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            margin: 0 5px;
+            background: #ccc;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .dot.active {
+            background: #800020;
+        }
+
+        .contador {
+            text-align: center;
+            margin-top: 15px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .frase-final {
+            text-align: center;
+            margin-top: 60px;
+            padding: 40px;
+            background: #e3d9cb;
+            border-radius: 30px;
+        }
+
+        .frase-final p {
+            font-size: 1.2rem;
+            color: #800020;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .carrusel-btn {
+                padding: 10px 15px;
+                font-size: 1rem;
+            }
+            .testimonios-titulo {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="assets/logo.png" alt="Logo" style="height: 50px;">
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="testimonios.html">Testimonios</a></li>
+                </ul>
+            </nav>
+            <a href="servicios.html" class="btn-header">Quiero un servicio</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="testimonios-container">
+            <h1 class="testimonios-titulo">✨ Lo que dicen mis clientas ✨</h1>
+            <p class="testimonios-subtitulo">Más de 700 mujeres han transformado su imagen conmigo. Aquí algunos de sus testimonios.</p>
+
+            <!-- Imagen principal -->
+            <div class="imagen-principal">
+                <img src="assets/testimonios/testimonio.png" alt="Testimonios de clientas">
+            </div>
+
+            <!-- Carrusel -->
+            <div class="carrusel-container">
+                <button class="carrusel-btn btn-prev" id="btnPrev">❮</button>
+                <div class="carrusel-slides" id="carruselSlides">
+                    <!-- Las imágenes se cargarán con JavaScript -->
+                </div>
+                <button class="carrusel-btn btn-next" id="btnNext">❯</button>
+            </div>
+            <div class="carrusel-dots" id="carruselDots"></div>
+            <div class="contador" id="contador">Imagen 1 / 10</div>
+
+            <div class="frase-final">
+                <p>"Ver la transformación de cada mujer es mi mayor satisfacción. Gracias por confiar en mí para potenciar su imagen y autoestima."</p>
+                <p style="margin-top: 15px;">— Camila Caballero</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="assets/logo.png" alt="Logo" style="height: 40px;">
+                <p>Transformando imágenes, potenciando confianza.</p>
+            </div>
+            <div class="footer-redes">
+                <h4>Sígueme</h4>
+                <div class="redes-sociales">
+                    <a href="https://www.instagram.com/camilacaballerot?igsh=MXFzeWJzNnZjZWluYw%3D%3D&utm_source=qr" target="_blank">📷 Instagram</a>
+                    <a href="https://www.facebook.com/share/1AzXtD2ey5/?mibextid=wwXIfr" target="_blank">📘 Facebook</a>
+                    <a href="https://www.tiktok.com/@camila.caballerot?_r=1&_t=ZS-95GVRi7DNnJ" target="_blank">📱 TikTok</a>
+                    <a href="https://youtube.com/@camila.caballero?si=crziNJTOOJBq2k0i" target="_blank">▶️ YouTube</a>
+                </div>
+            </div>
+            <div class="footer-contacto">
+                <h4>Contacto</h4>
+                <a href="https://wa.me/59169696211" class="whatsapp-footer">📞 +59169696211</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Camila Caballero - Asesoría de Imagen. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Configuración del carrusel
+        const totalImagenes = 10;
+        let indiceActual = 0;
+        let autoPlayInterval;
+
+        // Referencias a elementos
+        const slidesContainer = document.getElementById('carruselSlides');
+        const dotsContainer = document.getElementById('carruselDots');
+        const contadorElement = document.getElementById('contador');
+        const btnPrev = document.getElementById('btnPrev');
+        const btnNext = document.getElementById('btnNext');
+
+        // Cargar las imágenes 1.png, 2.png, ..., 10.png desde assets/testimonios/
+        function cargarImagenes() {
+            slidesContainer.innerHTML = '';
+            for (let i = 1; i <= totalImagenes; i++) {
+                const slide = document.createElement('div');
+                slide.className = 'carrusel-slide';
+                const img = document.createElement('img');
+                img.src = `assets/testimonios/${i}.png`;
+                img.alt = `Testimonio ${i}`;
+                slide.appendChild(img);
+                slidesContainer.appendChild(slide);
+            }
+        }
+
+        // Crear los dots (indicadores)
+        function crearDots() {
+            dotsContainer.innerHTML = '';
+            for (let i = 0; i < totalImagenes; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'dot';
+                dot.addEventListener('click', () => irASlide(i));
+                dotsContainer.appendChild(dot);
+            }
+            actualizarDots();
+        }
+
+        // Actualizar dot activo
+        function actualizarDots() {
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                if (index === indiceActual) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        // Actualizar contador
+        function actualizarContador() {
+            contadorElement.textContent = `Imagen ${indiceActual + 1} / ${totalImagenes}`;
+        }
+
+        // Mover a un slide específico
+        function irASlide(index) {
+            if (index < 0) index = 0;
+            if (index >= totalImagenes) index = totalImagenes - 1;
+            indiceActual = index;
+            const desplazamiento = -indiceActual * 100;
+            slidesContainer.style.transform = `translateX(${desplazamiento}%)`;
+            actualizarDots();
+            actualizarContador();
+            reiniciarAutoPlay();
+        }
+
+        // Siguiente slide
+        function siguienteSlide() {
+            if (indiceActual + 1 < totalImagenes) {
+                irASlide(indiceActual + 1);
+            } else {
+                irASlide(0); // Vuelve al inicio
+            }
+        }
+
+        // Anterior slide
+        function anteriorSlide() {
+            if (indiceActual - 1 >= 0) {
+                irASlide(indiceActual - 1);
+            } else {
+                irASlide(totalImagenes - 1); // Va al final
+            }
+        }
+
+        // Auto-play cada 5 segundos
+        function iniciarAutoPlay() {
+            autoPlayInterval = setInterval(() => {
+                siguienteSlide();
+            }, 5000);
+        }
+
+        function reiniciarAutoPlay() {
+            clearInterval(autoPlayInterval);
+            iniciarAutoPlay();
+        }
+
+        // Event listeners
+        btnPrev.addEventListener('click', () => {
+            anteriorSlide();
+            reiniciarAutoPlay();
+        });
+        btnNext.addEventListener('click', () => {
+            siguienteSlide();
+            reiniciarAutoPlay();
+        });
+
+        // Inicializar
+        cargarImagenes();
+        crearDots();
+        irASlide(0);
+        iniciarAutoPlay();
+
+        // Pausar auto-play cuando el mouse está sobre el carrusel
+        const carruselContainer = document.querySelector('.carrusel-container');
+        carruselContainer.addEventListener('mouseenter', () => {
+            clearInterval(autoPlayInterval);
+        });
+        carruselContainer.addEventListener('mouseleave', () => {
+            iniciarAutoPlay();
+        });
+    </script>
+</body>
+</html>
