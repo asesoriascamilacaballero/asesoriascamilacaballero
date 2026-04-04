@@ -46,21 +46,21 @@
             transform: translateY(-5px);
         }
 
+        /* IMÁGENES CUADRADAS - NUEVO ESTILO */
         .servicio-imagen {
-            flex: 1;
-            min-width: 280px;
             background: #f7f3ea;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            min-width: 280px;
+            max-width: 280px;
         }
 
         .servicio-imagen img {
             width: 100%;
-            max-width: 280px;
-            border-radius: 20px;
+            height: 280px;
             object-fit: cover;
+            border-radius: 20px;
         }
 
         .servicio-info {
@@ -219,6 +219,15 @@
             .botones-dobles {
                 flex-direction: column;
             }
+            .servicio-imagen {
+                min-width: 100%;
+                max-width: 100%;
+                padding: 20px;
+            }
+            .servicio-imagen img {
+                height: auto;
+                max-height: 280px;
+            }
         }
     </style>
 </head>
@@ -232,7 +241,7 @@
                 <ul>
                     <li><a href="index.html">Inicio</a></li>
                     <li><a href="servicios.html">Servicios</a></li>
-                    <li><a href="testimonios">Testimonios</a></li>
+                    <li><a href="testimonios.html">Testimonios</a></li>
                 </ul>
             </nav>
             <a href="servicios.html" class="btn-header">Quiero un servicio</a>
@@ -291,7 +300,7 @@
                     <div class="servicio-info">
                         <h3>✨ Styling Pro</h3>
                         <div class="modalidad">📍 Presencial en La Paz | 💻 Virtual en otras ciudades y el mundo</div>
-                        <div class="descripcion">Define tu estilo personal y entiende qué te favorece según tu cuerpo, para vestirte con seguridad, intención y coherencia.</div>
+                        <div class="descripcion">Define tu estilo personal y entiendes qué te favorece según tu cuerpo, para vestirte con seguridad, intención y coherencia.</div>
                         
                         <div class="incluye">
                             <h4>📦 ¿Qué incluye?</h4>
