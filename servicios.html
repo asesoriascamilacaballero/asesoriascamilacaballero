@@ -4,8 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Servicios | Camila Caballero</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <style>
+        * {
+            font-family: 'Poppins', 'Segoe UI', 'Helvetica Neue', sans-serif;
+        }
+
         .servicios-grid {
             max-width: 1200px;
             margin: 0 auto;
@@ -17,12 +24,14 @@
             color: #800020;
             font-size: 2.5rem;
             margin-bottom: 20px;
+            font-weight: 600;
         }
 
         .servicios-grid .subtitulo {
             text-align: center;
             color: #666;
             margin-bottom: 50px;
+            font-weight: 400;
         }
 
         .grid-servicios {
@@ -46,7 +55,7 @@
             transform: translateY(-5px);
         }
 
-        /* IMÁGENES CUADRADAS */
+        /* IMÁGENES - TAMAÑO ORIGINAL (SIN CUADRADAS) */
         .servicio-imagen {
             background: #f7f3ea;
             display: flex;
@@ -54,13 +63,15 @@
             justify-content: center;
             min-width: 280px;
             max-width: 280px;
+            padding: 20px;
         }
 
         .servicio-imagen img {
             width: 100%;
-            height: 280px;
-            object-fit: cover;
+            max-width: 240px;
+            height: auto;
             border-radius: 20px;
+            object-fit: contain;
         }
 
         .servicio-info {
@@ -70,8 +81,9 @@
 
         .servicio-info h3 {
             color: #800020;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             margin-bottom: 10px;
+            font-weight: 600;
         }
 
         .servicio-info .badge {
@@ -80,25 +92,28 @@
             color: #800020;
             padding: 5px 12px;
             border-radius: 50px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             margin-bottom: 15px;
+            font-weight: 500;
         }
 
         .servicio-info .modalidad {
             color: #b87333;
-            font-weight: bold;
+            font-weight: 600;
             margin-bottom: 10px;
+            font-size: 0.9rem;
         }
 
         .servicio-info .descripcion {
             color: #444;
             margin-bottom: 20px;
             line-height: 1.6;
+            font-weight: 400;
         }
 
         .detalle-item {
             margin: 8px 0;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: #555;
         }
 
@@ -116,6 +131,8 @@
         .incluye h4 {
             color: #800020;
             margin-bottom: 10px;
+            font-weight: 600;
+            font-size: 1rem;
         }
 
         .incluye ul {
@@ -125,6 +142,8 @@
         .incluye li {
             margin-bottom: 5px;
             line-height: 1.4;
+            font-weight: 400;
+            font-size: 0.9rem;
         }
 
         .experiencia {
@@ -137,18 +156,25 @@
         .experiencia h4 {
             color: #800020;
             margin-bottom: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .experiencia p, .experiencia li {
+            font-weight: 400;
+            font-size: 0.9rem;
         }
 
         .precio {
             font-size: 1.8rem;
-            font-weight: bold;
+            font-weight: 700;
             color: #800020;
             margin: 15px 0;
         }
 
         .precio small {
             font-size: 0.9rem;
-            font-weight: normal;
+            font-weight: 400;
         }
 
         .requisito {
@@ -156,8 +182,9 @@
             padding: 10px 15px;
             border-radius: 10px;
             margin: 15px 0;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             border-left: 4px solid #b87333;
+            font-weight: 400;
         }
 
         .botones-dobles {
@@ -173,9 +200,10 @@
             padding: 12px 25px;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 600;
             display: inline-block;
             transition: background 0.2s;
+            font-size: 0.9rem;
         }
 
         .btn-reservar-bolivia:hover {
@@ -188,9 +216,10 @@
             padding: 12px 25px;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 600;
             display: inline-block;
             transition: background 0.2s;
+            font-size: 0.9rem;
         }
 
         .btn-reservar-internacional:hover {
@@ -203,9 +232,10 @@
             padding: 12px 25px;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 600;
             display: inline-block;
             transition: background 0.2s;
+            font-size: 0.9rem;
         }
 
         .btn-lista-espera:hover {
@@ -222,11 +252,9 @@
             .servicio-imagen {
                 min-width: 100%;
                 max-width: 100%;
-                padding: 20px;
             }
             .servicio-imagen img {
-                height: auto;
-                max-height: 280px;
+                max-width: 200px;
             }
         }
     </style>
@@ -261,7 +289,7 @@
                         <img src="assets/servicios/asesoriasgrupales.jpg" alt="Asesoría Grupal - Glow Up Pro">
                     </div>
                     <div class="servicio-info">
-                        <h3> Glow Up Pro - Asesoría Grupal</h3>
+                        <h3>Glow Up Pro - Asesoría Grupal</h3>
                         <div class="modalidad">📍 Presencial en La Paz | Próximamente en SCZ, CBB y Oruro</div>
                         <div class="descripcion">Un taller exclusivo para mujeres que quieren verse y sentirse imparables. Eleva tu autoestima, confianza y estilo con herramientas de imagen estratégica.</div>
                         
@@ -317,7 +345,7 @@
                         </div>
 
                         <div class="experiencia">
-                            <h4>✨ Así será tu experiencia</h4>
+                            <h4>Así será tu experiencia</h4>
                             <ul>
                                 <li><strong>Primera fase:</strong> Descubrimos tus colores con un análisis de colorimetría</li>
                                 <li><strong>Segunda fase:</strong> Recibes tu guía de colores personalizada, paleta de color y círculo cromático</li>
@@ -427,7 +455,7 @@
                         <img src="assets/servicios/armariointeligente.jpg" alt="Armario Inteligente">
                     </div>
                     <div class="servicio-info">
-                        <h3> Armario Inteligente</h3>
+                        <h3>Armario Inteligente</h3>
                         <div class="modalidad">📍 ÚNICAMENTE PRESENCIAL EN LA PAZ</div>
                         <div class="descripcion">Limpieza estratégica de armario + 15 looks digitales con tus prendas.</div>
                         
@@ -442,9 +470,9 @@
                         </div>
 
                         <div class="experiencia">
-                            <h4>✨ SESIÓN 1 (Presencial - 3 horas)</h4>
+                            <h4>SESIÓN 1 (Presencial - 3 horas)</h4>
                             <p>Conversamos sobre tus objetivos de imagen personal. Realizamos una limpieza estratégica de armario, optimizando cada prenda.</p>
-                            <h4 style="margin-top: 15px;">✨ SESIÓN 2 (Online - 40 minutos)</h4>
+                            <h4 style="margin-top: 15px;">SESIÓN 2 (Online - 40 minutos)</h4>
                             <p>Crearemos 15 looks en tu armario digital. Te enseñaré a usar la app para organizar tus outfits.</p>
                         </div>
 
@@ -460,7 +488,7 @@
                 <!-- SERVICIO 6: PERSONAL SHOPPER (solo La Paz) -->
                 <div class="servicio-card">
                     <div class="servicio-imagen">
-                        <img src="assets/servicios/personalshoper.jpg" alt="Personal Shopper">
+                        <img src="assets/servicios/personalshopper.jpg" alt="Personal Shopper">
                     </div>
                     <div class="servicio-info">
                         <h3>Personal Shopper</h3>
