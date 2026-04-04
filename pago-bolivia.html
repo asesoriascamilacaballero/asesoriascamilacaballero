@@ -1,1 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pago Bolivia | Camila Caballero</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .pago-container {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
 
+        .pago-card {
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .pago-card h1 {
+            color: #800020;
+            margin-bottom: 20px;
+        }
+
+        .imagen-pago {
+            margin: 30px 0;
+        }
+
+        .imagen-pago img {
+            max-width: 250px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .instrucciones {
+            text-align: left;
+            background: #f7f3ea;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+
+        .instrucciones h3 {
+            color: #800020;
+            margin-bottom: 15px;
+        }
+
+        .instrucciones ol, .instrucciones ul {
+            margin-left: 20px;
+        }
+
+        .instrucciones li {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .cuenta-bancaria {
+            background: #e3d9cb;
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .cuenta-bancaria p {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #800020;
+            margin: 8px 0;
+        }
+
+        .btn-horario {
+            background: #b87333;
+            color: white;
+            padding: 14px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+
+        .btn-horario:hover {
+            transform: scale(1.02);
+            background: #8b5a2b;
+        }
+
+        .btn-whatsapp-pago {
+            background: #25D366;
+            color: white;
+            padding: 14px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+
+        .btn-whatsapp-pago:hover {
+            transform: scale(1.02);
+        }
+
+        .volver {
+            display: inline-block;
+            margin-top: 30px;
+            color: #800020;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .volver:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="assets/logo.png" alt="Logo" style="height: 50px;">
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="#experiencias">Experiencias</a></li>
+                </ul>
+            </nav>
+            <a href="servicios.html" class="btn-header">Quiero un servicio</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="pago-container">
+            <div class="pago-card">
+                <h1>🇧🇴 Reserva tu sesión - Bolivia</h1>
+
+                <!-- PASO 1: Horarios -->
+                <div class="instrucciones">
+                    <h3>📅 PASO 1: Elige tu horario</h3>
+                    <p>Revisa los horarios disponibles y selecciona el que mejor se adapte a ti.</p>
+                    <div style="text-align: center; margin-top: 20px;">
+                        <a href="https://calendar.google.com/calendar" target="_blank" class="btn-horario">📆 Ver horarios disponibles</a>
+                    </div>
+                </div>
+
+                <!-- Código QR y datos bancarios -->
+                <div class="imagen-pago">
+                    <img src="assets/qr.jpg" alt="Código QR para pago">
+                    <div class="cuenta-bancaria">
+                        <p>🏦 <strong>Banco Nacional de Bolivia (BNB)</strong></p>
+                        <p>📌 N° de cuenta: <strong>1502275107</strong></p>
+                        <p>👤 A nombre de: <strong>Camila Caballero</strong></p>
+                        <p>💵 <strong>Pago por QR o transferencia</strong></p>
+                    </div>
+                </div>
+
+                <!-- PASO 2 -->
+                <div class="instrucciones">
+                    <h3>💸 PASO 2: Realiza el pago</h3>
+                    <p><strong>Formas de pago en Bolivia:</strong></p>
+                    <ul>
+                        <li>📱 Transferencia bancaria (BNB - Banco Nacional de Bolivia)</li>
+                        <li>📱 Pago por QR (escanea el código QR)</li>
+                        <li>💵 Depósito en ventanilla (con el número de cuenta)</li>
+                    </ul>
+                </div>
+
+                <!-- PASO 3 -->
+                <div class="instrucciones">
+                    <h3>📲 PASO 3: Confirma tu reserva</h3>
+                    <p>Envía tu comprobante de pago por WhatsApp y confirmaremos tu horario.</p>
+                    <div style="text-align: center; margin-top: 20px;">
+                        <a href="https://wa.me/59167020314?text=Hola%2C%20ya%20realic%C3%A9%20el%20pago%20para%20mi%20sesi%C3%B3n%20en%20Bolivia" class="btn-whatsapp-pago" target="_blank">📤 Enviar comprobante por WhatsApp</a>
+                    </div>
+                </div>
+
+                <a href="servicios.html" class="volver">← Volver a servicios</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="assets/logo.png" alt="Logo" style="height: 40px;">
+                <p>Transformando imágenes, potenciando confianza.</p>
+            </div>
+            <div class="footer-redes">
+                <h4>Sígueme</h4>
+                <div class="redes-sociales">
+                    <a href="https://www.instagram.com/camilacaballerot?igsh=MXFzeWJzNnZjZWluYw%3D%3D&utm_source=qr" target="_blank">📷 Instagram</a>
+                    <a href="https://www.facebook.com/share/1AzXtD2ey5/?mibextid=wwXIfr" target="_blank">📘 Facebook</a>
+                    <a href="https://www.tiktok.com/@camila.caballerot?_r=1&_t=ZS-95GVRi7DNnJ" target="_blank">📱 TikTok</a>
+                    <a href="https://youtube.com/@camila.caballero?si=crziNJTOOJBq2k0i" target="_blank">▶️ YouTube</a>
+                </div>
+            </div>
+            <div class="footer-contacto">
+                <h4>Contacto</h4>
+                <a href="https://wa.me/59167020314" class="whatsapp-footer">📞 +591 670 20 3 14</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Camila Caballero - Asesoría de Imagen. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
