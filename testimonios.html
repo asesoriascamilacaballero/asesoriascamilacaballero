@@ -4,8 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Testimonios | Camila Caballero</title>
+    <!-- Fuente Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <style>
+        * {
+            font-family: 'Poppins', 'Segoe UI', 'Helvetica Neue', sans-serif;
+        }
+
         .testimonios-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -28,6 +34,8 @@
             color: #800020;
             font-size: 2.5rem;
             margin-bottom: 20px;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
         }
 
         .testimonios-subtitulo {
@@ -35,6 +43,7 @@
             color: #666;
             margin-bottom: 50px;
             font-size: 1.1rem;
+            font-family: 'Poppins', sans-serif;
         }
 
         /* Carrusel */
@@ -116,6 +125,7 @@
             margin-top: 15px;
             color: #666;
             font-size: 0.9rem;
+            font-family: 'Poppins', sans-serif;
         }
 
         .frase-final {
@@ -130,6 +140,7 @@
             font-size: 1.2rem;
             color: #800020;
             font-style: italic;
+            font-family: 'Poppins', sans-serif;
         }
 
         @media (max-width: 768px) {
@@ -162,15 +173,15 @@
 
     <main>
         <div class="testimonios-container">
-            <h1 class="testimonios-titulo">✨ Lo que dicen mis clientas ✨</h1>
+            <h1 class="testimonios-titulo">Lo que dicen mis clientas</h1>
             <p class="testimonios-subtitulo">Más de 700 mujeres han transformado su imagen conmigo. Aquí algunos de sus testimonios.</p>
 
-            <!-- Imagen principal - RUTA CORREGIDA -->
+            <!-- Imagen principal -->
             <div class="imagen-principal">
                 <img src="testimonios/testimonio.png" alt="Testimonios de clientas">
             </div>
 
-            <!-- Carrusel - RUTAS CORREGIDAS -->
+            <!-- Carrusel -->
             <div class="carrusel-container">
                 <button class="carrusel-btn btn-prev" id="btnPrev">❮</button>
                 <div class="carrusel-slides" id="carruselSlides">
@@ -233,7 +244,7 @@
                 const slide = document.createElement('div');
                 slide.className = 'carrusel-slide';
                 const img = document.createElement('img');
-                // RUTA CORREGIDA: busca en la carpeta testimonios/
+                // RUTA: busca en la carpeta testimonios/
                 img.src = `testimonios/${i}.png`;
                 img.alt = `Testimonio ${i}`;
                 slide.appendChild(img);
