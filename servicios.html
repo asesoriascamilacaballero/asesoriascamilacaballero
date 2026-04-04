@@ -1,1 +1,312 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios | Camila</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .servicios-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
 
+        .servicios-grid h1 {
+            text-align: center;
+            color: #800020;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .servicios-grid .subtitulo {
+            text-align: center;
+            color: #666;
+            margin-bottom: 50px;
+        }
+
+        .grid-servicios {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 40px;
+        }
+
+        .servicio-card {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+
+        .servicio-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .servicio-imagen {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .servicio-imagen img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .servicio-info {
+            flex: 1.5;
+            padding: 25px;
+        }
+
+        .servicio-info h3 {
+            color: #800020;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .servicio-info p {
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .servicio-info .duracion {
+            color: #b87333;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .servicio-info .precio {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #800020;
+            margin-bottom: 20px;
+        }
+
+        .botones-dobles {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .btn-reservar-bolivia {
+            background: #800020;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: background 0.2s;
+            font-size: 14px;
+        }
+
+        .btn-reservar-bolivia:hover {
+            background: #5a0016;
+        }
+
+        .btn-reservar-internacional {
+            background: #1e6f5c;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: background 0.2s;
+            font-size: 14px;
+        }
+
+        .btn-reservar-internacional:hover {
+            background: #0f4c3f;
+        }
+
+        .btn-lista-espera {
+            background: #b87333;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: background 0.2s;
+            font-size: 14px;
+        }
+
+        .btn-lista-espera:hover {
+            background: #8b5a2b;
+        }
+
+        @media (max-width: 768px) {
+            .grid-servicios {
+                grid-template-columns: 1fr;
+            }
+            .servicio-card {
+                flex-direction: column;
+            }
+            .botones-dobles {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="assets/logo.png" alt="Logo" style="height: 50px;">
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="#experiencias">Experiencias</a></li>
+                </ul>
+            </nav>
+            <a href="servicios.html" class="btn-header">Quiero un servicio</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="servicios-grid">
+            <h1>Mis Servicios</h1>
+            <div class="subtitulo">Elige el servicio que mejor se adapte a ti</div>
+
+            <div class="grid-servicios">
+
+                <!-- Servicio 1: Colorimetría -->
+                <div class="servicio-card">
+                    <div class="servicio-imagen">
+                        <img src="assets/servicios/colorimetria.PNG" alt="Colorimetría">
+                    </div>
+                    <div class="servicio-info">
+                        <h3>🎨 Colorimetría</h3>
+                        <p>Descubre tu paleta de colores ideal. Identificamos tu temporada y los tonos que realzan tu belleza natural.</p>
+                        <div class="duracion">⏱️ Duración: 2 horas</div>
+                        <div class="precio">Bs. 450</div>
+                        <div class="botones-dobles">
+                            <a href="pago-bolivia.html?servicio=colorimetria" class="btn-reservar-bolivia">🇧🇴 Pago Bolivia</a>
+                            <a href="pago-mundo.html?servicio=colorimetria" class="btn-reservar-internacional">🌎 Pago Internacional</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Servicio 2: Asesoría Grupal -->
+                <div class="servicio-card">
+                    <div class="servicio-imagen">
+                        <img src="assets/servicios/asesoriasgrupales.jpg" alt="Asesoría Grupal">
+                    </div>
+                    <div class="servicio-info">
+                        <h3>👥 Asesoría Grupal</h3>
+                        <p>Sesión grupal para aprender sobre colorimetría y estilo. Ideal para amigas, familia o equipos de trabajo.</p>
+                        <div class="duracion">⏱️ Duración: 3 horas</div>
+                        <div class="precio">Bs. 350 por persona</div>
+                        <div class="botones-dobles">
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSf7OwDWWS0Txg5X-b_MXMEMoIuuEv2wPlvxmEpvGsf9_cCB6A/viewform?usp=publish-editor" target="_blank" class="btn-lista-espera">📋 Lista de Espera</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Servicio 3: Diseño de Imagen -->
+                <div class="servicio-card">
+                    <div class="servicio-imagen">
+                        <img src="assets/servicios/disenodeimagen.PNG" alt="Diseño de Imagen">
+                    </div>
+                    <div class="servicio-info">
+                        <h3>✨ Diseño de Imagen</h3>
+                        <p>Transformación completa de tu imagen personal. Incluye análisis de color, morfología y estilo.</p>
+                        <div class="duracion">⏱️ Duración: 3 sesiones</div>
+                        <div class="precio">Bs. 1200</div>
+                        <div class="botones-dobles">
+                            <a href="pago-bolivia.html?servicio=diseno" class="btn-reservar-bolivia">🇧🇴 Pago Bolivia</a>
+                            <a href="pago-mundo.html?servicio=diseno" class="btn-reservar-internacional">🌎 Pago Internacional</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Servicio 4: Armario Inteligente -->
+                <div class="servicio-card">
+                    <div class="servicio-imagen">
+                        <img src="assets/servicios/armariointeligente.jpg" alt="Armario Inteligente">
+                    </div>
+                    <div class="servicio-info">
+                        <h3>👗 Armario Inteligente</h3>
+                        <p>Limpieza estratégica de armario + 15 looks digitales con tus prendas. Maximiza el potencial de tu ropa.</p>
+                        <div class="duracion">⏱️ Duración: 3 horas presencial + 40 min online</div>
+                        <div class="precio">Bs. 650</div>
+                        <div class="botones-dobles">
+                            <a href="pago-bolivia.html?servicio=armario" class="btn-reservar-bolivia">🇧🇴 Pago Bolivia</a>
+                            <a href="pago-mundo.html?servicio=armario" class="btn-reservar-internacional">🌎 Pago Internacional</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Servicio 5: Styling Pro -->
+                <div class="servicio-card">
+                    <div class="servicio-imagen">
+                        <img src="assets/servicios/stylingpro.jpg" alt="Styling Pro">
+                    </div>
+                    <div class="servicio-info">
+                        <h3>🔥 Styling Pro</h3>
+                        <p>Asesoría de styling avanzada para ocasiones especiales, eventos o renovación de imagen completa.</p>
+                        <div class="duracion">⏱️ Duración: 2 horas</div>
+                        <div class="precio">Bs. 550</div>
+                        <div class="botones-dobles">
+                            <a href="pago-bolivia.html?servicio=styling" class="btn-reservar-bolivia">🇧🇴 Pago Bolivia</a>
+                            <a href="pago-mundo.html?servicio=styling" class="btn-reservar-internacional">🌎 Pago Internacional</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Servicio 6: Personal Shopper -->
+                <div class="servicio-card">
+                    <div class="servicio-imagen">
+                        <img src="assets/servicios/personalshopper.jpg" alt="Personal Shopper">
+                    </div>
+                    <div class="servicio-info">
+                        <h3>🛍️ Personal Shopper</h3>
+                        <p>Acompañamiento personalizado para comprar prendas que realmente necesitas y te favorecen.</p>
+                        <div class="duracion">⏱️ Duración: 2 horas</div>
+                        <div class="precio">Bs. 500</div>
+                        <div class="botones-dobles">
+                            <a href="pago-bolivia.html?servicio=shopping" class="btn-reservar-bolivia">🇧🇴 Pago Bolivia</a>
+                            <a href="pago-mundo.html?servicio=shopping" class="btn-reservar-internacional">🌎 Pago Internacional</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="assets/logo.png" alt="Logo" style="height: 40px;">
+                <p>Transformando imágenes, potenciando confianza.</p>
+            </div>
+            <div class="footer-redes">
+                <h4>Sígueme</h4>
+                <div class="redes-sociales">
+                    <a href="https://www.instagram.com/camilacaballerot?igsh=MXFzeWJzNnZjZWluYw%3D%3D&utm_source=qr" target="_blank">📷 Instagram</a>
+                    <a href="https://www.facebook.com/share/1AzXtD2ey5/?mibextid=wwXIfr" target="_blank">📘 Facebook</a>
+                    <a href="https://www.tiktok.com/@camila.caballerot?_r=1&_t=ZS-95GVRi7DNnJ" target="_blank">📱 TikTok</a>
+                    <a href="https://youtube.com/@camila.caballero?si=crziNJTOOJBq2k0i" target="_blank">▶️ YouTube</a>
+                </div>
+            </div>
+            <div class="footer-contacto">
+                <h4>Contacto</h4>
+                <a href="https://wa.me/59167020314" class="whatsapp-footer">📞 +591 670 20 3 14</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Camila Caballero - Asesoría de Imagen. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
