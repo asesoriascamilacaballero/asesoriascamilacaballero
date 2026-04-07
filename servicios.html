@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Servicios | Camila Caballero</title>
-    <!-- Fuente Poppins importada UNA SOLA VEZ -->
+    <!-- Fuente Poppins -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <style>
@@ -84,18 +84,6 @@
             font-family: 'Poppins', sans-serif;
         }
 
-        .servicio-info .badge {
-            display: inline-block;
-            background: #e3d9cb;
-            color: #800020;
-            padding: 5px 12px;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            margin-bottom: 15px;
-            font-weight: 500;
-            font-family: 'Poppins', sans-serif;
-        }
-
         .servicio-info .modalidad {
             color: #b87333;
             font-weight: 600;
@@ -110,17 +98,6 @@
             line-height: 1.6;
             font-weight: 400;
             font-family: 'Poppins', sans-serif;
-        }
-
-        .detalle-item {
-            margin: 8px 0;
-            font-size: 0.9rem;
-            color: #555;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .detalle-item strong {
-            color: #800020;
         }
 
         .incluye {
@@ -213,6 +190,8 @@
             transition: background 0.2s;
             font-size: 0.9rem;
             font-family: 'Poppins', sans-serif;
+            border: none;
+            cursor: pointer;
         }
 
         .btn-reservar-bolivia:hover {
@@ -230,6 +209,8 @@
             transition: background 0.2s;
             font-size: 0.9rem;
             font-family: 'Poppins', sans-serif;
+            border: none;
+            cursor: pointer;
         }
 
         .btn-reservar-internacional:hover {
@@ -251,6 +232,121 @@
 
         .btn-lista-espera:hover {
             background: #8b5a2b;
+        }
+
+        /* MODAL - Ventana flotante */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            max-width: 500px;
+            width: 90%;
+            border-radius: 30px;
+            padding: 30px;
+            text-align: center;
+            animation: fadeIn 0.3s ease;
+            position: relative;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-content h2 {
+            color: #800020;
+            margin-bottom: 20px;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .modal-content .politicas {
+            text-align: left;
+            background: #f7f3ea;
+            padding: 20px;
+            border-radius: 20px;
+            margin: 20px 0;
+        }
+
+        .modal-content .politicas p {
+            margin: 10px 0;
+            font-size: 0.9rem;
+            color: #444;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .modal-content .politicas strong {
+            color: #800020;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .btn-aceptar {
+            background: #800020;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-aceptar:hover {
+            background: #5a0016;
+        }
+
+        .btn-cancelar {
+            background: #ccc;
+            color: #333;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-cancelar:hover {
+            background: #aaa;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .close-modal:hover {
+            color: #800020;
         }
 
         @media (max-width: 768px) {
@@ -366,8 +462,8 @@
 
                         <div class="precio">Bs. 230 <small>/ $39 USD</small></div>
                         <div class="botones-dobles">
-                            <a href="pago-bolivia.html?servicio=colorimetria" class="btn-reservar-bolivia">🇧🇴 Pago Bolivia</a>
-                            <a href="pago-mundo.html?servicio=colorimetria" class="btn-reservar-internacional">🌎 Pago Internacional</a>
+                            <button class="btn-reservar-bolivia" data-url="pago-bolivia.html?servicio=colorimetria">🇧🇴 Pago Bolivia</button>
+                            <button class="btn-reservar-internacional" data-url="pago-mundo.html?servicio=colorimetria">🌎 Pago Internacional</button>
                         </div>
                     </div>
                 </div>
@@ -396,8 +492,8 @@
 
                         <div class="precio">Bs. 250 <small>/ $35 USD</small></div>
                         <div class="botones-dobles">
-                            <a href="pago-bolivia.html?servicio=styling" class="btn-reservar-bolivia">🇧🇴 Pago Bolivia</a>
-                            <a href="pago-mundo.html?servicio=styling" class="btn-reservar-internacional">🌎 Pago Internacional</a>
+                            <button class="btn-reservar-bolivia" data-url="pago-bolivia.html?servicio=styling">🇧🇴 Pago Bolivia</button>
+                            <button class="btn-reservar-internacional" data-url="pago-mundo.html?servicio=styling">🌎 Pago Internacional</button>
                         </div>
                     </div>
                 </div>
@@ -454,8 +550,8 @@
 
                         <div class="precio">Bs. 720 <small>/ $119 USD</small></div>
                         <div class="botones-dobles">
-                            <a href="pago-bolivia.html?servicio=diseno" class="btn-reservar-bolivia">🇧🇴 Pago Bolivia</a>
-                            <a href="pago-mundo.html?servicio=diseno" class="btn-reservar-internacional">🌎 Pago Internacional</a>
+                            <button class="btn-reservar-bolivia" data-url="pago-bolivia.html?servicio=diseno">🇧🇴 Pago Bolivia</button>
+                            <button class="btn-reservar-internacional" data-url="pago-mundo.html?servicio=diseno">🌎 Pago Internacional</button>
                         </div>
                     </div>
                 </div>
@@ -492,14 +588,14 @@
                         </div>
 
                         <div class="precio">Bs. 650</div>
-                        <a href="pago-bolivia.html?servicio=armario" class="btn-reservar-bolivia">🇧🇴 Pago Bolivia (solo presencial)</a>
+                        <button class="btn-reservar-bolivia" data-url="pago-bolivia.html?servicio=armario">🇧🇴 Pago Bolivia (solo presencial)</button>
                     </div>
                 </div>
 
                 <!-- SERVICIO 6: PERSONAL SHOPPER (solo La Paz) -->
                 <div class="servicio-card">
                     <div class="servicio-imagen">
-                        <img src="assets/servicios/personalshoper.jpg" alt="Personal Shopper">
+                        <img src="assets/servicios/personalshopper.jpg" alt="Personal Shopper">
                     </div>
                     <div class="servicio-info">
                         <h3>Personal Shopper</h3>
@@ -524,7 +620,7 @@
                         </div>
 
                         <div class="precio">Bs. 500</div>
-                        <a href="pago-bolivia.html?servicio=shopping" class="btn-reservar-bolivia">🇧🇴 Pago Bolivia (solo presencial)</a>
+                        <button class="btn-reservar-bolivia" data-url="pago-bolivia.html?servicio=shopping">🇧🇴 Pago Bolivia (solo presencial)</button>
                     </div>
                 </div>
 
@@ -556,5 +652,90 @@
             <p>&copy; 2025 Camila Caballero - Asesoría de Imagen. Todos los derechos reservados.</p>
         </div>
     </footer>
+
+    <!-- MODAL DE POLÍTICAS DE CANCELACIÓN -->
+    <div id="modalPoliticas" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <h2>📋 Políticas de Cancelación</h2>
+            <div class="politicas">
+                <p>📌 Lee atentamente antes de confirmar tu cita:</p>
+                <p>✅ Puedes cambiar la fecha de tu cita con <strong>24 horas de anticipación</strong>.</p>
+                <p>💰 Después de realizar el pago de un curso, solo es posible cambiar la fecha. <strong>No existen devoluciones</strong>.</p>
+                <p>⏱️ Las asesorías personalizadas cuentan con un máximo de <strong>15 minutos de tolerancia</strong>.</p>
+                <p>⚠️ En caso de no presentarte a tu cita o de exceder el tiempo de tolerancia, se aplicará una penalidad de <strong>Bs 50</strong>, correspondiente al tiempo y al espacio reservado exclusivamente para ti.</p>
+                <p>🔄 Tu reserva se mantiene para reprogramar tu cita.</p>
+            </div>
+            <div class="modal-buttons">
+                <button id="btnAceptar" class="btn-aceptar">✅ Acepto</button>
+                <button id="btnCancelar" class="btn-cancelar">❌ Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Variables para almacenar la URL de destino
+        let urlDestino = '';
+
+        // Obtener elementos del modal
+        const modal = document.getElementById('modalPoliticas');
+        const closeModal = document.getElementById('closeModal');
+        const btnAceptar = document.getElementById('btnAceptar');
+        const btnCancelar = document.getElementById('btnCancelar');
+
+        // Función para abrir el modal
+        function abrirModal(url) {
+            urlDestino = url;
+            modal.style.display = 'flex';
+        }
+
+        // Función para cerrar el modal
+        function cerrarModal() {
+            modal.style.display = 'none';
+            urlDestino = '';
+        }
+
+        // Función para redirigir al pago
+        function redirigirPago() {
+            if (urlDestino) {
+                window.location.href = urlDestino;
+            }
+            cerrarModal();
+        }
+
+        // Event listeners para todos los botones de pago Bolivia
+        document.querySelectorAll('.btn-reservar-bolivia').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const url = btn.getAttribute('data-url');
+                abrirModal(url);
+            });
+        });
+
+        // Event listeners para todos los botones de pago Internacional
+        document.querySelectorAll('.btn-reservar-internacional').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const url = btn.getAttribute('data-url');
+                abrirModal(url);
+            });
+        });
+
+        // Cerrar modal con la X
+        closeModal.addEventListener('click', cerrarModal);
+
+        // Cerrar modal con botón Cancelar
+        btnCancelar.addEventListener('click', cerrarModal);
+
+        // Aceptar y redirigir
+        btnAceptar.addEventListener('click', redirigirPago);
+
+        // Cerrar modal si se hace clic fuera del contenido
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                cerrarModal();
+            }
+        });
+    </script>
 </body>
 </html>
