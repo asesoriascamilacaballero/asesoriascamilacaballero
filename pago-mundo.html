@@ -276,6 +276,17 @@
     <script>
         // ========== API URL (Netlify Function) ==========
         const API_URL = '/.netlify/functions/registrar-deuda';
+        // ========== LEER PARÁMETROS DE LA URL ==========
+        const urlParams = new URLSearchParams(window.location.search);
+        const montoDesdeURL = urlParams.get('monto');
+        const descripcionDesdeURL = urlParams.get('descripcion');
+        
+        if (montoDesdeURL) {
+        document.getElementById('montoPago').value = montoDesdeURL;
+        }
+        if (descripcionDesdeURL) {
+        document.getElementById('descripcionPago').value = descripcionDesdeURL;
+}
 
         // ========== ELEMENTOS DOM ==========
         const btnGenerar = document.getElementById('btnGenerarPago');
