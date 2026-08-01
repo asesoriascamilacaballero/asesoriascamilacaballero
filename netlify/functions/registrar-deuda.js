@@ -2,7 +2,7 @@
 const fetch = require('node-fetch');
 
 exports.handler = async (event) => {
-    // ⚠️ Solo permitir POST
+    // Solo permitir POST
     if (event.httpMethod !== 'POST') {
         return {
             statusCode: 405,
@@ -22,8 +22,15 @@ exports.handler = async (event) => {
             };
         }
 
-        // 🔐 TU APPKEY DE LIBÉLULA (¡nunca en el frontend!)
-        const APPKEY = process.env.LIBELULA_APPKEY || 'TU_APPKEY_AQUI'; 
+        // 🔐 Appkey de Libélula (se toma de las variables de entorno)
+        const APPKEY = process.env.LIBELULA_APPKEY;
+
+        if (!APPKEY) {
+            return {
+                statusCode: 500,
+                body: JSON.stringify({ error: 'Appkey no configurada' })
+            };
+        }
 
         // Preparar payload para Libélula
         const payload = {
