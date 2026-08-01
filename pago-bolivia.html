@@ -4,13 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pago Bolivia | Camila Caballero</title>
-    <!-- Fuente Poppins -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        * {
-            font-family: 'Poppins', 'Segoe UI', 'Helvetica Neue', sans-serif;
-        }
+        * { font-family: 'Poppins', sans-serif; }
 
         .pago-container {
             max-width: 800px;
@@ -30,17 +28,6 @@
             color: #800020;
             margin-bottom: 20px;
             font-weight: 600;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .imagen-pago {
-            margin: 30px 0;
-        }
-
-        .imagen-pago img {
-            max-width: 250px;
-            border-radius: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .instrucciones {
@@ -55,38 +42,10 @@
             color: #800020;
             margin-bottom: 15px;
             font-weight: 600;
-            font-family: 'Poppins', sans-serif;
         }
 
-        .instrucciones p {
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .instrucciones ol, .instrucciones ul {
-            margin-left: 20px;
-        }
-
-        .instrucciones li {
-            margin-bottom: 10px;
-            line-height: 1.5;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .cuenta-bancaria {
-            background: #e3d9cb;
-            padding: 15px;
-            border-radius: 15px;
-            text-align: center;
-            margin: 20px 0;
-        }
-
-        .cuenta-bancaria p {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: #800020;
-            margin: 8px 0;
-            font-family: 'Poppins', sans-serif;
-        }
+        .instrucciones ul { margin-left: 20px; }
+        .instrucciones li { margin-bottom: 10px; line-height: 1.5; }
 
         .btn-horario {
             background: #b87333;
@@ -95,16 +54,31 @@
             border-radius: 50px;
             text-decoration: none;
             display: inline-block;
-            margin: 10px;
             font-weight: 600;
             transition: transform 0.2s;
-            font-family: 'Poppins', sans-serif;
+            border: none;
+            cursor: pointer;
         }
 
-        .btn-horario:hover {
-            transform: scale(1.02);
-            background: #8b5a2b;
+        .btn-horario:hover { transform: scale(1.02); background: #8b5a2b; }
+
+        .btn-pago {
+            background: #1e6f5c;
+            color: white;
+            padding: 14px 30px;
+            border-radius: 50px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 100%;
+            max-width: 300px;
+            margin: 10px auto;
+            display: block;
         }
+
+        .btn-pago:hover:not(:disabled) { background: #0f4c3f; transform: scale(1.02); }
+        .btn-pago:disabled { opacity: 0.5; cursor: not-allowed; }
 
         .btn-whatsapp-pago {
             background: #25D366;
@@ -113,15 +87,11 @@
             border-radius: 50px;
             text-decoration: none;
             display: inline-block;
-            margin: 10px;
             font-weight: 600;
             transition: transform 0.2s;
-            font-family: 'Poppins', sans-serif;
         }
 
-        .btn-whatsapp-pago:hover {
-            transform: scale(1.02);
-        }
+        .btn-whatsapp-pago:hover { transform: scale(1.02); }
 
         .volver {
             display: inline-block;
@@ -129,12 +99,69 @@
             color: #800020;
             text-decoration: none;
             font-weight: 600;
-            font-family: 'Poppins', sans-serif;
         }
 
-        .volver:hover {
-            text-decoration: underline;
+        .volver:hover { text-decoration: underline; }
+
+        .form-pago {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 20px 0;
         }
+
+        .form-pago input {
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 0.95rem;
+        }
+
+        .form-pago input:focus {
+            border-color: #800020;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(128, 0, 32, 0.1);
+        }
+
+        .mensaje-pago {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 12px;
+            display: none;
+            font-weight: 500;
+        }
+
+        .mensaje-pago.exito {
+            background: #e8f5e9;
+            color: #2e7d32;
+            display: block;
+        }
+
+        .mensaje-pago.error {
+            background: #ffebee;
+            color: #c62828;
+            display: block;
+        }
+
+        .link-pago-generado {
+            margin-top: 15px;
+            padding: 16px;
+            background: #f8fafc;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            word-break: break-all;
+            display: none;
+        }
+
+        .link-pago-generado a {
+            color: #1e6f5c;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .link-pago-generado a:hover { text-decoration: underline; }
+
+        .loading-spinner { display: inline-block; margin-right: 8px; }
     </style>
 </head>
 <body>
@@ -168,32 +195,50 @@
                     </div>
                 </div>
 
-                <!-- Código QR y datos bancarios -->
-                <div class="imagen-pago">
-                    <img src="assets/qr.jpg" alt="Código QR para pago">
-                    <div class="cuenta-bancaria">
-                        <p>🏦 <strong>Banco Nacional de Bolivia (BNB)</strong></p>
-                        <p>📌 N° de cuenta: <strong>1502275107</strong></p>
-                        <p>👤 A nombre de: <strong>Camila Caballero</strong></p>
-                        <p>💵 <strong>Pago por QR o transferencia</strong></p>
+                <!-- PASO 2: Pago con Libélula -->
+                <div class="instrucciones">
+                    <h3>💸 PASO 2: Realiza el pago</h3>
+                    <p><strong>Pago con tarjeta de crédito/débito, QR, Tigo Money y más:</strong></p>
+                    <ul>
+                        <li>💳 Acepta tarjetas Visa, Mastercard, American Express</li>
+                        <li>📱 Pago QR (BCP y BNB)</li>
+                        <li>📱 Tigo Money y BNBNet</li>
+                        <li>🔒 Pago 100% seguro a través de Libélula</li>
+                    </ul>
+
+                    <div style="margin: 20px 0; padding: 20px; background: white; border-radius: 16px;">
+                        <h4 style="color: #800020; margin-bottom: 12px;">💳 Completa tus datos</h4>
+                        <p style="font-size: 0.9rem; color: #6b7280; margin-bottom: 16px;">Generaremos un link de pago seguro para que completes la transacción</p>
+
+                        <div class="form-pago">
+                            <input type="email" id="emailCliente" placeholder="Tu correo electrónico" required>
+                            <input type="text" id="nombreCliente" placeholder="Tu nombre" required>
+                            <input type="text" id="apellidoCliente" placeholder="Tu apellido" required>
+                            <input type="number" id="montoPago" placeholder="Monto en Bs" step="0.01" required>
+                            <input type="text" id="descripcionPago" placeholder="Descripción" value="Sesión de asesoría">
+                        </div>
+
+                        <button id="btnGenerarPago" class="btn-pago">
+                            <i class="fas fa-spinner fa-pulse loading-spinner" style="display: none;"></i>
+                            🔗 Generar link de pago
+                        </button>
+
+                        <div id="mensajePago" class="mensaje-pago"></div>
+                        <div id="linkPagoGenerado" class="link-pago-generado">
+                            <strong>🔗 Link de pago generado:</strong><br>
+                            <a href="#" id="linkPagoUrl" target="_blank">Cargando...</a>
+                            <br><br>
+                            <button onclick="window.open(document.getElementById('linkPagoUrl').href, '_blank')" style="background: #1e6f5c; color: white; border: none; padding: 8px 20px; border-radius: 60px; cursor: pointer;">
+                                <i class="fas fa-external-link-alt"></i> Abrir link de pago
+                            </button>
+                        </div>
                     </div>
                 </div>
 
-                <!-- PASO 2 -->
-                <div class="instrucciones">
-                    <h3>💸 PASO 2: Realiza el pago</h3>
-                    <p><strong>Formas de pago en Bolivia:</strong></p>
-                    <ul>
-                        <li>📱 Transferencia bancaria (BNB - Banco Nacional de Bolivia)</li>
-                        <li>📱 Pago por QR (escanea el código QR)</li>
-                        <li>💵 Depósito en ventanilla (con el número de cuenta)</li>
-                    </ul>
-                </div>
-
-                <!-- PASO 3 -->
+                <!-- PASO 3: Confirmación -->
                 <div class="instrucciones">
                     <h3>📲 PASO 3: Confirma tu reserva</h3>
-                    <p>Envía tu comprobante de pago por WhatsApp y confirmaremos tu horario.</p>
+                    <p>Después de realizar el pago, envía tu comprobante por WhatsApp y confirmaremos tu horario.</p>
                     <div style="text-align: center; margin-top: 20px;">
                         <a href="https://wa.me/59169696211?text=Hola%2C%20ya%20realic%C3%A9%20el%20pago%20para%20mi%20sesi%C3%B3n%20en%20Bolivia" class="btn-whatsapp-pago" target="_blank">📤 Enviar comprobante por WhatsApp</a>
                     </div>
@@ -228,5 +273,92 @@
             <p>&copy; 2025 Camila Caballero - Asesoría de Imagen. Todos los derechos reservados.</p>
         </div>
     </footer>
+
+    <script>
+        // ========== API URL (Netlify Function) ==========
+        const API_URL = '/.netlify/functions/registrar-deuda';
+
+        // ========== ELEMENTOS DOM ==========
+        const btnGenerar = document.getElementById('btnGenerarPago');
+        const emailInput = document.getElementById('emailCliente');
+        const nombreInput = document.getElementById('nombreCliente');
+        const apellidoInput = document.getElementById('apellidoCliente');
+        const montoInput = document.getElementById('montoPago');
+        const descripcionInput = document.getElementById('descripcionPago');
+        const mensajeDiv = document.getElementById('mensajePago');
+        const linkDiv = document.getElementById('linkPagoGenerado');
+        const linkUrl = document.getElementById('linkPagoUrl');
+        const spinner = document.querySelector('.loading-spinner');
+
+        // ========== GENERAR PAGO ==========
+        async function generarPago() {
+            const email = emailInput.value.trim();
+            const nombre = nombreInput.value.trim() || 'Cliente';
+            const apellido = apellidoInput.value.trim() || 'Ejemplo';
+            const monto = parseFloat(montoInput.value);
+            const descripcion = descripcionInput.value.trim() || 'Sesión de asesoría';
+
+            if (!email) {
+                mostrarMensaje('❌ Ingresa un correo electrónico válido', 'error');
+                return;
+            }
+            if (!monto || monto <= 0) {
+                mostrarMensaje('❌ Ingresa un monto válido', 'error');
+                return;
+            }
+
+            btnGenerar.disabled = true;
+            spinner.style.display = 'inline-block';
+            btnGenerar.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Generando...';
+            mensajeDiv.className = 'mensaje-pago';
+            mensajeDiv.style.display = 'none';
+            linkDiv.style.display = 'none';
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, nombre, apellido, monto, descripcion })
+                });
+
+                const data = await response.json();
+
+                if (data.success && data.url_pasarela_pagos) {
+                    mostrarMensaje('✅ Link de pago generado con éxito', 'exito');
+                    linkDiv.style.display = 'block';
+                    linkUrl.href = data.url_pasarela_pagos;
+                    linkUrl.textContent = data.url_pasarela_pagos;
+                    linkDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } else {
+                    throw new Error(data.error || 'Error al generar el pago');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                mostrarMensaje(`❌ Error: ${error.message}`, 'error');
+            }
+
+            btnGenerar.disabled = false;
+            spinner.style.display = 'none';
+            btnGenerar.innerHTML = '<i class="fas fa-link"></i> Generar link de pago';
+        }
+
+        function mostrarMensaje(texto, tipo) {
+            mensajeDiv.textContent = texto;
+            mensajeDiv.className = `mensaje-pago ${tipo}`;
+            mensajeDiv.style.display = 'block';
+        }
+
+        // ========== EVENTOS ==========
+        btnGenerar.addEventListener('click', generarPago);
+
+        document.querySelectorAll('.form-pago input').forEach(input => {
+            input.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    generarPago();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
