@@ -1,0 +1,8 @@
+{
+  "name": "asesoriascamilacaballero",
+  "version": "1.0.0",
+  "description": "Sitio web con integración de pagos Libélula",
+  "dependencies": {
+    "node-fetch": "^2.6.7"
+  }
+}
