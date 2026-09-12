@@ -1,5 +1,5 @@
 /* =====================================================
-   BETWINS / CAMILA CABALLERO - STYLE.CSS
+   CAMILA CABALLERO - STYLE.CSS
    Tipografía: Bodoni Moda (editorial) + DM Sans (cuerpo)
    Paleta: Ivory, White, Black, Espresso, Taupe, Sand, Greige
    ===================================================== */
@@ -70,26 +70,28 @@ button,
 }
 
 /* =====================================================
-   NAVBAR
+   NAVBAR - HEADER OSCURO CON HAMBURGUESA
    ===================================================== */
+
 .navbar {
-    background-color: var(--color-ivory);
-    padding: 20px 0;
-    border-bottom: 1px solid var(--color-sand);
+    background-color: var(--color-espresso);
     position: sticky;
     top: 0;
     z-index: 1000;
+    width: 100%;
 }
 
 .navbar-container {
-    max-width: 1200px;
+    max-width: 100%;
     margin: 0 auto;
-    padding: 0 40px;
+    padding: 0 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 65px;
 }
 
+/* Logo */
 .navbar-logo {
     text-decoration: none;
     display: flex;
@@ -97,62 +99,120 @@ button,
 }
 
 .navbar-logo img {
-    height: 60px;
+    height: 40px;
     width: auto;
     display: block;
+    filter: brightness(0) invert(1); /* Logo blanco sobre fondo oscuro */
 }
 
-.navbar-menu {
+/* Botón hamburguesa */
+.navbar-toggle {
     display: flex;
-    gap: 40px;
-    list-style: none;
-    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 6px;
+    padding: 10px 12px;
+    cursor: pointer;
+    transition: background 0.3s;
 }
 
-.navbar-menu a {
+.navbar-toggle:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+.navbar-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background-color: var(--color-white);
+    border-radius: 2px;
+    transition: 0.3s;
+}
+
+/* Menú desplegable - OCULTO POR DEFECTO */
+.navbar-menu {
+    position: fixed;
+    top: 65px;
+    right: -100%;
+    width: 280px;
+    height: calc(100vh - 65px);
+    background-color: var(--color-espresso);
+    padding: 40px 30px;
+    transition: right 0.35s ease;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.3);
+    z-index: 999;
+}
+
+.navbar-menu.active {
+    right: 0;
+}
+
+.navbar-menu ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.navbar-menu ul li {
+    width: 100%;
+}
+
+.navbar-menu ul li a {
     font-family: var(--font-body);
-    font-weight: var(--weight-medium);
-    font-size: 0.75rem;
+    font-weight: 500;
+    font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    color: var(--color-black);
+    color: var(--color-white);
     text-decoration: none;
     transition: color 0.3s;
+    display: block;
+    padding: 8px 0;
 }
 
-.navbar-menu a:hover {
+.navbar-menu ul li a:hover {
     color: var(--color-taupe);
 }
 
-.navbar-btn {
-    background-color: var(--color-espresso);
-    color: var(--color-white);
-    padding: 12px 28px;
-    font-family: var(--font-body);
-    font-weight: var(--weight-medium);
+/* Botón dentro del menú */
+.navbar-menu .navbar-btn {
+    background-color: var(--color-white);
+    color: var(--color-espresso);
+    padding: 12px 24px;
     font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    text-decoration: none;
-    transition: opacity 0.3s;
+    text-align: center;
+    margin-top: 10px;
 }
 
-.navbar-btn:hover {
+.navbar-menu .navbar-btn:hover {
     opacity: 0.85;
+    color: var(--color-espresso);
 }
 
-.navbar-toggle {
-    display: none;
-    font-size: 1.5rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: var(--color-black);
+/* Animación del botón hamburguesa a X */
+.navbar-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.navbar-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.navbar-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
 }
 
 /* =====================================================
    BOTONES GENERALES
    ===================================================== */
+
 .button-primary {
     background-color: var(--color-espresso);
     color: var(--color-white);
@@ -176,6 +236,7 @@ button,
 /* =====================================================
    SECCIONES
    ===================================================== */
+
 .section-light {
     background-color: var(--color-white);
 }
@@ -187,6 +248,7 @@ button,
 /* =====================================================
    FOOTER
    ===================================================== */
+
 .footer {
     background-color: var(--color-espresso);
     color: var(--color-white);
@@ -263,37 +325,20 @@ button,
 /* =====================================================
    RESPONSIVE
    ===================================================== */
+
 @media (max-width: 768px) {
     .navbar-container {
         padding: 0 20px;
+        height: 60px;
     }
 
-    .navbar-toggle {
-        display: block;
+    .navbar-logo img {
+        height: 35px;
     }
 
     .navbar-menu {
-        position: fixed;
-        top: 90px;
-        left: -100%;
-        width: 100%;
-        height: calc(100vh - 90px);
-        background-color: var(--color-ivory);
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        padding: 60px 20px;
-        gap: 30px;
-        transition: left 0.3s;
-        border-top: 1px solid var(--color-sand);
-    }
-
-    .navbar-menu.active {
-        left: 0;
-    }
-
-    .navbar-btn {
-        display: none;
+        top: 60px;
+        height: calc(100vh - 60px);
     }
 
     .footer {
@@ -311,10 +356,10 @@ button,
 
 @media (max-width: 480px) {
     .navbar-logo img {
-        height: 45px;
+        height: 30px;
     }
 
     .footer-logo img {
-        height: 45px;
+        height: 50px;
     }
 }
