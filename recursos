@@ -169,6 +169,7 @@
         <article class="recurso">
             <span class="categoria">Herramienta interactiva</span>
             <h2>Test de tipo de rostro</h2>
+            <img src="assets/TIPODEROSTRO.png" alt="Camila Caballero">
             <p>Una guía para identificar la forma de tu rostro y descubrir qué cortes de cabello, accesorios y gafas mejor se adaptan a tus facciones. Una herramienta para conocerte mejor.</p>
             <a href="https://carolinacaba.github.io/face-analyzer-demo/" target="_blank" class="btn-recurso">Comenzar el test</a>
         </article>
