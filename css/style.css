@@ -1,368 +1,4 @@
 /* =====================================================
-   CAMILA CABALLERO - STYLE.CSS
-   Tipografía: Bodoni Moda (editorial) + DM Sans (cuerpo)
-   Paleta: Ivory, White, Black, Espresso, Taupe, Sand, Greige
-   ===================================================== */
-
-/* ===== IMPORTAR FUENTES ===== */
-@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400&family=DM+Sans:wght@400;500;600;700&display=swap');
-
-/* ===== VARIABLES GLOBALES ===== */
-:root {
-    /* Colores */
-    --color-ivory: #F7F5F0;
-    --color-white: #FEFDFB;
-    --color-black: #171512;
-    --color-espresso: #2D211A;
-    --color-taupe: #A99B8D;
-    --color-sand: #D8CFC4;
-    --color-greige: #E9E5DF;
-
-    /* Tipografía */
-    --font-editorial: "Bodoni Moda", "Bodoni 72", Didot, serif;
-    --font-body: "DM Sans", Arial, sans-serif;
-
-    /* Pesos */
-    --weight-regular: 400;
-    --weight-medium: 500;
-    --weight-semibold: 600;
-}
-
-/* ===== RESET ===== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* ===== BASE ===== */
-body {
-    font-family: var(--font-body);
-    font-weight: var(--weight-regular);
-    color: var(--color-black);
-    background-color: var(--color-ivory);
-    line-height: 1.5;
-}
-
-/* ===== TIPOGRAFÍA EDITORIAL ===== */
-h1, h2, h3 {
-    font-family: var(--font-editorial);
-    font-weight: var(--weight-regular);
-    color: var(--color-black);
-    letter-spacing: -0.02em;
-    line-height: 0.95;
-}
-
-.editorial-italic {
-    font-family: var(--font-editorial);
-    font-style: italic;
-    font-weight: var(--weight-regular);
-}
-
-/* ===== ETIQUETAS Y BOTONES ===== */
-nav,
-button,
-.label {
-    font-family: var(--font-body);
-    font-weight: var(--weight-medium);
-    text-transform: uppercase;
-    letter-spacing: 0.10em;
-}
-
-/* =====================================================
-   NAVBAR - HEADER OSCURO CON HAMBURGUESA
-   ===================================================== */
-
-.navbar {
-    background-color: var(--color-espresso);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    width: 100%;
-}
-
-.navbar-container {
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 0 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 65px;
-}
-
-.navbar-logo {
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-}
-
-.navbar-logo img {
-    height: 40px;
-    width: auto;
-    display: block;
-    filter: brightness(0) invert(1);
-}
-
-/* Botón hamburguesa */
-.navbar-toggle {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.3);
-    border-radius: 6px;
-    padding: 10px 12px;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-.navbar-toggle:hover {
-    background: rgba(255,255,255,0.1);
-}
-
-.navbar-toggle span {
-    display: block;
-    width: 22px;
-    height: 2px;
-    background-color: var(--color-white);
-    border-radius: 2px;
-    transition: 0.3s;
-}
-
-/* Menú desplegable */
-.navbar-menu {
-    position: fixed;
-    top: 65px;
-    right: -100%;
-    width: 280px;
-    height: calc(100vh - 65px);
-    background-color: var(--color-espresso);
-    padding: 40px 30px;
-    transition: right 0.35s ease;
-    box-shadow: -10px 0 30px rgba(0,0,0,0.3);
-    z-index: 999;
-}
-
-.navbar-menu.active {
-    right: 0;
-}
-
-.navbar-menu ul {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 30px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-}
-
-.navbar-menu ul li {
-    width: 100%;
-}
-
-.navbar-menu ul li a {
-    font-family: var(--font-body);
-    font-weight: 500;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: var(--color-white);
-    text-decoration: none;
-    transition: color 0.3s;
-    display: block;
-    padding: 8px 0;
-}
-
-.navbar-menu ul li a:hover {
-    color: var(--color-taupe);
-}
-
-.navbar-menu .navbar-btn {
-    background-color: var(--color-white);
-    color: var(--color-espresso);
-    padding: 12px 24px;
-    font-size: 0.7rem;
-    text-align: center;
-    margin-top: 10px;
-    display: block;
-}
-
-.navbar-menu .navbar-btn:hover {
-    opacity: 0.85;
-    color: var(--color-espresso);
-}
-
-/* Animación del botón hamburguesa a X */
-.navbar-toggle.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-}
-
-.navbar-toggle.active span:nth-child(2) {
-    opacity: 0;
-}
-
-.navbar-toggle.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
-}
-
-/* =====================================================
-   BOTONES GENERALES
-   ===================================================== */
-
-.button-primary {
-    background-color: var(--color-espresso);
-    color: var(--color-white);
-    padding: 16px 40px;
-    font-family: var(--font-body);
-    font-weight: var(--weight-medium);
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    text-decoration: none;
-    display: inline-block;
-    transition: opacity 0.3s;
-    border: none;
-    cursor: pointer;
-}
-
-.button-primary:hover {
-    opacity: 0.85;
-}
-
-/* =====================================================
-   SECCIONES
-   ===================================================== */
-
-.section-light {
-    background-color: var(--color-white);
-}
-
-.section-soft {
-    background-color: var(--color-greige);
-}
-
-/* =====================================================
-   FOOTER
-   ===================================================== */
-
-.footer {
-    background-color: var(--color-espresso);
-    color: var(--color-white);
-    padding: 60px 40px 30px;
-    margin-top: 60px;
-}
-
-.footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 40px;
-    margin-bottom: 40px;
-}
-
-.footer-logo img {
-    height: 60px;
-    margin-bottom: 16px;
-    filter: brightness(0) invert(1);
-}
-
-.footer-logo p {
-    font-family: var(--font-body);
-    font-size: 0.85rem;
-    color: var(--color-sand);
-    opacity: 0.8;
-}
-
-.footer-redes h4,
-.footer-contacto h4 {
-    font-family: var(--font-body);
-    font-weight: var(--weight-medium);
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    color: var(--color-sand);
-    margin-bottom: 20px;
-}
-
-.redes-sociales {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.redes-sociales a,
-.whatsapp-footer {
-    font-family: var(--font-body);
-    font-size: 0.85rem;
-    color: var(--color-white);
-    text-decoration: none;
-    transition: opacity 0.3s;
-}
-
-.redes-sociales a:hover,
-.whatsapp-footer:hover {
-    opacity: 0.7;
-}
-
-.footer-bottom {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding-top: 24px;
-    border-top: 1px solid rgba(255,255,255,0.15);
-    text-align: center;
-    font-family: var(--font-body);
-    font-size: 0.75rem;
-    color: var(--color-sand);
-    opacity: 0.7;
-    letter-spacing: 0.1em;
-}
-
-/* =====================================================
-   RESPONSIVE
-   ===================================================== */
-
-@media (max-width: 768px) {
-    .navbar-container {
-        padding: 0 20px;
-        height: 60px;
-    }
-
-    .navbar-logo img {
-        height: 55px;
-    }
-
-    .navbar-menu {
-        top: 60px;
-        height: calc(100vh - 60px);
-    }
-
-    .footer {
-        padding: 40px 20px 20px;
-    }
-
-    .footer-container {
-        text-align: center;
-    }
-
-    .redes-sociales {
-        align-items: center;
-    }
-}
-
-@media (max-width: 480px) {
-    .navbar-logo img {
-        height: 55px;
-    }
-
-    .footer-logo img {
-        height: 50px;
-    }
-}
-/* =====================================================
    MODALES
    ===================================================== */
 
@@ -374,7 +10,7 @@ button,
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(23, 21, 18, 0.7);
+    background-color: rgba(23, 21, 18, 0.75);
     backdrop-filter: blur(4px);
     justify-content: center;
     align-items: center;
@@ -382,7 +18,7 @@ button,
 }
 
 .modal-content {
-    background: var(--ivory);
+    background: #FFFFFF;
     max-width: 500px;
     width: 100%;
     max-height: 90vh;
@@ -391,6 +27,7 @@ button,
     position: relative;
     overflow-y: auto;
     animation: fadeIn 0.3s ease;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 }
 
 @keyframes fadeIn {
@@ -405,16 +42,16 @@ button,
 }
 
 .modal-content h2 {
-    font-family: var(--font-title);
+    font-family: var(--font-editorial);
     font-size: 1.8rem;
-    color: var(--black);
+    color: #171512;
     margin-bottom: 24px;
     font-weight: 400;
 }
 
 .modal-content .politicas {
     text-align: left;
-    background: var(--ivory);
+    background: #F7F5F0;
     padding: 24px;
     margin: 20px 0;
     max-height: 50vh;
@@ -424,7 +61,7 @@ button,
 .modal-content .politicas p {
     font-family: var(--font-body);
     font-size: 0.85rem;
-    color: var(--espresso);
+    color: #2D211A;
     line-height: 1.6;
     margin-bottom: 12px;
 }
@@ -434,7 +71,7 @@ button,
 }
 
 .modal-content .politicas strong {
-    color: var(--black);
+    color: #171512;
     font-weight: 600;
 }
 
@@ -460,8 +97,8 @@ button,
 }
 
 .btn-aceptar {
-    background: var(--espresso);
-    color: var(--white);
+    background: #2D211A;
+    color: #FFFFFF;
 }
 
 .btn-aceptar:hover {
@@ -470,13 +107,13 @@ button,
 
 .btn-cancelar {
     background: transparent;
-    color: var(--espresso);
-    border: 1px solid var(--espresso);
+    color: #2D211A;
+    border: 1px solid #2D211A;
 }
 
 .btn-cancelar:hover {
-    background: var(--espresso);
-    color: var(--white);
+    background: #2D211A;
+    color: #FFFFFF;
 }
 
 .close-modal {
@@ -486,12 +123,12 @@ button,
     font-size: 28px;
     line-height: 1;
     cursor: pointer;
-    color: var(--taupe);
+    color: #A99B8D;
     transition: color 0.3s;
 }
 
 .close-modal:hover {
-    color: var(--black);
+    color: #171512;
 }
 
 @media (max-width: 768px) {
