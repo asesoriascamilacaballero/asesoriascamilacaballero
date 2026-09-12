@@ -332,7 +332,7 @@ button,
     }
 
     .navbar-logo img {
-        height: 35px;
+        height: 55px;
     }
 
     .navbar-menu {
@@ -355,7 +355,7 @@ button,
 
 @media (max-width: 480px) {
     .navbar-logo img {
-        height: 30px;
+        height: 55px;
     }
 
     .footer-logo img {
