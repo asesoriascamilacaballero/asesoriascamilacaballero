@@ -91,7 +91,6 @@ button,
     height: 65px;
 }
 
-/* Logo */
 .navbar-logo {
     text-decoration: none;
     display: flex;
@@ -102,7 +101,7 @@ button,
     height: 40px;
     width: auto;
     display: block;
-    filter: brightness(0) invert(1); /* Logo blanco sobre fondo oscuro */
+    filter: brightness(0) invert(1);
 }
 
 /* Botón hamburguesa */
@@ -131,7 +130,7 @@ button,
     transition: 0.3s;
 }
 
-/* Menú desplegable - OCULTO POR DEFECTO */
+/* Menú desplegable */
 .navbar-menu {
     position: fixed;
     top: 65px;
@@ -181,7 +180,6 @@ button,
     color: var(--color-taupe);
 }
 
-/* Botón dentro del menú */
 .navbar-menu .navbar-btn {
     background-color: var(--color-white);
     color: var(--color-espresso);
@@ -189,6 +187,7 @@ button,
     font-size: 0.7rem;
     text-align: center;
     margin-top: 10px;
+    display: block;
 }
 
 .navbar-menu .navbar-btn:hover {
