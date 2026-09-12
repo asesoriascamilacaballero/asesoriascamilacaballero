@@ -362,3 +362,157 @@ button,
         height: 50px;
     }
 }
+/* =====================================================
+   MODALES
+   ===================================================== */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(23, 21, 18, 0.7);
+    backdrop-filter: blur(4px);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal-content {
+    background: var(--white);
+    max-width: 500px;
+    width: 100%;
+    max-height: 90vh;
+    padding: 40px 32px;
+    text-align: center;
+    position: relative;
+    overflow-y: auto;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-content h2 {
+    font-family: var(--font-title);
+    font-size: 1.8rem;
+    color: var(--black);
+    margin-bottom: 24px;
+    font-weight: 400;
+}
+
+.modal-content .politicas {
+    text-align: left;
+    background: var(--ivory);
+    padding: 24px;
+    margin: 20px 0;
+    max-height: 50vh;
+    overflow-y: auto;
+}
+
+.modal-content .politicas p {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--espresso);
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+
+.modal-content .politicas p:last-child {
+    margin-bottom: 0;
+}
+
+.modal-content .politicas strong {
+    color: var(--black);
+    font-weight: 600;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 24px;
+    flex-wrap: wrap;
+}
+
+.btn-aceptar,
+.btn-cancelar {
+    padding: 14px 32px;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.btn-aceptar {
+    background: var(--espresso);
+    color: var(--white);
+}
+
+.btn-aceptar:hover {
+    opacity: 0.85;
+}
+
+.btn-cancelar {
+    background: transparent;
+    color: var(--espresso);
+    border: 1px solid var(--espresso);
+}
+
+.btn-cancelar:hover {
+    background: var(--espresso);
+    color: var(--white);
+}
+
+.close-modal {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+    color: var(--taupe);
+    transition: color 0.3s;
+}
+
+.close-modal:hover {
+    color: var(--black);
+}
+
+@media (max-width: 768px) {
+    .modal-content {
+        padding: 32px 20px;
+    }
+
+    .modal-content h2 {
+        font-size: 1.4rem;
+    }
+
+    .modal-content .politicas {
+        padding: 16px;
+    }
+
+    .modal-content .politicas p {
+        font-size: 0.8rem;
+    }
+
+    .btn-aceptar,
+    .btn-cancelar {
+        width: 100%;
+    }
+}
