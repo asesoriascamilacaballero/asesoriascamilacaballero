@@ -4,56 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Testimonios | Camila Caballero</title>
-    <!-- Fuente Poppins -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-    <style>
-        * {
-            font-family: 'Poppins', 'Segoe UI', 'Helvetica Neue', sans-serif;
-        }
 
-        .testimonios-container {
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* ===== PÁGINA DE TESTIMONIOS ===== */
+        .testimonios-page {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 80px 40px;
         }
 
-        .imagen-principal {
+        .testimonios-header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 60px;
         }
 
-        .imagen-principal img {
-            max-width: 80%;
-            border-radius: 25px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        .testimonios-header h1 {
+            font-family: var(--font-title);
+            font-size: 3.5rem;
+            color: var(--black);
+            margin-bottom: 16px;
+            font-weight: 400;
         }
 
-        .testimonios-titulo {
-            text-align: center;
-            color: #800020;
-            font-size: 2rem;
-            margin-bottom: 15px;
-            font-weight: 600;
-            font-family: 'Poppins', sans-serif;
+        .testimonios-header p {
+            font-family: var(--font-body);
+            color: var(--taupe);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-size: 0.8rem;
         }
 
-        .testimonios-subtitulo {
-            text-align: center;
-            color: #666;
-            margin-bottom: 40px;
-            font-size: 1rem;
-            font-family: 'Poppins', sans-serif;
+        /* ===== CARRUSEL COMPACTO ===== */
+        .carrusel-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 60px;
         }
 
-        /* Carrusel - MÁS PEQUEÑO Y RESPONSIVO */
         .carrusel-container {
             position: relative;
-            max-width: 500px;
-            margin: 0 auto;
+            width: 100%;
+            max-width: 420px;
             overflow: hidden;
-            border-radius: 20px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            border: 1px solid var(--sand);
+            background: var(--white);
         }
 
         .carrusel-slides {
@@ -63,343 +65,324 @@
 
         .carrusel-slide {
             min-width: 100%;
-            box-sizing: border-box;
         }
 
         .carrusel-slide img {
             width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
             display: block;
         }
 
-        /* Botones del carrusel - MÁS PEQUEÑOS */
+        /* Botones del carrusel */
         .carrusel-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(128, 0, 32, 0.7);
-            color: white;
+            background: rgba(45, 33, 26, 0.85);
+            color: var(--white);
             border: none;
-            padding: 10px 15px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
-            font-size: 1.2rem;
-            border-radius: 50%;
+            font-size: 1rem;
             transition: background 0.3s;
             z-index: 10;
         }
 
         .carrusel-btn:hover {
-            background: #800020;
+            background: var(--espresso);
         }
 
         .btn-prev {
-            left: 10px;
+            left: 12px;
         }
 
         .btn-next {
-            right: 10px;
+            right: 12px;
         }
 
-        /* Indicadores/dots - MÁS PEQUEÑOS */
+        /* Indicadores */
         .carrusel-dots {
-            text-align: center;
-            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
         }
 
         .dot {
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            margin: 0 4px;
-            background: #ccc;
+            width: 8px;
+            height: 8px;
+            background: var(--sand);
             border-radius: 50%;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: background 0.3s, transform 0.3s;
         }
 
         .dot.active {
-            background: #800020;
+            background: var(--espresso);
+            transform: scale(1.3);
         }
 
+        /* Contador */
         .contador {
             text-align: center;
-            margin-top: 10px;
-            color: #666;
-            font-size: 0.8rem;
-            font-family: 'Poppins', sans-serif;
+            margin-top: 16px;
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--taupe);
         }
 
+        /* ===== FRASE FINAL ===== */
         .frase-final {
+            background: var(--greige);
+            padding: 50px 40px;
             text-align: center;
-            margin-top: 50px;
-            padding: 30px;
-            background: #e3d9cb;
-            border-radius: 25px;
+            max-width: 700px;
+            margin: 0 auto;
         }
 
         .frase-final p {
-            font-size: 1.1rem;
-            color: #800020;
+            font-family: var(--font-title);
             font-style: italic;
-            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            color: var(--espresso);
+            line-height: 1.4;
+            margin-bottom: 16px;
         }
 
-        /* RESPONSIVE PARA TABLETS */
+        .frase-final .autor {
+            font-family: var(--font-body);
+            font-style: normal;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--taupe);
+        }
+
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
-            .testimonios-container {
-                padding: 30px 15px;
+            .testimonios-page {
+                padding: 60px 20px;
             }
-            
-            .testimonios-titulo {
-                font-size: 1.6rem;
+
+            .testimonios-header h1 {
+                font-size: 2.4rem;
             }
-            
-            .testimonios-subtitulo {
-                font-size: 0.9rem;
-                margin-bottom: 30px;
-            }
-            
+
             .carrusel-container {
-                max-width: 400px;
+                max-width: 320px;
             }
-            
+
             .carrusel-btn {
-                padding: 8px 12px;
-                font-size: 1rem;
+                width: 34px;
+                height: 34px;
+                font-size: 0.9rem;
             }
-            
+
+            .frase-final {
+                padding: 35px 25px;
+            }
+
             .frase-final p {
-                font-size: 1rem;
+                font-size: 1.2rem;
             }
         }
 
-        /* RESPONSIVE PARA CELULARES */
         @media (max-width: 480px) {
-            .testimonios-titulo {
-                font-size: 1.4rem;
+            .testimonios-header h1 {
+                font-size: 2rem;
             }
-            
+
             .carrusel-container {
-                max-width: 300px;
-            }
-            
-            .carrusel-btn {
-                padding: 6px 10px;
-                font-size: 0.8rem;
-            }
-            
-            .dot {
-                width: 8px;
-                height: 8px;
-                margin: 0 3px;
-            }
-            
-            .contador {
-                font-size: 0.7rem;
-            }
-            
-            .frase-final {
-                padding: 20px;
-                margin-top: 35px;
-            }
-            
-            .frase-final p {
-                font-size: 0.9rem;
+                max-width: 280px;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-container">
-            <a href="index.html" class="logo">
-                <img src="assets/logo.png" alt="Logo" style="height: 90px;">
-            </a>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="servicios.html">Servicios</a></li>
-                    <li><a href="testimonios.html">Testimonios</a></li>
-                </ul>
-            </nav>
-            <a href="servicios.html" class="btn-header">Quiero un servicio</a>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar">
+    <div class="navbar-container">
+        <a href="index.html" class="navbar-logo">
+            <img src="assets/logo blanco.png" alt="Camila Caballero">
+        </a>
+
+        <button class="navbar-toggle" id="navbarToggle" aria-label="Abrir menú">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+
+    <div class="navbar-menu" id="navbarMenu">
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="testimonios.html">Testimonios</a></li>
+            <li><a href="servicios.html" class="navbar-btn">Quiero un servicio</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- ===== TESTIMONIOS ===== -->
+<main>
+    <section class="testimonios-page">
+        <div class="testimonios-header">
+            <h1>Testimonios</h1>
+            <p>Más de 700 mujeres han transformado su imagen conmigo</p>
         </div>
-    </header>
 
-    <main>
-        <div class="testimonios-container">
-            <h1 class="testimonios-titulo">Lo que dicen mis clientas</h1>
-            <p class="testimonios-subtitulo">Más de 700 mujeres han transformado su imagen conmigo. Aquí algunos de sus testimonios.</p>
-
-            <!-- Imagen principal -->
-            <div class="imagen-principal">
-                <img src="testimonios/testimonio.png" alt="Testimonios de clientas">
-            </div>
-
-            <!-- Carrusel - MÁS PEQUEÑO -->
+        <!-- Carrusel compacto -->
+        <div class="carrusel-section">
             <div class="carrusel-container">
                 <button class="carrusel-btn btn-prev" id="btnPrev">❮</button>
-                <div class="carrusel-slides" id="carruselSlides">
-                    <!-- Las imágenes se cargarán con JavaScript -->
-                </div>
+                <div class="carrusel-slides" id="carruselSlides"></div>
                 <button class="carrusel-btn btn-next" id="btnNext">❯</button>
             </div>
             <div class="carrusel-dots" id="carruselDots"></div>
-            <div class="contador" id="contador">Imagen 1 / 10</div>
+            <div class="contador" id="contador">1 / 10</div>
+        </div>
 
-            <div class="frase-final">
-                <p>"Ver la transformación de cada mujer es mi mayor satisfacción. Gracias por confiar en mí para potenciar su imagen y autoestima."</p>
-                <p style="margin-top: 15px;">— Camila Caballero</p>
+        <!-- Frase final -->
+        <div class="frase-final">
+            <p>"Ver la transformación de cada mujer es mi mayor satisfacción. Gracias por confiar en mí para potenciar su imagen y autoestima."</p>
+            <div class="autor">— Camila Caballero</div>
+        </div>
+    </section>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-logo">
+            <img src="assets/logo blanco.png" alt="Camila Caballero">
+            <p>Transformando imágenes, potenciando confianza.</p>
+        </div>
+
+        <div class="footer-redes">
+            <h4>Sígueme</h4>
+            <div class="redes-sociales">
+                <a href="https://www.instagram.com/camilacaballerot" target="_blank">Instagram</a>
+                <a href="https://www.facebook.com/share/1AzXtD2ey5/" target="_blank">Facebook</a>
+                <a href="https://www.tiktok.com/@camila.caballerot" target="_blank">TikTok</a>
+                <a href="https://youtube.com/@camila.caballero" target="_blank">YouTube</a>
             </div>
         </div>
-    </main>
 
-    <footer>
-        <div class="footer-container">
-            <div class="footer-logo">
-                <img src="assets/logo.png" alt="Logo" style="height: 40px;">
-                <p>Transformando imágenes, potenciando confianza.</p>
-            </div>
-            <div class="footer-redes">
-                <h4>Sígueme</h4>
-                <div class="redes-sociales">
-                    <a href="https://www.instagram.com/camilacaballerot?igsh=MXFzeWJzNnZjZWluYw%3D%3D&utm_source=qr" target="_blank">📷 Instagram</a>
-                    <a href="https://www.facebook.com/share/1AzXtD2ey5/?mibextid=wwXIfr" target="_blank">📘 Facebook</a>
-                    <a href="https://www.tiktok.com/@camila.caballerot?_r=1&_t=ZS-95GVRi7DNnJ" target="_blank">📱 TikTok</a>
-                    <a href="https://youtube.com/@camila.caballero?si=crziNJTOOJBq2k0i" target="_blank">▶️ YouTube</a>
-                </div>
-            </div>
-            <div class="footer-contacto">
-                <h4>Contacto</h4>
-                <a href="https://wa.me/59169696211" class="whatsapp-footer">📞 +591 69696211</a>
-            </div>
+        <div class="footer-contacto">
+            <h4>Contacto</h4>
+            <a href="https://wa.me/59169696211" class="whatsapp-footer">+591 69696211</a>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Camila Caballero - Asesoría de Imagen. Todos los derechos reservados.</p>
-        </div>
-    </footer>
+    </div>
 
-    <script>
-        // Configuración del carrusel
-        const totalImagenes = 10;
-        let indiceActual = 0;
-        let autoPlayInterval;
+    <div class="footer-bottom">
+        <p>&copy; 2025 Camila Caballero · Todos los derechos reservados.</p>
+    </div>
+</footer>
 
-        // Referencias a elementos
-        const slidesContainer = document.getElementById('carruselSlides');
-        const dotsContainer = document.getElementById('carruselDots');
-        const contadorElement = document.getElementById('contador');
-        const btnPrev = document.getElementById('btnPrev');
-        const btnNext = document.getElementById('btnNext');
+<!-- ===== SCRIPT NAVBAR ===== -->
+<script src="script.js"></script>
 
-        // Cargar las imágenes 1.png, 2.png, ..., 10.png desde la carpeta testimonios/
-        function cargarImagenes() {
-            slidesContainer.innerHTML = '';
-            for (let i = 1; i <= totalImagenes; i++) {
-                const slide = document.createElement('div');
-                slide.className = 'carrusel-slide';
-                const img = document.createElement('img');
-                img.src = `testimonios/${i}.png`;
-                img.alt = `Testimonio ${i}`;
-                slide.appendChild(img);
-                slidesContainer.appendChild(slide);
-            }
+<!-- ===== SCRIPT CARRUSEL ===== -->
+<script>
+    const totalImagenes = 10;
+    let indiceActual = 0;
+    let autoPlayInterval;
+
+    const slidesContainer = document.getElementById('carruselSlides');
+    const dotsContainer = document.getElementById('carruselDots');
+    const contadorElement = document.getElementById('contador');
+    const btnPrev = document.getElementById('btnPrev');
+    const btnNext = document.getElementById('btnNext');
+
+    // Cargar imágenes
+    function cargarImagenes() {
+        slidesContainer.innerHTML = '';
+        for (let i = 1; i <= totalImagenes; i++) {
+            const slide = document.createElement('div');
+            slide.className = 'carrusel-slide';
+            const img = document.createElement('img');
+            img.src = `testimonios/${i}.png`;
+            img.alt = `Testimonio ${i}`;
+            slide.appendChild(img);
+            slidesContainer.appendChild(slide);
         }
+    }
 
-        // Crear los dots (indicadores)
-        function crearDots() {
-            dotsContainer.innerHTML = '';
-            for (let i = 0; i < totalImagenes; i++) {
-                const dot = document.createElement('div');
-                dot.className = 'dot';
-                dot.addEventListener('click', () => irASlide(i));
-                dotsContainer.appendChild(dot);
-            }
-            actualizarDots();
+    // Crear dots
+    function crearDots() {
+        dotsContainer.innerHTML = '';
+        for (let i = 0; i < totalImagenes; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'dot';
+            dot.addEventListener('click', () => irASlide(i));
+            dotsContainer.appendChild(dot);
         }
+        actualizarDots();
+    }
 
-        // Actualizar dot activo
-        function actualizarDots() {
-            const dots = document.querySelectorAll('.dot');
-            dots.forEach((dot, index) => {
-                if (index === indiceActual) {
-                    dot.classList.add('active');
-                } else {
-                    dot.classList.remove('active');
-                }
-            });
-        }
-
-        // Actualizar contador
-        function actualizarContador() {
-            contadorElement.textContent = `Imagen ${indiceActual + 1} / ${totalImagenes}`;
-        }
-
-        // Mover a un slide específico
-        function irASlide(index) {
-            if (index < 0) index = 0;
-            if (index >= totalImagenes) index = totalImagenes - 1;
-            indiceActual = index;
-            const desplazamiento = -indiceActual * 100;
-            slidesContainer.style.transform = `translateX(${desplazamiento}%)`;
-            actualizarDots();
-            actualizarContador();
-            reiniciarAutoPlay();
-        }
-
-        // Siguiente slide
-        function siguienteSlide() {
-            if (indiceActual + 1 < totalImagenes) {
-                irASlide(indiceActual + 1);
-            } else {
-                irASlide(0);
-            }
-        }
-
-        // Anterior slide
-        function anteriorSlide() {
-            if (indiceActual - 1 >= 0) {
-                irASlide(indiceActual - 1);
-            } else {
-                irASlide(totalImagenes - 1);
-            }
-        }
-
-        // Auto-play cada 5 segundos
-        function iniciarAutoPlay() {
-            autoPlayInterval = setInterval(() => {
-                siguienteSlide();
-            }, 5000);
-        }
-
-        function reiniciarAutoPlay() {
-            clearInterval(autoPlayInterval);
-            iniciarAutoPlay();
-        }
-
-        // Event listeners
-        btnPrev.addEventListener('click', () => {
-            anteriorSlide();
-            reiniciarAutoPlay();
+    function actualizarDots() {
+        const dots = document.querySelectorAll('.dot');
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === indiceActual);
         });
-        btnNext.addEventListener('click', () => {
-            siguienteSlide();
-            reiniciarAutoPlay();
-        });
+    }
 
-        // Inicializar
-        cargarImagenes();
-        crearDots();
-        irASlide(0);
+    function actualizarContador() {
+        contadorElement.textContent = `${indiceActual + 1} / ${totalImagenes}`;
+    }
+
+    function irASlide(index) {
+        if (index < 0) index = 0;
+        if (index >= totalImagenes) index = totalImagenes - 1;
+        indiceActual = index;
+        slidesContainer.style.transform = `translateX(-${indiceActual * 100}%)`;
+        actualizarDots();
+        actualizarContador();
+    }
+
+    function siguienteSlide() {
+        irASlide(indiceActual + 1 >= totalImagenes ? 0 : indiceActual + 1);
+        reiniciarAutoPlay();
+    }
+
+    function anteriorSlide() {
+        irASlide(indiceActual - 1 < 0 ? totalImagenes - 1 : indiceActual - 1);
+        reiniciarAutoPlay();
+    }
+
+    function iniciarAutoPlay() {
+        autoPlayInterval = setInterval(() => {
+            irASlide(indiceActual + 1 >= totalImagenes ? 0 : indiceActual + 1);
+        }, 5000);
+    }
+
+    function reiniciarAutoPlay() {
+        clearInterval(autoPlayInterval);
         iniciarAutoPlay();
+    }
 
-        // Pausar auto-play cuando el mouse está sobre el carrusel
-        const carruselContainer = document.querySelector('.carrusel-container');
-        carruselContainer.addEventListener('mouseenter', () => {
-            clearInterval(autoPlayInterval);
-        });
-        carruselContainer.addEventListener('mouseleave', () => {
-            iniciarAutoPlay();
-        });
-    </script>
+    btnPrev.addEventListener('click', anteriorSlide);
+    btnNext.addEventListener('click', siguienteSlide);
+
+    // Inicializar
+    cargarImagenes();
+    crearDots();
+    irASlide(0);
+    iniciarAutoPlay();
+
+    // Pausar al hacer hover
+    const carruselContainer = document.querySelector('.carrusel-container');
+    carruselContainer.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
+    carruselContainer.addEventListener('mouseleave', iniciarAutoPlay);
+</script>
+
 </body>
 </html>
