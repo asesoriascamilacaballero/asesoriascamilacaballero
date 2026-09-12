@@ -55,7 +55,6 @@
             flex-wrap: wrap;
         }
 
-        /* Imagen del servicio */
         .servicio-imagen {
             flex: 0 0 380px;
             max-width: 380px;
@@ -68,7 +67,6 @@
             display: block;
         }
 
-        /* Info básica */
         .servicio-info {
             flex: 1;
             min-width: 280px;
@@ -103,7 +101,6 @@
             margin-bottom: 24px;
         }
 
-        /* Botón desplegable */
         .btn-desplegar {
             background: transparent;
             border: 1px solid var(--espresso);
@@ -203,33 +200,10 @@
             margin-top: 30px;
         }
 
-        .btn-pago-bolivia,
-        .btn-pago-internacional {
-            padding: 14px 32px;
-            font-family: var(--font-body);
-            font-size: 0.75rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            transition: opacity 0.3s;
-        }
-
-        .btn-pago-bolivia {
-            background: var(--espresso);
-            color: var(--white);
-        }
-
-        .btn-pago-internacional {
-            background: var(--taupe);
-            color: var(--white);
-        }
-
-        .btn-pago-bolivia:hover,
-        .btn-pago-internacional:hover {
-            opacity: 0.85;
+        .botones-pago .button-primary {
+            flex: 1;
+            min-width: 160px;
+            text-align: center;
         }
 
         /* Próximamente */
@@ -289,10 +263,8 @@
                 flex-direction: column;
             }
 
-            .btn-pago-bolivia,
-            .btn-pago-internacional {
+            .botones-pago .button-primary {
                 width: 100%;
-                text-align: center;
             }
 
             .btn-desplegar {
@@ -303,6 +275,7 @@
     </style>
 </head>
 <body>
+
 <!-- ===== NAVBAR ===== -->
 <nav class="navbar">
     <div class="navbar-container">
@@ -335,10 +308,7 @@
             <p>Elige el que mejor se adapte a ti</p>
         </div>
 
-        <!-- ===== 1. GLOW UP PRO (al final) ===== -->
-        <!-- (Se moverá al final según lo pedido) -->
-
-        <!-- ===== 2. COLORIMETRÍA ===== -->
+        <!-- ===== COLORIMETRÍA ===== -->
         <article class="servicio">
             <div class="servicio-header">
                 <div class="servicio-imagen">
@@ -357,13 +327,12 @@
 
             <div class="servicio-detalle">
                 <div class="servicio-detalle-inner">
-                    <!-- Modalidad -->
                     <div class="bloque">
                         <h3>Elige tu modalidad</h3>
                         <div class="modalidad">
-                            <p><strong> Online · Desde cualquier lugar</strong> n
+                            <p><strong>🌎 Online · Desde cualquier lugar</strong>
                             Envíame tus fotografías siguiendo una guía específica. Analizaré tus características para determinar tu colorimetría y crear tu paleta personalizada. Incluye sesión 1:1.</p>
-                            <p><strong> Presencial · La Paz</strong>
+                            <p><strong>📍 Presencial · La Paz</strong>
                             Realizaremos una prueba de color con telas para descubrir en tiempo real las tonalidades que mejor armonizan contigo. Horarios sujetos a disponibilidad.</p>
                         </div>
 
@@ -375,7 +344,6 @@
                         </ul>
                     </div>
 
-                    <!-- Qué recibes + pago -->
                     <div class="bloque">
                         <h3>¿Qué recibes?</h3>
                         <ul>
@@ -391,15 +359,15 @@
                         <h3 style="margin-top: 40px;">Inversión</h3>
                         <div class="precio" style="margin-bottom: 20px;">US$35 · Bs 403</div>
                         <div class="botones-pago">
-                            <button class="btn-pago-bolivia" onclick="abrirModalBolivia('pago-bolivia.html?monto=403&descripcion=Colorimetría')">🇧🇴 Pago Bolivia</button>
-                            <button class="btn-pago-internacional" onclick="abrirModalInternacional('pago-mundo.html?monto=403&descripcion=Colorimetría&moneda=USD')">🌎 Pago Internacional</button>
+                            <button class="button-primary" onclick="abrirModalBolivia('pago-bolivia.html?monto=403&descripcion=Colorimetría')">🇧🇴 Pago Bolivia</button>
+                            <button class="button-primary" onclick="abrirModalInternacional('pago-mundo.html?monto=35&descripcion=Colorimetría&moneda=USD')">🌎 Pago Internacional</button>
                         </div>
                     </div>
                 </div>
             </div>
         </article>
 
-        <!-- ===== 3. STYLING + COLORIMETRÍA ===== -->
+        <!-- ===== STYLING + COLORIMETRÍA ===== -->
         <article class="servicio">
             <div class="servicio-header">
                 <div class="servicio-imagen">
@@ -418,7 +386,6 @@
 
             <div class="servicio-detalle">
                 <div class="servicio-detalle-inner">
-                    <!-- Cómo funciona -->
                     <div class="bloque">
                         <h3>¿Cómo funciona?</h3>
                         <ul>
@@ -429,7 +396,6 @@
                         </ul>
                     </div>
 
-                    <!-- Qué recibes + pago -->
                     <div class="bloque">
                         <h3>¿Qué recibes?</h3>
                         <ul>
@@ -440,15 +406,15 @@
                         <h3 style="margin-top: 40px;">Inversión</h3>
                         <div class="precio" style="margin-bottom: 20px;">US$89 · Bs 1.024</div>
                         <div class="botones-pago">
-                            <button class="btn-pago-bolivia" onclick="abrirModalBolivia('pago-bolivia.html?monto=1024&descripcion=Styling + Colorimetría')">🇧🇴 Pago Bolivia</button>
-                            <button class="btn-pago-internacional" onclick="abrirModalInternacional('pago-mundo.html?monto=1024&descripcion=Styling + Colorimetría&moneda=USD')">🌎 Pago Internacional</button>
+                            <button class="button-primary" onclick="abrirModalBolivia('pago-bolivia.html?monto=1024&descripcion=Styling + Colorimetría')">🇧🇴 Pago Bolivia</button>
+                            <button class="button-primary" onclick="abrirModalInternacional('pago-mundo.html?monto=89&descripcion=Styling + Colorimetría&moneda=USD')">🌎 Pago Internacional</button>
                         </div>
                     </div>
                 </div>
             </div>
         </article>
 
-        <!-- ===== 4. GLOW UP PRO (aquí va, después de Colorimetría y Styling) ===== -->
+        <!-- ===== GLOW UP PRO ===== -->
         <article class="servicio">
             <div class="servicio-header">
                 <div class="servicio-imagen">
@@ -460,7 +426,7 @@
                     <p class="descripcion-corta">
                         Un taller exclusivo para mujeres que quieren verse y sentirse imparables. Eleva tu autoestima, confianza y estilo con herramientas de imagen estratégica.
                     </p>
-                    <div class="precio">Bs 320 <small style="font-size: 0.9rem; color: var(--taupe);">· Preventa Bs 280</small></div>
+                    <div class="precio">Bs 320 · Preventa Bs 280</div>
                     <button class="btn-desplegar" onclick="toggleDetalle(this)">Ver detalles</button>
                 </div>
             </div>
@@ -492,15 +458,14 @@
                         <h3 style="margin-top: 40px;">Inversión</h3>
                         <div class="precio" style="margin-bottom: 20px;">Bs 320 · Preventa Bs 280</div>
                         <div class="botones-pago">
-                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSf7OwDWWS0Txg5X-b_MXMEMoIuuEv2wPlvxmEpvGsf9_cCB6A/viewform" target="_blank" class="btn-pago-bolivia">📋 Lista de espera</a>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSf7OwDWWS0Txg5X-b_MXMEMoIuuEv2wPlvxmEpvGsf9_cCB6A/viewform" target="_blank" class="button-primary">📋 Lista de espera</a>
                         </div>
                     </div>
                 </div>
             </div>
         </article>
 
-    
-        <!-- ===== 7. BECOMING HER (Próximamente) ===== -->
+        <!-- ===== BECOMING HER (Próximamente) ===== -->
         <article class="servicio proximamente">
             <div class="servicio-header">
                 <div class="servicio-imagen">
@@ -516,7 +481,7 @@
             </div>
         </article>
 
-        <!-- ===== 8. BETTER YOU (Próximamente) ===== -->
+        <!-- ===== BETTER YOU (Próximamente) ===== -->
         <article class="servicio proximamente">
             <div class="servicio-header">
                 <div class="servicio-imagen">
@@ -564,13 +529,13 @@
     </div>
 </footer>
 
-<!-- ===== MODALES ===== -->
+<!-- ===== MODAL BOLIVIA ===== -->
 <div id="modalBolivia" class="modal">
     <div class="modal-content">
         <span class="close-modal" onclick="cerrarModalBolivia()">&times;</span>
         <h2>Políticas de Cancelación</h2>
         <div class="politicas">
-            <p> Lee atentamente antes de confirmar tu cita:</p>
+            <p>Lee atentamente antes de confirmar tu cita:</p>
             <p> Puedes cambiar la fecha de tu cita con <strong>24 horas de anticipación</strong>.</p>
             <p> Después de realizar el pago de un curso, solo es posible cambiar la fecha. <strong>No existen devoluciones</strong>.</p>
             <p> Las asesorías personalizadas cuentan con un máximo de <strong>15 minutos de tolerancia</strong>.</p>
@@ -579,11 +544,12 @@
         </div>
         <div class="modal-buttons">
             <button class="btn-aceptar" onclick="redirigirPagoBolivia()">Acepto</button>
-            <button class="btn-cancelar" onclick="cerrarModalBolivia()"> Cancelar</button>
+            <button class="btn-cancelar" onclick="cerrarModalBolivia()">Cancelar</button>
         </div>
     </div>
 </div>
 
+<!-- ===== MODAL INTERNACIONAL ===== -->
 <div id="modalInternacional" class="modal">
     <div class="modal-content">
         <span class="close-modal" onclick="cerrarModalInternacional()">&times;</span>
@@ -592,16 +558,20 @@
             <p> Lee atentamente antes de confirmar tu cita:</p>
             <p> Puedes cambiar la fecha de tu cita con <strong>24 horas de anticipación</strong>.</p>
             <p> Después de realizar el pago de un curso, solo es posible cambiar la fecha. <strong>No existen devoluciones</strong>.</p>
-            <p> Las asesorías cuentan con un máximo de <strong>15 minutos de tolerancia</strong>.</p>
-            <p>Tu reserva se mantiene para reprogramar tu cita.</p>
+            <p> Las asesorías personalizadas cuentan con un máximo de <strong>15 minutos de tolerancia</strong>.</p>
+            <p> Tu reserva se mantiene para reprogramar tu cita.</p>
         </div>
         <div class="modal-buttons">
-            <button class="btn-aceptar" onclick="redirigirPagoInternacional()"> Acepto</button>
-            <button class="btn-cancelar" onclick="cerrarModalInternacional()"> Cancelar</button>
+            <button class="btn-aceptar" onclick="redirigirPagoInternacional()">Acepto</button>
+            <button class="btn-cancelar" onclick="cerrarModalInternacional()">Cancelar</button>
         </div>
     </div>
 </div>
 
+<!-- ===== SCRIPT NAVBAR ===== -->
+<script src="script.js"></script>
+
+<!-- ===== SCRIPT MODALES ===== -->
 <script>
     // ===== ABRIR / CERRAR DETALLE DEL SERVICIO =====
     function toggleDetalle(btn) {
@@ -629,10 +599,13 @@
     function cerrarModalBolivia() {
         document.getElementById('modalBolivia').style.display = 'none';
         document.body.style.overflow = '';
+        urlDestinoBolivia = '';
     }
 
     function redirigirPagoBolivia() {
-        if (urlDestinoBolivia) window.location.href = urlDestinoBolivia;
+        if (urlDestinoBolivia) {
+            window.location.href = urlDestinoBolivia;
+        }
         cerrarModalBolivia();
     }
 
@@ -648,10 +621,13 @@
     function cerrarModalInternacional() {
         document.getElementById('modalInternacional').style.display = 'none';
         document.body.style.overflow = '';
+        urlDestinoInternacional = '';
     }
 
     function redirigirPagoInternacional() {
-        if (urlDestinoInternacional) window.location.href = urlDestinoInternacional;
+        if (urlDestinoInternacional) {
+            window.location.href = urlDestinoInternacional;
+        }
         cerrarModalInternacional();
     }
 
@@ -664,6 +640,5 @@
     });
 </script>
 
-<script src="script.js"></script>
 </body>
 </html>
