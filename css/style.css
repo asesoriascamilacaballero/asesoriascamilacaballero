@@ -9,7 +9,6 @@
 
 /* ===== VARIABLES GLOBALES ===== */
 :root {
-    /* Colores */
     --color-ivory: #F7F5F0;
     --color-white: #FEFDFB;
     --color-black: #171512;
@@ -18,11 +17,9 @@
     --color-sand: #D8CFC4;
     --color-greige: #E9E5DF;
 
-    /* Tipografía */
     --font-editorial: "Bodoni Moda", "Bodoni 72", Didot, serif;
     --font-body: "DM Sans", Arial, sans-serif;
 
-    /* Pesos */
     --weight-regular: 400;
     --weight-medium: 500;
     --weight-semibold: 600;
@@ -53,24 +50,8 @@ h1, h2, h3 {
     line-height: 1.1;
 }
 
-.editorial-italic {
-    font-family: var(--font-editorial);
-    font-style: italic;
-    font-weight: var(--weight-regular);
-}
-
-/* ===== ETIQUETAS Y BOTONES ===== */
-nav,
-button,
-.label {
-    font-family: var(--font-body);
-    font-weight: var(--weight-medium);
-    text-transform: uppercase;
-    letter-spacing: 0.10em;
-}
-
 /* =====================================================
-   NAVBAR - HEADER OSCURO CON HAMBURGUESA
+   NAVBAR
    ===================================================== */
 
 .navbar {
@@ -104,7 +85,6 @@ button,
     filter: brightness(0) invert(1);
 }
 
-/* Botón hamburguesa */
 .navbar-toggle {
     display: flex;
     flex-direction: column;
@@ -130,7 +110,6 @@ button,
     transition: 0.3s;
 }
 
-/* Menú desplegable */
 .navbar-menu {
     position: fixed;
     top: 65px;
@@ -195,7 +174,6 @@ button,
     color: var(--color-espresso);
 }
 
-/* Animación del botón hamburguesa a X */
 .navbar-toggle.active span:nth-child(1) {
     transform: rotate(45deg) translate(5px, 5px);
 }
@@ -230,18 +208,6 @@ button,
 
 .button-primary:hover {
     opacity: 0.85;
-}
-
-/* =====================================================
-   SECCIONES
-   ===================================================== */
-
-.section-light {
-    background-color: var(--color-white);
-}
-
-.section-soft {
-    background-color: var(--color-greige);
 }
 
 /* =====================================================
