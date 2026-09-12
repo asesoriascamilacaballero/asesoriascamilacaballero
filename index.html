@@ -4,21 +4,147 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Camila Caballero | Asesora de Imagen & Fashion Stylist</title>
-    <!-- Fuente Poppins -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="css/style.css">
+
     <style>
-        /* Estilos específicos de la página de inicio */
-        * {
-            font-family: 'Poppins', 'Segoe UI', 'Helvetica Neue', sans-serif;
+        /* ===== VARIABLES GLOBALES ===== */
+        :root {
+            --color-ivory: #F7F5F0;
+            --color-white: #FEFDFB;
+            --color-black: #171512;
+            --color-espresso: #2D211A;
+            --color-taupe: #A99B8D;
+            --color-sand: #D8CFC4;
+            --color-greige: #E9E5DF;
+
+            --font-editorial: "Bodoni Moda", "Bodoni 72", Didot, serif;
+            --font-body: "DM Sans", Arial, sans-serif;
+
+            --weight-regular: 400;
+            --weight-medium: 500;
+            --weight-semibold: 600;
         }
 
+        /* ===== RESET ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            font-weight: 400;
+            color: var(--color-black);
+            background-color: var(--color-ivory);
+            line-height: 1.5;
+        }
+
+        /* ===== TIPOGRAFÍA EDITORIAL ===== */
+        h1, h2, h3 {
+            font-family: var(--font-editorial);
+            font-weight: 400;
+            color: var(--color-black);
+            letter-spacing: -0.02em;
+            line-height: 0.95;
+        }
+
+        .editorial-italic {
+            font-family: var(--font-editorial);
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            background-color: var(--color-ivory);
+            padding: 24px 0;
+            border-bottom: 1px solid var(--color-sand);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-logo {
+            text-decoration: none;
+        }
+
+        .navbar-logo img {
+            height: 60px;
+            width: auto;
+            display: block;
+        }
+
+        .navbar-menu {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .navbar-menu a {
+            font-family: var(--font-body);
+            font-weight: 500;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--color-black);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .navbar-menu a:hover {
+            color: var(--color-taupe);
+        }
+
+        .navbar-btn {
+            background-color: var(--color-espresso);
+            color: var(--color-white);
+            padding: 12px 28px;
+            font-family: var(--font-body);
+            font-weight: 500;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .navbar-btn:hover {
+            opacity: 0.85;
+        }
+
+        .navbar-toggle {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--color-black);
+        }
+
+        /* ===== HERO / SECCIÓN PRINCIPAL ===== */
         .hero-camila {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            gap: 50px;
-            padding: 60px 5%;
+            gap: 80px;
+            padding: 100px 40px;
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -26,260 +152,462 @@
         .hero-imagen {
             flex: 1;
             min-width: 280px;
-            text-align: center;
         }
 
         .hero-imagen img {
             width: 100%;
-            max-width: 400px;
-            border-radius: 30px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 450px;
+            display: block;
         }
 
         .hero-texto {
-            flex: 1.5;
+            flex: 1.3;
         }
 
         .hero-texto h1 {
-            font-size: 2.5rem;
-            color: #800020;
-            margin-bottom: 15px;
-            font-weight: 600;
-            font-family: 'Poppins', sans-serif;
+            font-size: 4rem;
+            margin-bottom: 20px;
+            line-height: 0.95;
         }
 
         .hero-texto .tagline {
-            font-size: 1.2rem;
-            color: #b87333;
-            margin-bottom: 20px;
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            color: var(--color-taupe);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 40px;
             font-weight: 500;
-            font-family: 'Poppins', sans-serif;
         }
 
         .hero-texto p {
             font-size: 1rem;
-            color: #444;
-            margin-bottom: 15px;
-            line-height: 1.6;
-            font-family: 'Poppins', sans-serif;
+            color: var(--color-espresso);
+            margin-bottom: 20px;
+            line-height: 1.7;
+            font-family: var(--font-body);
         }
 
+        .hero-texto p strong {
+            font-weight: 600;
+            color: var(--color-black);
+        }
+
+        /* ===== MARCAS ===== */
         .marcas {
-            margin: 25px 0;
-            padding: 20px;
-            background: #f7f3ea;
-            border-radius: 20px;
+            margin: 40px 0;
+            padding: 30px 0;
+            border-top: 1px solid var(--color-sand);
+            border-bottom: 1px solid var(--color-sand);
         }
 
         .marcas h3 {
-            color: #800020;
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            font-family: 'Poppins', sans-serif;
+            font-family: var(--font-body);
+            font-weight: 500;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--color-taupe);
+            margin-bottom: 20px;
         }
 
         .lista-marcas {
             display: flex;
             flex-wrap: wrap;
-            gap: 15px;
-            justify-content: center;
-        }
-
-        .lista-marcas span {
-            background: white;
-            padding: 5px 15px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            color: #800020;
-            font-weight: 500;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .estadisticas {
-            display: flex;
-            justify-content: space-around;
-            margin: 30px 0;
-            flex-wrap: wrap;
             gap: 20px;
         }
 
-        .estadistica {
-            text-align: center;
+        .lista-marcas span {
+            font-family: var(--font-editorial);
+            font-size: 1rem;
+            color: var(--color-black);
+            letter-spacing: 0.05em;
+        }
+
+        /* ===== ESTADÍSTICAS ===== */
+        .estadisticas {
+            display: flex;
+            gap: 60px;
+            margin: 40px 0;
+            flex-wrap: wrap;
         }
 
         .estadistica .numero {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #800020;
-            font-family: 'Poppins', sans-serif;
+            font-family: var(--font-editorial);
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: var(--color-black);
+            line-height: 1;
+            margin-bottom: 8px;
         }
 
         .estadistica .texto {
-            font-size: 0.85rem;
-            color: #666;
-            font-family: 'Poppins', sans-serif;
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            color: var(--color-taupe);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
         }
 
+        /* ===== BOTÓN PRINCIPAL ===== */
         .btn-servicio {
-            background: #800020;
-            color: white;
-            padding: 15px 40px;
-            border-radius: 50px;
+            background-color: var(--color-espresso);
+            color: var(--color-white);
+            padding: 16px 40px;
+            font-family: var(--font-body);
+            font-weight: 500;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
             text-decoration: none;
-            font-weight: 600;
             display: inline-block;
             margin-top: 20px;
-            transition: transform 0.2s;
-            font-family: 'Poppins', sans-serif;
+            transition: opacity 0.3s;
         }
 
         .btn-servicio:hover {
-            transform: scale(1.02);
-            background: #5a0016;
+            opacity: 0.85;
         }
 
-        .frase {
-            font-style: italic;
-            font-size: 1.2rem;
-            color: #b87333;
-            margin-top: 30px;
-            padding: 30px;
-            background: #e3d9cb;
-            border-radius: 20px;
-            text-align: center;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-            font-family: 'Poppins', sans-serif;
-        }
-
+        /* ===== ENFOQUE ===== */
         .enfoque {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            margin-top: 30px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid var(--color-sand);
         }
 
         .enfoque p {
+            font-family: var(--font-body);
             font-size: 1rem;
-            color: #444;
-            line-height: 1.6;
-            text-align: center;
-            font-family: 'Poppins', sans-serif;
+            color: var(--color-espresso);
+            line-height: 1.7;
         }
 
+        .enfoque p strong {
+            font-weight: 600;
+            color: var(--color-black);
+        }
+
+        /* ===== FRASE ===== */
+        .frase {
+            background-color: var(--color-greige);
+            padding: 80px 40px;
+            text-align: center;
+        }
+
+        .frase p {
+            font-family: var(--font-editorial);
+            font-style: italic;
+            font-size: 1.8rem;
+            color: var(--color-espresso);
+            max-width: 800px;
+            margin: 0 auto 20px;
+            line-height: 1.3;
+        }
+
+        .frase .autor {
+            font-family: var(--font-body);
+            font-style: normal;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--color-taupe);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background-color: var(--color-espresso);
+            color: var(--color-white);
+            padding: 60px 40px 30px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo img {
+            height: 60px;
+            margin-bottom: 16px;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer-logo p {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            color: var(--color-sand);
+            opacity: 0.8;
+        }
+
+        .footer-redes h4,
+        .footer-contacto h4 {
+            font-family: var(--font-body);
+            font-weight: 500;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--color-sand);
+            margin-bottom: 20px;
+        }
+
+        .redes-sociales {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .redes-sociales a,
+        .whatsapp-footer {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            color: var(--color-white);
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .redes-sociales a:hover,
+        .whatsapp-footer:hover {
+            opacity: 0.7;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            text-align: center;
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            color: var(--color-sand);
+            opacity: 0.7;
+            letter-spacing: 0.1em;
+        }
+
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
+            .navbar-container {
+                padding: 0 20px;
+            }
+
+            .navbar-toggle {
+                display: block;
+            }
+
+            .navbar-menu {
+                position: fixed;
+                top: 90px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 90px);
+                background-color: var(--color-ivory);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding: 60px 20px;
+                gap: 30px;
+                transition: left 0.3s;
+                border-top: 1px solid var(--color-sand);
+            }
+
+            .navbar-menu.active {
+                left: 0;
+            }
+
+            .navbar-btn {
+                display: none;
+            }
+
             .hero-camila {
                 flex-direction: column;
                 text-align: center;
-                padding: 40px 20px;
+                padding: 60px 20px;
+                gap: 40px;
             }
+
             .hero-texto h1 {
-                font-size: 1.8rem;
+                font-size: 2.5rem;
             }
+
+            .hero-imagen img {
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
             .estadisticas {
                 justify-content: center;
+                gap: 30px;
+            }
+
+            .lista-marcas {
+                justify-content: center;
+            }
+
+            .frase {
+                padding: 60px 20px;
+            }
+
+            .frase p {
+                font-size: 1.4rem;
+            }
+
+            .footer {
+                padding: 40px 20px 20px;
+            }
+
+            .footer-container {
+                text-align: center;
+            }
+
+            .redes-sociales {
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-texto h1 {
+                font-size: 2rem;
+            }
+
+            .hero-texto .tagline {
+                font-size: 0.75rem;
+            }
+
+            .estadistica .numero {
+                font-size: 2rem;
+            }
+
+            .frase p {
+                font-size: 1.2rem;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-container">
-            <a href="index.html" class="logo">
-                <img src="assets/logo.png" alt="Logo" style="height: 90px;">
-            </a>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="servicios.html">Servicios</a></li>
-                    <li><a href="testimonios.html">Testimonios</a></li>
-                </ul>
-            </nav>
-            <a href="servicios.html" class="btn-header">Quiero un servicio</a>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar">
+    <div class="navbar-container">
+        <a href="index.html" class="navbar-logo">
+            <img src="assets/logo.png" alt="Camila Caballero">
+        </a>
+
+        <ul class="navbar-menu" id="navbarMenu">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="testimonios.html">Testimonios</a></li>
+        </ul>
+
+        <a href="servicios.html" class="navbar-btn">Quiero un servicio</a>
+
+        <button class="navbar-toggle" id="navbarToggle" aria-label="Abrir menú">☰</button>
+    </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<main>
+    <section class="hero-camila">
+        <div class="hero-imagen">
+            <img src="assets/camila-foto.JPG" alt="Camila Caballero - Asesora de Imagen">
         </div>
-    </header>
 
-    <main>
-        <section class="hero-camila">
-            <div class="hero-imagen">
-                <img src="assets/camila-foto.JPG" alt="Camila Caballero - Asesora de Imagen">
-            </div>
-            <div class="hero-texto">
-                <h1>Camila Caballero</h1>
-                <div class="tagline">Asesora de Imagen & Fashion Stylist</div>
-                
-                <p>Con más de <strong>5 años de experiencia</strong> en la industria de la moda, especializada en potenciar la imagen personal de forma <strong>estratégica y auténtica</strong>. He asesorado a más de <strong>700 mujeres</strong> en Bolivia y el mundo, ayudándolas a descubrir y proyectar su mejor versión.</p>
-                
-                <div class="marcas">
-                    <h3>He trabajado con marcas como:</h3>
-                    <div class="lista-marcas">
-                        <span>Mango</span>
-                        <span>Gap</span>
-                        <span>Women's Secret</span>
-                        <span>Cortefiel</span>
-                        <span>Springfield</span>
-                        <span>Femenina</span>
-                        <span>Zoe</span>
-                        <span>House of BCP</span>
-                    </div>
-                </div>
+        <div class="hero-texto">
+            <h1>Camila Caballero</h1>
+            <div class="tagline">Asesora de Imagen & Fashion Stylist</div>
 
-                <div class="estadisticas">
-                    <div class="estadistica">
-                        <div class="numero">5+</div>
-                        <div class="texto">años de experiencia</div>
-                    </div>
-                    <div class="estadistica">
-                        <div class="numero">700+</div>
-                        <div class="texto">mujeres asesoradas</div>
-                    </div>
-                    <div class="estadistica">
-                        <div class="numero">8+</div>
-                        <div class="texto">marcas colaboradoras</div>
-                    </div>
-                </div>
+            <p>Con más de <strong>5 años de experiencia</strong> en la industria de la moda, especializada en potenciar la imagen personal de forma <strong>estratégica y auténtica</strong>. He asesorado a más de <strong>700 mujeres</strong> en Bolivia y el mundo, ayudándolas a descubrir y proyectar su mejor versión.</p>
 
-                <div class="enfoque">
-                    <p>Mi enfoque combina <strong>estilo, identidad y confianza</strong> para lograr transformaciones reales y duraderas. No solo trabajo la estética, sino también la imagen como una <strong>estrategia integral</strong> que fortalece la seguridad, la identidad y la proyección personal de cada mujer.</p>
-                </div>
-
-                <a href="servicios.html" class="btn-servicio">Quiero transformar mi imagen</a>
-            </div>
-        </section>
-
-        <section id="experiencias" class="frase">
-            <p>"No se trata de seguir modas, se trata de encontrarte a ti misma a través de los colores y las formas que te hacen brillar."</p>
-            <p style="margin-top: 10px;">— Camila Caballero</p>
-        </section>
-    </main>
-
-    <footer>
-        <div class="footer-container">
-            <div class="footer-logo">
-                <img src="assets/logo.png" alt="Logo" style="height: 90px;">
-                <p>Transformando imágenes, potenciando confianza.</p>
-            </div>
-            <div class="footer-redes">
-                <h4>Sígueme</h4>
-                <div class="redes-sociales">
-                    <a href="https://www.instagram.com/camilacaballerot?igsh=MXFzeWJzNnZjZWluYw%3D%3D&utm_source=qr" target="_blank">📷 Instagram</a>
-                    <a href="https://www.facebook.com/share/1AzXtD2ey5/?mibextid=wwXIfr" target="_blank">📘 Facebook</a>
-                    <a href="https://www.tiktok.com/@camila.caballerot?_r=1&_t=ZS-95GVRi7DNnJ" target="_blank">📱 TikTok</a>
-                    <a href="https://youtube.com/@camila.caballero?si=crziNJTOOJBq2k0i" target="_blank">▶️ YouTube</a>
+            <div class="marcas">
+                <h3>He trabajado con marcas como:</h3>
+                <div class="lista-marcas">
+                    <span>Mango</span>
+                    <span>Gap</span>
+                    <span>Women's Secret</span>
+                    <span>Cortefiel</span>
+                    <span>Springfield</span>
+                    <span>Femenina</span>
+                    <span>Zoe</span>
+                    <span>House of BCP</span>
                 </div>
             </div>
-            <div class="footer-contacto">
-                <h4>Contacto</h4>
-                <a href="https://wa.me/59169696211" class="whatsapp-footer">📞 +591 69696211</a>
+
+            <div class="estadisticas">
+                <div class="estadistica">
+                    <div class="numero">5+</div>
+                    <div class="texto">Años de experiencia</div>
+                </div>
+                <div class="estadistica">
+                    <div class="numero">700+</div>
+                    <div class="texto">Mujeres asesoradas</div>
+                </div>
+                <div class="estadistica">
+                    <div class="numero">8+</div>
+                    <div class="texto">Marcas colaboradoras</div>
+                </div>
+            </div>
+
+            <div class="enfoque">
+                <p>Mi enfoque combina <strong>estilo, identidad y confianza</strong> para lograr transformaciones reales y duraderas. No solo trabajo la estética, sino también la imagen como una <strong>estrategia integral</strong> que fortalece la seguridad, la identidad y la proyección personal de cada mujer.</p>
+            </div>
+
+            <a href="servicios.html" class="btn-servicio">Quiero transformar mi imagen</a>
+        </div>
+    </section>
+
+    <!-- ===== FRASE ===== -->
+    <section class="frase">
+        <p>"No se trata de seguir modas, se trata de encontrarte a ti misma a través de los colores y las formas que te hacen brillar."</p>
+        <div class="autor">— Camila Caballero</div>
+    </section>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-logo">
+            <img src="assets/logo.png" alt="Camila Caballero">
+            <p>Transformando imágenes, potenciando confianza.</p>
+        </div>
+
+        <div class="footer-redes">
+            <h4>Sígueme</h4>
+            <div class="redes-sociales">
+                <a href="https://www.instagram.com/camilacaballerot" target="_blank">Instagram</a>
+                <a href="https://www.facebook.com/share/1AzXtD2ey5/" target="_blank">Facebook</a>
+                <a href="https://www.tiktok.com/@camila.caballerot" target="_blank">TikTok</a>
+                <a href="https://youtube.com/@camila.caballero" target="_blank">YouTube</a>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Camila Caballero - Asesoría de Imagen. Todos los derechos reservados.</p>
+
+        <div class="footer-contacto">
+            <h4>Contacto</h4>
+            <a href="https://wa.me/59169696211" class="whatsapp-footer">+591 69696211</a>
         </div>
-    </footer>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2025 Camila Caballero · Todos los derechos reservados.</p>
+    </div>
+</footer>
+
+<!-- ===== SCRIPT NAVBAR ===== -->
+<script>
+    const toggle = document.getElementById('navbarToggle');
+    const menu = document.getElementById('navbarMenu');
+
+    toggle.addEventListener('click', () => {
+        menu.classList.toggle('active');
+    });
+
+    document.querySelectorAll('.navbar-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+            menu.classList.remove('active');
+        });
+    });
+</script>
+
 </body>
-</html>v
+</html>
