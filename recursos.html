@@ -42,15 +42,37 @@
             margin: 0 auto;
         }
 
-        /* ===== RECURSO DESTACADO ===== */
+        /* ===== RECURSO ===== */
         .recurso {
             border-top: 1px solid var(--color-sand);
             padding: 60px 0;
-            text-align: center;
         }
 
         .recurso:last-child {
             border-bottom: 1px solid var(--color-sand);
+        }
+
+        .recurso-contenido {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .recurso-imagen {
+            flex: 0 0 220px;
+            max-width: 220px;
+        }
+
+        .recurso-imagen img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .recurso-info {
+            flex: 1;
+            min-width: 280px;
         }
 
         .recurso .categoria {
@@ -59,15 +81,15 @@
             text-transform: uppercase;
             letter-spacing: 0.2em;
             color: var(--color-taupe);
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             display: block;
         }
 
         .recurso h2 {
             font-family: var(--font-editorial);
-            font-size: 2.5rem;
+            font-size: 2rem;
             color: var(--color-black);
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             font-weight: 400;
         }
 
@@ -76,26 +98,252 @@
             font-size: 0.95rem;
             color: var(--color-espresso);
             line-height: 1.8;
-            max-width: 550px;
-            margin: 0 auto 32px;
+            margin-bottom: 24px;
         }
 
-        .recurso .btn-recurso {
+        .recurso-botones {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn-recurso {
             display: inline-block;
             background: var(--color-espresso);
             color: var(--color-white);
-            padding: 18px 48px;
+            padding: 14px 36px;
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .btn-recurso:hover {
+            opacity: 0.85;
+        }
+
+        .btn-agregar {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            color: var(--color-espresso);
+            padding: 14px 28px;
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            border: 1px solid var(--color-espresso);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-agregar:hover {
+            background: var(--color-espresso);
+            color: var(--color-white);
+        }
+
+        .btn-agregar.agregado {
+            background: var(--color-espresso);
+            color: var(--color-white);
+        }
+
+        /* ===== CARRITO EN NAVBAR ===== */
+        .navbar-cart {
+            position: relative;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 6px;
+            padding: 8px 14px;
+            cursor: pointer;
+            color: var(--color-white);
+            font-size: 1.1rem;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .navbar-cart:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .cart-badge {
+            background: var(--color-taupe);
+            color: var(--color-espresso);
+            font-family: var(--font-body);
+            font-size: 0.65rem;
+            font-weight: 600;
+            padding: 2px 7px;
+            border-radius: 20px;
+            min-width: 18px;
+            text-align: center;
+        }
+
+        /* ===== PANEL DEL CARRITO ===== */
+        .cart-panel {
+            position: fixed;
+            top: 65px;
+            right: -100%;
+            width: 380px;
+            max-width: 100%;
+            height: calc(100vh - 65px);
+            background: var(--color-white);
+            border-left: 1px solid var(--color-sand);
+            box-shadow: -10px 0 30px rgba(0,0,0,0.15);
+            transition: right 0.35s ease;
+            z-index: 1500;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-panel.active {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 28px;
+            border-bottom: 1px solid var(--color-sand);
+        }
+
+        .cart-header h3 {
+            font-family: var(--font-editorial);
+            font-size: 1.5rem;
+            color: var(--color-black);
+            font-weight: 400;
+        }
+
+        .cart-header .close-cart {
+            background: transparent;
+            border: none;
+            font-size: 1.8rem;
+            line-height: 1;
+            cursor: pointer;
+            color: var(--color-taupe);
+            transition: color 0.3s;
+        }
+
+        .cart-header .close-cart:hover {
+            color: var(--color-black);
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px 28px;
+        }
+
+        .cart-empty {
+            text-align: center;
+            color: var(--color-taupe);
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            padding: 40px 0;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--color-greige);
+            gap: 12px;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-info .nombre {
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--color-black);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .cart-item-info .categoria {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--color-taupe);
+        }
+
+        .cart-item .btn-eliminar {
+            background: transparent;
+            border: none;
+            color: var(--color-taupe);
+            font-size: 1.3rem;
+            line-height: 1;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .cart-item .btn-eliminar:hover {
+            color: #8B2A2A;
+        }
+
+        .cart-footer {
+            padding: 24px 28px;
+            border-top: 1px solid var(--color-sand);
+            background: var(--color-ivory);
+        }
+
+        .cart-footer .btn-descargar-todos {
+            display: block;
+            width: 100%;
+            background: var(--color-espresso);
+            color: var(--color-white);
+            padding: 16px;
             font-family: var(--font-body);
             font-size: 0.75rem;
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 0.15em;
-            text-decoration: none;
+            border: none;
+            cursor: pointer;
             transition: opacity 0.3s;
+            margin-bottom: 12px;
         }
 
-        .recurso .btn-recurso:hover {
+        .cart-footer .btn-descargar-todos:hover {
             opacity: 0.85;
+        }
+
+        .cart-footer .btn-vaciar {
+            display: block;
+            width: 100%;
+            background: transparent;
+            color: var(--color-taupe);
+            padding: 12px;
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            border: 1px solid var(--color-taupe);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .cart-footer .btn-vaciar:hover {
+            background: var(--color-taupe);
+            color: var(--color-white);
         }
 
         /* ===== RESPONSIVE ===== */
@@ -120,12 +368,29 @@
                 padding: 40px 0;
             }
 
-            .recurso h2 {
-                font-size: 1.8rem;
+            .recurso-contenido {
+                flex-direction: column;
+                text-align: center;
+                gap: 24px;
             }
 
-            .recurso .btn-recurso {
-                padding: 16px 36px;
+            .recurso-imagen {
+                flex: 0 0 auto;
+                max-width: 180px;
+            }
+
+            .recurso h2 {
+                font-size: 1.6rem;
+            }
+
+            .recurso-botones {
+                justify-content: center;
+            }
+
+            .cart-panel {
+                top: 60px;
+                height: calc(100vh - 60px);
+                width: 100%;
             }
         }
     </style>
@@ -139,11 +404,19 @@
             <img src="assets/logo blanco.png" alt="Camila Caballero">
         </a>
 
-        <button class="navbar-toggle" id="navbarToggle" aria-label="Abrir menú">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
+        <div style="display: flex; gap: 12px; align-items: center;">
+            <!-- Carrito -->
+            <button class="navbar-cart" id="navbarCart" aria-label="Carrito">
+                🛒 <span class="cart-badge" id="cartBadge">0</span>
+            </button>
+
+            <!-- Hamburguesa -->
+            <button class="navbar-toggle" id="navbarToggle" aria-label="Abrir menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
     </div>
 
     <div class="navbar-menu" id="navbarMenu">
@@ -157,6 +430,21 @@
     </div>
 </nav>
 
+<!-- ===== PANEL DEL CARRITO ===== -->
+<div class="cart-panel" id="cartPanel">
+    <div class="cart-header">
+        <h3>Tu selección</h3>
+        <button class="close-cart" id="closeCart">&times;</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+        <!-- Los items se cargan con JS -->
+    </div>
+    <div class="cart-footer">
+        <button class="btn-descargar-todos" id="btnDescargarTodos">Abrir todos los recursos</button>
+        <button class="btn-vaciar" id="btnVaciar">Vaciar selección</button>
+    </div>
+</div>
+
 <!-- ===== RECURSOS ===== -->
 <main>
     <section class="recursos-page">
@@ -167,11 +455,26 @@
 
         <!-- RECURSO 1: Test de tipo de rostro -->
         <article class="recurso">
-            <span class="categoria">Herramienta interactiva</span>
-            <h2>Test de tipo de rostro</h2>
-            <img src="assets/TIPODEROSTRO.png" alt="Camila Caballero">
-            <p>Una guía para identificar la forma de tu rostro y descubrir qué cortes de cabello, accesorios y gafas mejor se adaptan a tus facciones. Una herramienta para conocerte mejor.</p>
-            <a href="https://carolinacaba.github.io/face-analyzer-demo/" target="_blank" class="btn-recurso">Comenzar el test</a>
+            <div class="recurso-contenido">
+                <div class="recurso-imagen">
+                    <img src="assets/TIPODEROSTRO.png" alt="Test de tipo de rostro">
+                </div>
+                <div class="recurso-info">
+                    <span class="categoria">Herramienta interactiva</span>
+                    <h2>Test de tipo de rostro</h2>
+                    <p>Una guía para identificar la forma de tu rostro y descubrir qué cortes de cabello, accesorios y gafas mejor se adaptan a tus facciones. Una herramienta para conocerte mejor.</p>
+                    <div class="recurso-botones">
+                        <a href="https://carolinacaba.github.io/camilafashionstylist.rostros/" target="_blank" class="btn-recurso">Abrir ahora</a>
+                        <button class="btn-agregar" 
+                                data-id="test-rostro"
+                                data-nombre="Test de tipo de rostro"
+                                data-categoria="Herramienta interactiva"
+                                data-url="https://carolinacaba.github.io/face-analyzer-demo/">
+                            + Agregar
+                        </button>
+                    </div>
+                </div>
+            </div>
         </article>
     </section>
 </main>
@@ -207,6 +510,139 @@
 
 <!-- ===== SCRIPT NAVBAR ===== -->
 <script src="script.js"></script>
+
+<!-- ===== SCRIPT CARRITO ===== -->
+<script>
+    // ===== CARRITO =====
+    const STORAGE_KEY = 'camila_recursos_carrito';
+
+    // Cargar carrito desde localStorage
+    function obtenerCarrito() {
+        try {
+            return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+        } catch (e) {
+            return [];
+        }
+    }
+
+    // Guardar carrito
+    function guardarCarrito(carrito) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(carrito));
+    }
+
+    // Actualizar UI del carrito
+    function actualizarUI() {
+        const carrito = obtenerCarrito();
+        const badge = document.getElementById('cartBadge');
+        const itemsContainer = document.getElementById('cartItems');
+        const btnDescargar = document.getElementById('btnDescargarTodos');
+        const btnVaciar = document.getElementById('btnVaciar');
+
+        // Badge
+        badge.textContent = carrito.length;
+
+        // Items
+        if (carrito.length === 0) {
+            itemsContainer.innerHTML = '<div class="cart-empty">Tu selección está vacía.</div>';
+            btnDescargar.disabled = true;
+            btnDescargar.style.opacity = '0.5';
+            btnDescargar.style.cursor = 'not-allowed';
+            btnVaciar.style.display = 'none';
+        } else {
+            itemsContainer.innerHTML = carrito.map(item => `
+                <div class="cart-item">
+                    <div class="cart-item-info">
+                        <span class="nombre">${item.nombre}</span>
+                        <span class="categoria">${item.categoria}</span>
+                    </div>
+                    <button class="btn-eliminar" onclick="eliminarDelCarrito('${item.id}')">&times;</button>
+                </div>
+            `).join('');
+            btnDescargar.disabled = false;
+            btnDescargar.style.opacity = '1';
+            btnDescargar.style.cursor = 'pointer';
+            btnVaciar.style.display = 'block';
+        }
+
+        // Actualizar botones "Agregar" según el estado
+        document.querySelectorAll('.btn-agregar').forEach(btn => {
+            const id = btn.dataset.id;
+            const existe = carrito.some(item => item.id === id);
+            if (existe) {
+                btn.classList.add('agregado');
+                btn.textContent = '✓ Agregado';
+            } else {
+                btn.classList.remove('agregado');
+                btn.textContent = '+ Agregar';
+            }
+        });
+    }
+
+    // Agregar al carrito
+    function agregarAlCarrito(id, nombre, categoria, url) {
+        let carrito = obtenerCarrito();
+        const existe = carrito.some(item => item.id === id);
+        if (!existe) {
+            carrito.push({ id, nombre, categoria, url });
+            guardarCarrito(carrito);
+            actualizarUI();
+        }
+    }
+
+    // Eliminar del carrito
+    function eliminarDelCarrito(id) {
+        let carrito = obtenerCarrito();
+        carrito = carrito.filter(item => item.id !== id);
+        guardarCarrito(carrito);
+        actualizarUI();
+    }
+
+    // Vaciar carrito
+    function vaciarCarrito() {
+        if (confirm('¿Vaciar toda tu selección?')) {
+            localStorage.removeItem(STORAGE_KEY);
+            actualizarUI();
+        }
+    }
+
+    // Abrir todos los recursos
+    function abrirTodos() {
+        const carrito = obtenerCarrito();
+        carrito.forEach(item => {
+            window.open(item.url, '_blank');
+        });
+    }
+
+    // Abrir/cerrar panel
+    function toggleCart() {
+        const panel = document.getElementById('cartPanel');
+        panel.classList.toggle('active');
+    }
+
+    function cerrarCart() {
+        document.getElementById('cartPanel').classList.remove('active');
+    }
+
+    // ===== EVENTOS =====
+    document.getElementById('navbarCart').addEventListener('click', toggleCart);
+    document.getElementById('closeCart').addEventListener('click', cerrarCart);
+    document.getElementById('btnDescargarTodos').addEventListener('click', abrirTodos);
+    document.getElementById('btnVaciar').addEventListener('click', vaciarCarrito);
+
+    document.querySelectorAll('.btn-agregar').forEach(btn => {
+        btn.addEventListener('click', () => {
+            agregarAlCarrito(
+                btn.dataset.id,
+                btn.dataset.nombre,
+                btn.dataset.categoria,
+                btn.dataset.url
+            );
+        });
+    });
+
+    // Inicializar
+    actualizarUI();
+</script>
 
 </body>
 </html>
