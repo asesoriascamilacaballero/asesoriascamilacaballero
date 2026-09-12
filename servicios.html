@@ -2,795 +2,667 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Servicios | Camila Caballero</title>
-    <!-- Fuente Poppins -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="css/style.css">
+
     <style>
-        /* Estilos específicos de servicios.html */
-        .servicios-grid {
+        /* ===== ESTILOS ESPECÍFICOS DE SERVICIOS ===== */
+
+        .servicios-page {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 60px 20px;
+            padding: 80px 40px;
         }
 
-        .servicios-grid h1 {
+        .servicios-header {
             text-align: center;
-            color: #800020;
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            font-weight: 600;
-            font-family: 'Poppins', sans-serif;
+            margin-bottom: 70px;
         }
 
-        .servicios-grid .subtitulo {
-            text-align: center;
-            color: #666;
-            margin-bottom: 50px;
-            font-weight: 400;
-            font-family: 'Poppins', sans-serif;
+        .servicios-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 16px;
         }
 
-        .grid-servicios {
-            display: grid;
-            grid-template-columns: 1fr;
+        .servicios-header p {
+            color: var(--taupe);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-size: 0.8rem;
+        }
+
+        /* ===== TARJETA DE SERVICIO ===== */
+        .servicio {
+            border-top: 1px solid var(--sand);
+            padding: 50px 0;
+        }
+
+        .servicio:last-child {
+            border-bottom: 1px solid var(--sand);
+        }
+
+        .servicio-header {
+            display: flex;
             gap: 50px;
-        }
-
-        .servicio-card {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            background: white;
-            border-radius: 30px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-            transition: transform 0.2s;
-        }
-
-        .servicio-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .servicio-imagen {
-            background: #f7f3ea;
-            display: flex;
             align-items: center;
-            justify-content: center;
-            min-width: 280px;
-            max-width: 280px;
-            padding: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* Imagen del servicio */
+        .servicio-imagen {
+            flex: 0 0 380px;
+            max-width: 380px;
         }
 
         .servicio-imagen img {
             width: 100%;
-            max-width: 240px;
-            height: auto;
-            border-radius: 20px;
-            object-fit: contain;
+            aspect-ratio: 4 / 5;
+            object-fit: cover;
+            display: block;
         }
 
+        /* Info básica */
         .servicio-info {
-            flex: 2;
-            padding: 30px 30px 30px 0;
+            flex: 1;
+            min-width: 280px;
         }
 
-        .servicio-info h3 {
-            color: #800020;
-            font-size: 1.6rem;
-            margin-bottom: 10px;
-            font-weight: 600;
-            font-family: 'Poppins', sans-serif;
+        .servicio-info .categoria {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--taupe);
+            margin-bottom: 16px;
+            display: block;
         }
 
-        .servicio-info .modalidad {
-            color: #b87333;
-            font-weight: 600;
-            margin-bottom: 10px;
-            font-size: 0.9rem;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .servicio-info .descripcion {
-            color: #444;
+        .servicio-info h2 {
+            font-size: 2.5rem;
             margin-bottom: 20px;
+        }
+
+        .servicio-info .descripcion-corta {
+            color: var(--espresso);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .servicio-info .precio {
+            font-family: var(--font-title);
+            font-size: 1.6rem;
+            color: var(--black);
+            margin-bottom: 24px;
+        }
+
+        /* Botón desplegable */
+        .btn-desplegar {
+            background: transparent;
+            border: 1px solid var(--espresso);
+            color: var(--espresso);
+            padding: 14px 32px;
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-desplegar:hover {
+            background: var(--espresso);
+            color: var(--white);
+        }
+
+        /* Contenido desplegable */
+        .servicio-detalle {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+
+        .servicio-detalle.abierto {
+            max-height: 4000px;
+        }
+
+        .servicio-detalle-inner {
+            padding-top: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .bloque h3 {
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--taupe);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .bloque ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .bloque ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--greige);
+            font-size: 0.9rem;
+            color: var(--espresso);
             line-height: 1.6;
-            font-weight: 400;
-            font-family: 'Poppins', sans-serif;
         }
 
-        .incluye {
-            background: #f7f3ea;
-            padding: 15px 20px;
-            border-radius: 15px;
-            margin: 15px 0;
+        .bloque ul li:last-child {
+            border-bottom: none;
         }
 
-        .incluye h4 {
-            color: #800020;
-            margin-bottom: 10px;
+        .bloque ul li strong {
             font-weight: 600;
-            font-size: 1rem;
-            font-family: 'Poppins', sans-serif;
+            color: var(--black);
         }
 
-        .incluye ul {
-            margin-left: 20px;
+        .bloque .modalidad {
+            margin-bottom: 30px;
         }
 
-        .incluye li {
-            margin-bottom: 5px;
-            line-height: 1.4;
-            font-weight: 400;
+        .bloque .modalidad p {
             font-size: 0.9rem;
-            font-family: 'Poppins', sans-serif;
+            color: var(--espresso);
+            margin-bottom: 16px;
+            line-height: 1.6;
         }
 
-        .experiencia {
-            background: #e3d9cb;
-            padding: 15px 20px;
-            border-radius: 15px;
-            margin: 15px 0;
+        .bloque .modalidad p strong {
+            display: block;
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--taupe);
+            margin-bottom: 6px;
+            font-weight: 500;
         }
 
-        .experiencia h4 {
-            color: #800020;
-            margin-bottom: 10px;
-            font-weight: 600;
-            font-size: 1rem;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .experiencia p, .experiencia li {
-            font-weight: 400;
-            font-size: 0.9rem;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .precio {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #800020;
-            margin: 15px 0;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .precio small {
-            font-size: 0.9rem;
-            font-weight: 400;
-        }
-
-        .requisito {
-            background: #fff3e0;
-            padding: 10px 15px;
-            border-radius: 10px;
-            margin: 15px 0;
-            font-size: 0.85rem;
-            border-left: 4px solid #b87333;
-            font-weight: 400;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .botones-dobles {
+        /* Botones de pago */
+        .botones-pago {
             display: flex;
-            gap: 15px;
+            gap: 16px;
             flex-wrap: wrap;
-            margin-top: 20px;
+            margin-top: 30px;
         }
 
-        .btn-reservar-bolivia {
-            background: #800020;
-            color: white;
-            padding: 12px 25px;
-            border-radius: 50px;
+        .btn-pago-bolivia,
+        .btn-pago-internacional {
+            padding: 14px 32px;
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
             text-decoration: none;
-            font-weight: 600;
-            display: inline-block;
-            transition: background 0.2s;
-            font-size: 0.9rem;
-            font-family: 'Poppins', sans-serif;
             border: none;
             cursor: pointer;
+            transition: opacity 0.3s;
         }
 
-        .btn-reservar-bolivia:hover {
-            background: #5a0016;
+        .btn-pago-bolivia {
+            background: var(--espresso);
+            color: var(--white);
         }
 
-        .btn-reservar-internacional {
-            background: #6b1525;
-            color: white;
-            padding: 12px 25px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-block;
-            transition: background 0.2s;
-            font-size: 0.9rem;
-            font-family: 'Poppins', sans-serif;
-            border: none;
-            cursor: pointer;
+        .btn-pago-internacional {
+            background: var(--taupe);
+            color: var(--white);
         }
 
-        .btn-reservar-internacional:hover {
-            background: #4a0e19;
+        .btn-pago-bolivia:hover,
+        .btn-pago-internacional:hover {
+            opacity: 0.85;
         }
 
-        .btn-lista-espera {
-            background: #b87333;
-            color: white;
-            padding: 12px 25px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-block;
-            transition: background 0.2s;
-            font-size: 0.9rem;
-            font-family: 'Poppins', sans-serif;
+        /* Próximamente */
+        .proximamente {
+            border-top: 1px solid var(--sand);
+            padding: 50px 0;
+            opacity: 0.7;
         }
 
-        .btn-lista-espera:hover {
-            background: #8b5a2b;
-        }
-
-        /* MODAL - Responsivo para ambos modales */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.6);
-            backdrop-filter: blur(5px);
-            justify-content: center;
+        .proximamente .servicio-header {
             align-items: center;
         }
 
-        .modal-content {
-            background: white;
-            max-width: 450px;
-            width: 90%;
-            max-height: 90vh;
-            border-radius: 25px;
-            padding: 20px;
-            text-align: center;
-            animation: fadeIn 0.3s ease;
-            position: relative;
-            overflow-y: auto;
+        .badge-proximamente {
+            display: inline-block;
+            background: var(--greige);
+            color: var(--taupe);
+            padding: 6px 16px;
+            font-family: var(--font-body);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 16px;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .servicio-detalle-inner {
+                grid-template-columns: 1fr;
+                gap: 30px;
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .modal-content h2 {
-            color: #800020;
-            margin-bottom: 15px;
-            font-weight: 600;
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.3rem;
-        }
-
-        .modal-content .politicas {
-            text-align: left;
-            background: #f7f3ea;
-            padding: 15px;
-            border-radius: 15px;
-            margin: 15px 0;
-            max-height: 50vh;
-            overflow-y: auto;
-        }
-
-        .modal-content .politicas p {
-            margin: 8px 0;
-            font-size: 0.85rem;
-            color: #444;
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.4;
-        }
-
-        .modal-content .politicas strong {
-            color: #800020;
-        }
-
-        .modal-buttons {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            margin-top: 15px;
-            flex-wrap: wrap;
-        }
-
-        .btn-aceptar {
-            background: #800020;
-            color: white;
-            padding: 10px 25px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.9rem;
-        }
-
-        .btn-aceptar:hover {
-            background: #5a0016;
-        }
-
-        .btn-cancelar {
-            background: #ccc;
-            color: #333;
-            padding: 10px 25px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.9rem;
-        }
-
-        .btn-cancelar:hover {
-            background: #aaa;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 12px;
-            right: 15px;
-            font-size: 24px;
-            cursor: pointer;
-            color: #999;
-        }
-
-        .close-modal:hover {
-            color: #800020;
         }
 
         @media (max-width: 768px) {
-            .servicio-info {
-                padding: 20px;
+            .servicios-page {
+                padding: 60px 20px;
             }
-            .botones-dobles {
-                flex-direction: column;
+
+            .servicios-header h1 {
+                font-size: 2.2rem;
             }
+
+            .servicio-header {
+                gap: 30px;
+            }
+
             .servicio-imagen {
-                min-width: 100%;
+                flex: 0 0 100%;
                 max-width: 100%;
             }
-            .servicio-imagen img {
-                max-width: 200px;
+
+            .servicio-info h2 {
+                font-size: 1.8rem;
             }
-            
-            /* Modal más pequeño en móviles */
-            .modal-content {
-                width: 95%;
-                padding: 15px;
+
+            .botones-pago {
+                flex-direction: column;
             }
-            
-            .modal-content h2 {
-                font-size: 1.1rem;
-                margin-bottom: 10px;
+
+            .btn-pago-bolivia,
+            .btn-pago-internacional {
+                width: 100%;
+                text-align: center;
             }
-            
-            .modal-content .politicas p {
-                font-size: 0.75rem;
-                margin: 6px 0;
-            }
-            
-            .btn-aceptar, .btn-cancelar {
-                padding: 8px 20px;
-                font-size: 0.8rem;
-            }
-            
-            .close-modal {
-                top: 8px;
-                right: 12px;
-                font-size: 20px;
+
+            .btn-desplegar {
+                width: 100%;
+                text-align: center;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-container">
-            <a href="index.html" class="logo">
-                <img src="assets/logo.png" alt="Logo" style="height: 90px;">
-            </a>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="servicios.html">Servicios</a></li>
-                    <li><a href="testimonios.html">Testimonios</a></li>
-                </ul>
-            </nav>
-            <a href="servicios.html" class="btn-header">Quiero un servicio</a>
-        </div>
-    </header>
 
-    <main>
-        <section class="servicios-grid">
+<!-- ===== HEADER ===== -->
+<header class="header">
+    <div class="header-inner">
+        <a href="index.html" class="header-logo">
+            <img src="assets/logo.png" alt="Camila Caballero">
+        </a>
+        <button class="menu-btn" id="menuBtn" aria-label="Abrir menú">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+    <nav class="nav" id="nav">
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="testimonios.html">Testimonios</a></li>
+            <li><a href="servicios.html" class="nav-btn">Quiero un servicio</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- ===== SERVICIOS ===== -->
+<main>
+    <section class="servicios-page">
+        <div class="servicios-header">
             <h1>Mis Servicios</h1>
-            <div class="subtitulo">Elige el servicio que mejor se adapte a ti</div>
+            <p>Elige el que mejor se adapte a ti</p>
+        </div>
 
-            <div class="grid-servicios">
+        <!-- ===== 1. GLOW UP PRO (al final) ===== -->
+        <!-- (Se moverá al final según lo pedido) -->
 
-                <!-- SERVICIO 1: GLOW UP PRO - ASESORÍA GRUPAL -->
-                <div class="servicio-card">
-                    <div class="servicio-imagen">
-                        <img src="assets/servicios/asesoriasgrupales.jpg" alt="Asesoría Grupal - Glow Up Pro">
-                    </div>
-                    <div class="servicio-info">
-                        <h3>Glow Up Pro - Asesoría Grupal</h3>
-                        <div class="modalidad">📍 Presencial en La Paz | Próximamente en Santa Cruz, Cochabamba y Oruro</div>
-                        <div class="descripcion">Un taller exclusivo para mujeres que quieren verse y sentirse imparables. Eleva tu autoestima, confianza y estilo con herramientas de imagen estratégica.</div>
-                        
-                        <div class="incluye">
-                            <h4>📦 Contenido</h4>
-                            <ul>
-                                <li>Marca personal</li>
-                                <li>Estilo personal</li>
-                                <li>Tipo de cuerpo</li>
-                                <li>Colorimetría (incluye test personalizado básico)</li>
-                                <li>Psicología del color y combinaciones</li>
-                                <li>Armario inteligente</li>
-                            </ul>
-                        </div>
-
-                        <div class="incluye">
-                            <h4>📦 Material</h4>
-                            <ul>
-                                <li>Workbook para la clase</li>
-                                <li>Paleta de color personalizada</li>
-                                <li>7 ebooks de regalo</li>
-                                <li>Test online tipo de rostro</li>
-                                <li>Challenge de 21 días (videos)</li>
-                                <li>Incluye certificado digital</li>
-                            </ul>
-                        </div>
-
-                        <div class="precio">
-                            Bs. 320 <small>| Preventa Bs. 280</small>
-                        </div>
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSf7OwDWWS0Txg5X-b_MXMEMoIuuEv2wPlvxmEpvGsf9_cCB6A/viewform?usp=publish-editor" target="_blank" class="btn-lista-espera">📋 Lista de Espera</a>
-                    </div>
+        <!-- ===== 2. COLORIMETRÍA ===== -->
+        <article class="servicio">
+            <div class="servicio-header">
+                <div class="servicio-imagen">
+                    <img src="assets/servicios-COLORIMETRIA.webp" alt="Colorimetría">
                 </div>
-
-                <!-- SERVICIO 2: COLORIMETRÍA styling -->
-                <div class="servicio-card">
-                    <div class="servicio-imagen">
-                        <img src="assets/servicios/colorimetria.PNG" alt="Colorimetría">
-                    </div>
-                    <div class="servicio-info">
-                        <h3>Colorimetría & Styling</h3>
-                        <div class="modalidad">📍 Presencial en La Paz | 💻 Virtual en otras ciudades y el mundo</div>
-                        <div class="descripcion">Análisis de colorimetría personalizado. Identificación de subtono, contraste y luminosidad.</div>
-                        
-                        <div class="incluye">
-                            <h4>📦 ¿Qué incluye?</h4>
-                            <ul>
-                                <li>Paleta de color personalizada (estación de color)</li>
-                                <li>Recomendaciones de color para: vestuario, maquillaje (labial, rubor, ojos), color de cabello</li>
-                                <li>Guía personalizada + Círculo cromático y paleta</li>
-                                <li>Clase pregrabada de combinación de color</li>
-                                 <li>Estilo personal (líneas, esencia, referentes)</li>
-                                <li>Tipo de cuerpo + ilusiones ópticas para potenciar tu figura</li>
-                                <li>Prendas clave que te favorecen según tu silueta</li>
-                                <li>Qué evitar (errores comunes)</li>
-                                <li>Guía base para construir outfits con intención</li>
-                                <li>Guía personalizada de estilo + recomendaciones + referencias visuales</li>
-                            </ul>
-                        </div>
-
-                        <div class="experiencia">
-                            <h4>Así será tu experiencia</h4>
-                            <ul>
-                                <li><strong>Primera fase:</strong> Descubrimos tus colores con un análisis de colorimetría</li>
-                                <li><strong>Segunda fase:</strong> Recibes tu guía de colores personalizada, paleta de color y círculo cromático</li>
-                                <li><strong>Tercera fase:</strong> Accederás a una clase pregrabada para aprender a usar tus colores</li>
-                            </ul>
-                        </div>
-
-                        <div class="precio">Bs. 789 / $65 USD</div>
-                      <div class="botones-dobles">
-                          <button class="btn-reservar-bolivia" data-url="pago-bolivia.html?monto=789&descripcion=Colorimetría 24 horas"> 🇧🇴 Pago Bolivia</button>
-                          <button class="btn-reservar-internacional" data-url="pago-mundo.html?monto=789&descripcion=Colorimetría 24 horas&moneda=USD">🌎 Pago Internacional</button>
-                      </div>
-                    </div>
-                </div>
-                 <div class="servicio-card">
-                    <div class="servicio-imagen">
-                        <img src="assets/servicios/colorimetria.PNG" alt="Colorimetría">
-                    </div>
-                    <div class="servicio-info">
-                        <h3>Colorimetría</h3>
-                        <div class="modalidad">📍 Presencial en La Paz | 💻 Virtual en otras ciudades y el mundo</div>
-                        <div class="descripcion">Análisis de colorimetría personalizado. Identificación de subtono, contraste y luminosidad.</div>
-                        <div class="experiencia">
-                            <h4>Así será tu experiencia</h4>
-                            <ul>
-                                <li><strong>Primera fase:</strong> Descubrimos tus colores con un análisis de colorimetría</li>
-                                <li><strong>Segunda fase:</strong> Recibes tu guía de colores personalizada, paleta de color y círculo cromático</li>
-                                <li><strong>Tercera fase:</strong> Accederás a una clase pregrabada para aprender a usar tus colores</li>
-                            </ul>
-                        </div>
-
-                        <div class="precio">Bs. 429 / $39 USD </div>
-                      <div class="botones-dobles">
-                          <button class="btn-reservar-bolivia" data-url="pago-bolivia.html?monto=230&descripcion=Colorimetría 24 horas"> 🇧🇴 Pago Bolivia</button>
-                          <button class="btn-reservar-internacional" data-url="pago-mundo.html?monto=429&descripcion=Colorimetría 24 horas&moneda=USD">🌎 Pago Internacional</button>
-                      </div>
-                    </div>
-                </div>
-                <!-- SERVICIO 4: DISEÑO DE IMAGEN (4 semanas) -->
-                <div class="servicio-card">
-                    <div class="servicio-imagen">
-                        <img src="assets/servicios/disenodeimagen.PNG" alt="Diseño de Imagen">
-                    </div>
-                    <div class="servicio-info">
-                        <h3>Diseño de Imagen - 4 semanas</h3>
-                        <div class="modalidad">📍 Presencial en La Paz | 💻 Virtual en otras ciudades y el mundo</div>
-                        
-                        <div class="incluye">
-                            <h4>📅 SESIÓN 1 – Diagnóstico de Imagen (1 hora presencial)</h4>
-                            <ul>
-                                <li>Marca personal, estilo personal, tipo de cuerpo + ilusiones ópticas</li>
-                                <li>Tipo de rostro (accesorios, corte de cabello y gafas)</li>
-                                <li>Colorimetría (test personalizado, color cabello, maquillaje)</li>
-                                <li><strong>Entrega:</strong> Workbook + Paleta de color personalizada</li>
-                            </ul>
-                        </div>
-
-                        <div class="incluye">
-                            <h4>📅 SESIÓN 2 – Estrategia de Armario (50 min virtual)</h4>
-                            <ul>
-                                <li>Psicología del color aplicada, combinaciones estratégicas</li>
-                                <li>Armario inteligente, método para multiplicar looks</li>
-                                <li><strong>Entrega:</strong> Herramienta para limpieza de armario</li>
-                            </ul>
-                        </div>
-
-                        <div class="incluye">
-                            <h4>📅 SESIÓN 3 – Implementación (50 min virtual)</h4>
-                            <ul>
-                                <li>Armamos looks juntas, armario digital en app</li>
-                                <li>Recomendaciones de compras inteligentes</li>
-                                <li><strong>Entrega:</strong> Guía personalizada + Armario digital + Challenge 21 días + 7 ebooks + Dónde comprar</li>
-                            </ul>
-                        </div>
-
-                        <div class="incluye">
-                            <h4>📅 SESIÓN 4 – Automaquillaje Diario (50 min virtual)</h4>
-                            <ul>
-                                <li>Preparación de la piel, base natural, cejas, ojos sencillos</li>
-                                <li>Rubor + labios, revisión de cosmetiquero</li>
-                            </ul>
-                        </div>
-
-                        <div class="experiencia">
-                            <h4>🎁 BONUS</h4>
-                            <p>Sesión virtual de 30 minutos de seguimiento después de 3 meses del servicio.</p>
-                        </div>
-
-                        <div class="precio">Bs. 2200 / $200 USD </small></div>
-                        <div class="botones-dobles">
-                            <button class="btn-reservar-bolivia" data-url="pago-bolivia.html?monto=2200&descripcion=Diseño de Imagen 4 semanas">🇧🇴 Pago Bolivia</button>
-                            <button class="btn-reservar-internacional" data-url="pago-mundo.html?monto=2200&descripcion=Diseño de Imagen 4 semanas&moneda=USD">🌎 Pago Internacional</button>
-                        </div>
-                    </div>
-                </div>
-                <!-- SERVICIO 6: PERSONAL SHOPPER (solo La Paz) -->
-                <div class="servicio-card">
-                    <div class="servicio-imagen">
-                        <img src="assets/servicios/personalshoper.jpg" alt="Personal Shopper">
-                    </div>
-                    <div class="servicio-info">
-                        <h3>Personal Shopper</h3>
-                        <div class="modalidad">📍 ÚNICAMENTE PRESENCIAL EN LA PAZ</div>
-                        <div class="descripcion">Compra estratégica, inteligente y alineada a tu estilo, evitando compras impulsivas.</div>
-                        
-                        <div class="incluye">
-                            <h4>📦 ¿Qué incluye?</h4>
-                            <ul>
-                                <li>Planificación previa según estilo, necesidades y presupuesto</li>
-                                <li>Acompañamiento en compras (tiendas seleccionadas)</li>
-                                <li>Selección de prendas clave que realmente vas a usar</li>
-                                <li>Asesoría en tiempo real (fit, combinaciones, decisiones)</li>
-                                <li>Creación de looks con las prendas compradas</li>
-                                <li>Organización de outfits en app</li>
-                                <li>Base de armario más funcional y combinable</li>
-                            </ul>
-                        </div>
-
-                        <div class="requisito">
-                            ⚠️ <strong>Prerrequisito:</strong> Haber tomado <strong>Styling Pro</strong> o la sesión de <strong>Armario Inteligente</strong> (limpieza de armario).
-                        </div>
-
-                        <div class="precio">Bs. 500</div>
-                        <button class="btn-reservar-bolivia" data-url="pago-bolivia.html?monto=500&descripcion=Personal Shopper">🇧🇴 Pago Bolivia (solo presencial)</button>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="footer-container">
-            <div class="footer-logo">
-                <img src="assets/logo.png" alt="Logo" style="height: 40px;">
-                <p>Transformando imágenes, potenciando confianza.</p>
-            </div>
-            <div class="footer-redes">
-                <h4>Sígueme</h4>
-                <div class="redes-sociales">
-                    <a href="https://www.instagram.com/camilacaballerot?igsh=MXFzeWJzNnZjZWluYw%3D%3D&utm_source=qr" target="_blank">📷 Instagram</a>
-                    <a href="https://www.facebook.com/share/1AzXtD2ey5/?mibextid=wwXIfr" target="_blank">📘 Facebook</a>
-                    <a href="https://www.tiktok.com/@camila.caballerot?_r=1&_t=ZS-95GVRi7DNnJ" target="_blank">📱 TikTok</a>
-                    <a href="https://youtube.com/@camila.caballero?si=crziNJTOOJBq2k0i" target="_blank">▶️ YouTube</a>
+                <div class="servicio-info">
+                    <span class="categoria">Análisis de color</span>
+                    <h2>Colorimetría</h2>
+                    <p class="descripcion-corta">
+                        Descubre los colores que realmente te favorecen. Un análisis personalizado para descubrir las tonalidades que armonizan con tus características naturales y aprender a utilizar el color de forma más intencional en tu imagen.
+                    </p>
+                    <div class="precio">US$35 · Bs 403</div>
+                    <button class="btn-desplegar" onclick="toggleDetalle(this)">Ver detalles</button>
                 </div>
             </div>
-            <div class="footer-contacto">
-                <h4>Contacto</h4>
-                <a href="https://wa.me/59169696211" class="whatsapp-footer">📞 +59169696211</a>
+
+            <div class="servicio-detalle">
+                <div class="servicio-detalle-inner">
+                    <!-- Modalidad -->
+                    <div class="bloque">
+                        <h3>Elige tu modalidad</h3>
+                        <div class="modalidad">
+                            <p><strong>🌎 Online · Desde cualquier lugar</strong> n
+                            Envíame tus fotografías siguiendo una guía específica. Analizaré tus características para determinar tu colorimetría y crear tu paleta personalizada. Incluye sesión 1:1.</p>
+                            <p><strong>📍 Presencial · La Paz</strong>
+                            Realizaremos una prueba de color con telas para descubrir en tiempo real las tonalidades que mejor armonizan contigo. Horarios sujetos a disponibilidad.</p>
+                        </div>
+
+                        <h3>¿Cómo funciona?</h3>
+                        <ul>
+                            <li><strong>01 · Cuéntame sobre ti</strong><br>Después de realizar tu compra, recibirás una guía con las instrucciones y fotografías necesarias para comenzar tu análisis.</li>
+                            <li><strong>02 · Analizo tu colorimetría</strong><br>Estudiaré tus características naturales para determinar: tu estación + subestación + nivel de contraste.</li>
+                            <li><strong>03 · Recibe tu paleta personalizada</strong><br>Recibirás tu resultado junto a una guía digital con los colores y recomendaciones que podrás comenzar a aplicar en tu imagen.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Qué recibes + pago -->
+                    <div class="bloque">
+                        <h3>¿Qué recibes?</h3>
+                        <ul>
+                            <li>Tu estación y subestación de color</li>
+                            <li>Tu nivel de contraste</li>
+                            <li>Paleta digital personalizada</li>
+                            <li>Colores ideales para prendas y accesorios</li>
+                            <li>Metales que más te favorecen</li>
+                            <li>Colores recomendados para maquillaje</li>
+                            <li>Colores recomendados para cabello</li>
+                        </ul>
+
+                        <h3 style="margin-top: 40px;">Inversión</h3>
+                        <div class="precio" style="margin-bottom: 20px;">US$35 · Bs 403</div>
+                        <div class="botones-pago">
+                            <button class="btn-pago-bolivia" onclick="abrirModalBolivia('pago-bolivia.html?monto=403&descripcion=Colorimetría')">🇧🇴 Pago Bolivia</button>
+                            <button class="btn-pago-internacional" onclick="abrirModalInternacional('pago-mundo.html?monto=403&descripcion=Colorimetría&moneda=USD')">🌎 Pago Internacional</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- ===== 3. STYLING + COLORIMETRÍA ===== -->
+        <article class="servicio">
+            <div class="servicio-header">
+                <div class="servicio-imagen">
+                    <img src="assets/servicios/STYLING Y COLORIMETRIA.webp" alt="Styling + Colorimetría">
+                </div>
+                <div class="servicio-info">
+                    <span class="categoria">Asesoría completa</span>
+                    <h2>Styling + Colorimetría</h2>
+                    <p class="descripcion-corta">
+                        Entiende tu imagen. Descubre qué funciona para ti. Una asesoría completa para aprender los fundamentos de tu imagen y descubrir tus características personales a través de un análisis de colorimetría, cuerpo, rostro y estilo personal.
+                    </p>
+                    <div class="precio">US$89 · Bs 1.024</div>
+                    <button class="btn-desplegar" onclick="toggleDetalle(this)">Ver detalles</button>
+                </div>
+            </div>
+
+            <div class="servicio-detalle">
+                <div class="servicio-detalle-inner">
+                    <!-- Cómo funciona -->
+                    <div class="bloque">
+                        <h3>¿Cómo funciona?</h3>
+                        <ul>
+                            <li><strong>01 · Cuéntame sobre ti</strong><br>Después de realizar tu compra, completarás un formulario y me enviarás las fotografías y medidas necesarias para realizar tu análisis.</li>
+                            <li><strong>02 · Asiste a tu clase en vivo</strong><br>Tendremos una clase online de 60–90 minutos donde aprenderás sobre colorimetría, tipos de cuerpo, rostro y estilo personal. Al finalizar recibirás un PDF resumen de la clase.</li>
+                            <li><strong>03 · Analizo tu imagen</strong><br>Después de nuestra clase analizaré toda tu información para descubrir: tu colorimetría + tipo de cuerpo + tipo de rostro + Style DNA.</li>
+                            <li><strong>04 · Recibe tu guía personalizada</strong><br>En aproximadamente 2–3 días, recibirás tu Style & Color Profile, una guía digital creada especialmente para ti con todos tus resultados y recomendaciones.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Qué recibes + pago -->
+                    <div class="bloque">
+                        <h3>¿Qué recibes?</h3>
+                        <ul>
+                            <li><strong>Clase en vivo</strong><br>Clase online de 60–90 minutos · Colorimetría, cuerpo, rostro y estilo personal · PDF resumen de la clase</li>
+                            <li><strong>Tu análisis personalizado</strong><br>Tu colorimetría + paleta personalizada · Colores recomendados para cabello y maquillaje · Tu tipo de cuerpo + proporciones y cortes recomendados · Tu tipo de rostro + recomendaciones para potenciarlo · Tu Style DNA + combinación de estilos · Style & Color Profile personalizado</li>
+                        </ul>
+
+                        <h3 style="margin-top: 40px;">Inversión</h3>
+                        <div class="precio" style="margin-bottom: 20px;">US$89 · Bs 1.024</div>
+                        <div class="botones-pago">
+                            <button class="btn-pago-bolivia" onclick="abrirModalBolivia('pago-bolivia.html?monto=1024&descripcion=Styling + Colorimetría')">🇧🇴 Pago Bolivia</button>
+                            <button class="btn-pago-internacional" onclick="abrirModalInternacional('pago-mundo.html?monto=1024&descripcion=Styling + Colorimetría&moneda=USD')">🌎 Pago Internacional</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- ===== 4. GLOW UP PRO (aquí va, después de Colorimetría y Styling) ===== -->
+        <article class="servicio">
+            <div class="servicio-header">
+                <div class="servicio-imagen">
+                    <img src="assets/servicios/asesoriasgrupales.jpg" alt="Glow Up Pro">
+                </div>
+                <div class="servicio-info">
+                    <span class="categoria">Asesoría grupal</span>
+                    <h2>Glow Up Pro</h2>
+                    <p class="descripcion-corta">
+                        Un taller exclusivo para mujeres que quieren verse y sentirse imparables. Eleva tu autoestima, confianza y estilo con herramientas de imagen estratégica.
+                    </p>
+                    <div class="precio">Bs 320 <small style="font-size: 0.9rem; color: var(--taupe);">· Preventa Bs 280</small></div>
+                    <button class="btn-desplegar" onclick="toggleDetalle(this)">Ver detalles</button>
+                </div>
+            </div>
+
+            <div class="servicio-detalle">
+                <div class="servicio-detalle-inner">
+                    <div class="bloque">
+                        <h3>Contenido</h3>
+                        <ul>
+                            <li>Marca personal</li>
+                            <li>Estilo personal</li>
+                            <li>Tipo de cuerpo</li>
+                            <li>Colorimetría (incluye test personalizado básico)</li>
+                            <li>Psicología del color y combinaciones</li>
+                            <li>Armario inteligente</li>
+                        </ul>
+                    </div>
+                    <div class="bloque">
+                        <h3>Material</h3>
+                        <ul>
+                            <li>Workbook para la clase</li>
+                            <li>Paleta de color personalizada</li>
+                            <li>7 ebooks de regalo</li>
+                            <li>Test online tipo de rostro</li>
+                            <li>Challenge de 21 días (videos)</li>
+                            <li>Incluye certificado digital</li>
+                        </ul>
+
+                        <h3 style="margin-top: 40px;">Inversión</h3>
+                        <div class="precio" style="margin-bottom: 20px;">Bs 320 · Preventa Bs 280</div>
+                        <div class="botones-pago">
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSf7OwDWWS0Txg5X-b_MXMEMoIuuEv2wPlvxmEpvGsf9_cCB6A/viewform" target="_blank" class="btn-pago-bolivia">📋 Lista de espera</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+    
+        <!-- ===== 7. BECOMING HER (Próximamente) ===== -->
+        <article class="servicio proximamente">
+            <div class="servicio-header">
+                <div class="servicio-imagen">
+                    <img src="assets/servicios/BECOMING YOU.WEBP" alt="Becoming Her">
+                </div>
+                <div class="servicio-info">
+                    <span class="badge-proximamente">Próximamente</span>
+                    <h2>Becoming Her</h2>
+                    <p class="descripcion-corta">
+                        Tu imagen. Tu identidad. Tu próxima versión.
+                    </p>
+                </div>
+            </div>
+        </article>
+
+        <!-- ===== 8. BETTER YOU (Próximamente) ===== -->
+        <article class="servicio proximamente">
+            <div class="servicio-header">
+                <div class="servicio-imagen">
+                    <img src="assets/servicios/BETTER YOU.webp.PNG" alt="Better You">
+                </div>
+                <div class="servicio-info">
+                    <span class="badge-proximamente">Próximamente</span>
+                    <h2>Better You</h2>
+                    <p class="descripcion-corta">
+                        La mujer en la que te estás convirtiendo.
+                    </p>
+                </div>
+            </div>
+        </article>
+
+    </section>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-logo">
+            <img src="assets/logo.png" alt="Camila Caballero">
+            <p>Transformando imágenes, potenciando confianza.</p>
+        </div>
+
+        <div class="footer-redes">
+            <h4>Sígueme</h4>
+            <div class="redes-sociales">
+                <a href="https://www.instagram.com/camilacaballerot" target="_blank">Instagram</a>
+                <a href="https://www.facebook.com/share/1AzXtD2ey5/" target="_blank">Facebook</a>
+                <a href="https://www.tiktok.com/@camila.caballerot" target="_blank">TikTok</a>
+                <a href="https://youtube.com/@camila.caballero" target="_blank">YouTube</a>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Camila Caballero - Asesoría de Imagen. Todos los derechos reservados.</p>
-        </div>
-    </footer>
 
-    <!-- MODAL 1: POLÍTICAS DE CANCELACIÓN - PAGO BOLIVIA -->
-    <div id="modalBolivia" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" id="closeModalBolivia">&times;</span>
-            <h2>📋 Políticas de Cancelación</h2>
-            <div class="politicas">
-                <p>📌 Lee atentamente antes de confirmar tu cita:</p>
-                <p>✅ Puedes cambiar la fecha de tu cita con <strong>24 horas de anticipación</strong>.</p>
-                <p>💰 Después de realizar el pago de un curso, solo es posible cambiar la fecha. <strong>No existen devoluciones</strong>.</p>
-                <p>⏱️ Las asesorías personalizadas cuentan con un máximo de <strong>15 minutos de tolerancia</strong>.</p>
-                <p>⚠️ En caso de no presentarte a tu cita o de exceder el tiempo de tolerancia, se aplicará una penalidad de <strong>Bs 50</strong>, correspondiente al tiempo y al espacio reservado exclusivamente para ti.</p>
-                <p>🔄 Tu reserva se mantiene para reprogramar tu cita.</p>
-            </div>
-            <div class="modal-buttons">
-                <button id="btnAceptarBolivia" class="btn-aceptar">✅ Acepto</button>
-                <button id="btnCancelarBolivia" class="btn-cancelar">❌ Cancelar</button>
-            </div>
+        <div class="footer-contacto">
+            <h4>Contacto</h4>
+            <a href="https://wa.me/59169696211" class="whatsapp-footer">+591 69696211</a>
         </div>
     </div>
 
-    <!-- MODAL 2: POLÍTICAS DE CANCELACIÓN - PAGO INTERNACIONAL (RESUMIDO) -->
-    <div id="modalInternacional" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" id="closeModalInternacional">&times;</span>
-            <h2>📋 Políticas de Cancelación</h2>
-            <div class="politicas">
-                <p>📌 Lee atentamente antes de confirmar tu cita:</p>
-                <p>✅ Puedes cambiar la fecha de tu cita con <strong>24 horas de anticipación</strong>.</p>
-                <p>💰 Después de realizar el pago de un curso, solo es posible cambiar la fecha. <strong>No existen devoluciones</strong>.</p>
-                <p>⏱️ Las asesorías personalizadas cuentan con un máximo de <strong>15 minutos de tolerancia</strong>.</p>
-                <p>🔄 Tu reserva se mantiene para reprogramar tu cita.</p>
-            </div>
-            <div class="modal-buttons">
-                <button id="btnAceptarInternacional" class="btn-aceptar">✅ Acepto</button>
-                <button id="btnCancelarInternacional" class="btn-cancelar">❌ Cancelar</button>
-            </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 Camila Caballero · Todos los derechos reservados.</p>
+    </div>
+</footer>
+
+<!-- ===== MODALES ===== -->
+<div id="modalBolivia" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="cerrarModalBolivia()">&times;</span>
+        <h2>Políticas de Cancelación</h2>
+        <div class="politicas">
+            <p> Lee atentamente antes de confirmar tu cita:</p>
+            <p> Puedes cambiar la fecha de tu cita con <strong>24 horas de anticipación</strong>.</p>
+            <p> Después de realizar el pago de un curso, solo es posible cambiar la fecha. <strong>No existen devoluciones</strong>.</p>
+            <p> Las asesorías personalizadas cuentan con un máximo de <strong>15 minutos de tolerancia</strong>.</p>
+            <p> En caso de no presentarte a tu cita o de exceder el tiempo de tolerancia, se aplicará una penalidad de <strong>Bs 50</strong>.</p>
+            <p> Tu reserva se mantiene para reprogramar tu cita.</p>
+        </div>
+        <div class="modal-buttons">
+            <button class="btn-aceptar" onclick="redirigirPagoBolivia()">Acepto</button>
+            <button class="btn-cancelar" onclick="cerrarModalBolivia()"> Cancelar</button>
         </div>
     </div>
+</div>
 
-    <script>
-        // ==================== MODAL BOLIVIA ====================
-        const modalBolivia = document.getElementById('modalBolivia');
-        const closeModalBolivia = document.getElementById('closeModalBolivia');
-        const btnAceptarBolivia = document.getElementById('btnAceptarBolivia');
-        const btnCancelarBolivia = document.getElementById('btnCancelarBolivia');
-        let urlDestinoBolivia = '';
+<div id="modalInternacional" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="cerrarModalInternacional()">&times;</span>
+        <h2>Políticas de Cancelación</h2>
+        <div class="politicas">
+            <p> Lee atentamente antes de confirmar tu cita:</p>
+            <p> Puedes cambiar la fecha de tu cita con <strong>24 horas de anticipación</strong>.</p>
+            <p> Después de realizar el pago de un curso, solo es posible cambiar la fecha. <strong>No existen devoluciones</strong>.</p>
+            <p> Las asesorías cuentan con un máximo de <strong>15 minutos de tolerancia</strong>.</p>
+            <p>Tu reserva se mantiene para reprogramar tu cita.</p>
+        </div>
+        <div class="modal-buttons">
+            <button class="btn-aceptar" onclick="redirigirPagoInternacional()"> Acepto</button>
+            <button class="btn-cancelar" onclick="cerrarModalInternacional()"> Cancelar</button>
+        </div>
+    </div>
+</div>
 
-        function abrirModalBolivia(url) {
-            urlDestinoBolivia = url;
-            modalBolivia.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
+<script>
+    // ===== ABRIR / CERRAR DETALLE DEL SERVICIO =====
+    function toggleDetalle(btn) {
+        const detalle = btn.closest('.servicio').querySelector('.servicio-detalle');
+        const abierto = detalle.classList.contains('abierto');
+
+        if (abierto) {
+            detalle.classList.remove('abierto');
+            btn.textContent = 'Ver detalles';
+        } else {
+            detalle.classList.add('abierto');
+            btn.textContent = 'Cerrar';
         }
+    }
 
-        function cerrarModalBolivia() {
-            modalBolivia.style.display = 'none';
-            urlDestinoBolivia = '';
-            document.body.style.overflow = '';
-        }
+    // ===== MODAL BOLIVIA =====
+    let urlDestinoBolivia = '';
 
-        function redirigirPagoBolivia() {
-            if (urlDestinoBolivia) {
-                window.location.href = urlDestinoBolivia;
-            }
+    function abrirModalBolivia(url) {
+        urlDestinoBolivia = url;
+        document.getElementById('modalBolivia').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function cerrarModalBolivia() {
+        document.getElementById('modalBolivia').style.display = 'none';
+        document.body.style.overflow = '';
+    }
+
+    function redirigirPagoBolivia() {
+        if (urlDestinoBolivia) window.location.href = urlDestinoBolivia;
+        cerrarModalBolivia();
+    }
+
+    // ===== MODAL INTERNACIONAL =====
+    let urlDestinoInternacional = '';
+
+    function abrirModalInternacional(url) {
+        urlDestinoInternacional = url;
+        document.getElementById('modalInternacional').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function cerrarModalInternacional() {
+        document.getElementById('modalInternacional').style.display = 'none';
+        document.body.style.overflow = '';
+    }
+
+    function redirigirPagoInternacional() {
+        if (urlDestinoInternacional) window.location.href = urlDestinoInternacional;
+        cerrarModalInternacional();
+    }
+
+    // Cerrar modales con ESC
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
             cerrarModalBolivia();
-        }
-
-        // Event listeners para botones de Pago Bolivia
-        document.querySelectorAll('.btn-reservar-bolivia').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                const url = btn.getAttribute('data-url');
-                abrirModalBolivia(url);
-            });
-        });
-
-        closeModalBolivia.addEventListener('click', cerrarModalBolivia);
-        btnCancelarBolivia.addEventListener('click', cerrarModalBolivia);
-        btnAceptarBolivia.addEventListener('click', redirigirPagoBolivia);
-
-        // ==================== MODAL INTERNACIONAL ====================
-        const modalInternacional = document.getElementById('modalInternacional');
-        const closeModalInternacional = document.getElementById('closeModalInternacional');
-        const btnAceptarInternacional = document.getElementById('btnAceptarInternacional');
-        const btnCancelarInternacional = document.getElementById('btnCancelarInternacional');
-        let urlDestinoInternacional = '';
-
-        function abrirModalInternacional(url) {
-            urlDestinoInternacional = url;
-            modalInternacional.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-
-        function cerrarModalInternacional() {
-            modalInternacional.style.display = 'none';
-            urlDestinoInternacional = '';
-            document.body.style.overflow = '';
-        }
-
-        function redirigirPagoInternacional() {
-            if (urlDestinoInternacional) {
-                window.location.href = urlDestinoInternacional;
-            }
             cerrarModalInternacional();
         }
+    });
+</script>
 
-        // Event listeners para botones de Pago Internacional
-        document.querySelectorAll('.btn-reservar-internacional').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                const url = btn.getAttribute('data-url');
-                abrirModalInternacional(url);
-            });
-        });
-
-        closeModalInternacional.addEventListener('click', cerrarModalInternacional);
-        btnCancelarInternacional.addEventListener('click', cerrarModalInternacional);
-        btnAceptarInternacional.addEventListener('click', redirigirPagoInternacional);
-
-        // ==================== FUNCIONES COMPARTIDAS ====================
-        // Cerrar modales con clic fuera del contenido
-        window.addEventListener('click', (e) => {
-            if (e.target === modalBolivia) {
-                cerrarModalBolivia();
-            }
-            if (e.target === modalInternacional) {
-                cerrarModalInternacional();
-            }
-        });
-
-        // Cerrar modales con tecla ESC
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                if (modalBolivia.style.display === 'flex') {
-                    cerrarModalBolivia();
-                }
-                if (modalInternacional.style.display === 'flex') {
-                    cerrarModalInternacional();
-                }
-            }
-        });
-    </script>
+<script src="script.js"></script>
 </body>
 </html>
