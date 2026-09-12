@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Camila Caballero | Asesora de Imagen & Fashion Stylist</title>
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts: Bodoni Moda + DM Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -13,132 +13,9 @@
     <link rel="stylesheet" href="css/style.css">
 
     <style>
-        /* ===== VARIABLES GLOBALES ===== */
-        :root {
-            --color-ivory: #F7F5F0;
-            --color-white: #FEFDFB;
-            --color-black: #171512;
-            --color-espresso: #2D211A;
-            --color-taupe: #A99B8D;
-            --color-sand: #D8CFC4;
-            --color-greige: #E9E5DF;
+        /* ===== ESTILOS ESPECÍFICOS DEL INDEX ===== */
 
-            --font-editorial: "Bodoni Moda", "Bodoni 72", Didot, serif;
-            --font-body: "DM Sans", Arial, sans-serif;
-
-            --weight-regular: 400;
-            --weight-medium: 500;
-            --weight-semibold: 600;
-        }
-
-        /* ===== RESET ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: var(--font-body);
-            font-weight: 400;
-            color: var(--color-black);
-            background-color: var(--color-ivory);
-            line-height: 1.5;
-        }
-
-        /* ===== TIPOGRAFÍA EDITORIAL ===== */
-        h1, h2, h3 {
-            font-family: var(--font-editorial);
-            font-weight: 400;
-            color: var(--color-black);
-            letter-spacing: -0.02em;
-            line-height: 0.95;
-        }
-
-        .editorial-italic {
-            font-family: var(--font-editorial);
-            font-style: italic;
-            font-weight: 400;
-        }
-
-        /* ===== NAVBAR ===== */
-        .navbar {
-            background-color: var(--color-ivory);
-            padding: 24px 0;
-            border-bottom: 1px solid var(--color-sand);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .navbar-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .navbar-logo {
-            text-decoration: none;
-        }
-
-        .navbar-logo img {
-            height: 60px;
-            width: auto;
-            display: block;
-        }
-
-        .navbar-menu {
-            display: flex;
-            gap: 40px;
-            list-style: none;
-            align-items: center;
-        }
-
-        .navbar-menu a {
-            font-family: var(--font-body);
-            font-weight: 500;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--color-black);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .navbar-menu a:hover {
-            color: var(--color-taupe);
-        }
-
-        .navbar-btn {
-            background-color: var(--color-espresso);
-            color: var(--color-white);
-            padding: 12px 28px;
-            font-family: var(--font-body);
-            font-weight: 500;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            text-decoration: none;
-            transition: opacity 0.3s;
-        }
-
-        .navbar-btn:hover {
-            opacity: 0.85;
-        }
-
-        .navbar-toggle {
-            display: none;
-            font-size: 1.5rem;
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: var(--color-black);
-        }
-
-        /* ===== HERO / SECCIÓN PRINCIPAL ===== */
+        /* HERO */
         .hero-camila {
             display: flex;
             flex-wrap: wrap;
@@ -193,7 +70,7 @@
             color: var(--color-black);
         }
 
-        /* ===== MARCAS ===== */
+        /* MARCAS */
         .marcas {
             margin: 40px 0;
             padding: 30px 0;
@@ -214,7 +91,7 @@
         .lista-marcas {
             display: flex;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 24px;
         }
 
         .lista-marcas span {
@@ -224,7 +101,7 @@
             letter-spacing: 0.05em;
         }
 
-        /* ===== ESTADÍSTICAS ===== */
+        /* ESTADÍSTICAS */
         .estadisticas {
             display: flex;
             gap: 60px;
@@ -249,7 +126,7 @@
             letter-spacing: 0.15em;
         }
 
-        /* ===== BOTÓN PRINCIPAL ===== */
+        /* BOTÓN PRINCIPAL */
         .btn-servicio {
             background-color: var(--color-espresso);
             color: var(--color-white);
@@ -269,7 +146,7 @@
             opacity: 0.85;
         }
 
-        /* ===== ENFOQUE ===== */
+        /* ENFOQUE */
         .enfoque {
             margin-top: 40px;
             padding-top: 30px;
@@ -288,7 +165,7 @@
             color: var(--color-black);
         }
 
-        /* ===== FRASE ===== */
+        /* FRASE */
         .frase {
             background-color: var(--color-greige);
             padding: 80px 40px;
@@ -314,113 +191,8 @@
             color: var(--color-taupe);
         }
 
-        /* ===== FOOTER ===== */
-        .footer {
-            background-color: var(--color-espresso);
-            color: var(--color-white);
-            padding: 60px 40px 30px;
-        }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-logo img {
-            height: 60px;
-            margin-bottom: 16px;
-            filter: brightness(0) invert(1);
-        }
-
-        .footer-logo p {
-            font-family: var(--font-body);
-            font-size: 0.85rem;
-            color: var(--color-sand);
-            opacity: 0.8;
-        }
-
-        .footer-redes h4,
-        .footer-contacto h4 {
-            font-family: var(--font-body);
-            font-weight: 500;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--color-sand);
-            margin-bottom: 20px;
-        }
-
-        .redes-sociales {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .redes-sociales a,
-        .whatsapp-footer {
-            font-family: var(--font-body);
-            font-size: 0.85rem;
-            color: var(--color-white);
-            text-decoration: none;
-            transition: opacity 0.3s;
-        }
-
-        .redes-sociales a:hover,
-        .whatsapp-footer:hover {
-            opacity: 0.7;
-        }
-
-        .footer-bottom {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding-top: 24px;
-            border-top: 1px solid rgba(255,255,255,0.15);
-            text-align: center;
-            font-family: var(--font-body);
-            font-size: 0.75rem;
-            color: var(--color-sand);
-            opacity: 0.7;
-            letter-spacing: 0.1em;
-        }
-
-        /* ===== RESPONSIVE ===== */
+        /* RESPONSIVE */
         @media (max-width: 768px) {
-            .navbar-container {
-                padding: 0 20px;
-            }
-
-            .navbar-toggle {
-                display: block;
-            }
-
-            .navbar-menu {
-                position: fixed;
-                top: 90px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 90px);
-                background-color: var(--color-ivory);
-                flex-direction: column;
-                align-items: center;
-                justify-content: flex-start;
-                padding: 60px 20px;
-                gap: 30px;
-                transition: left 0.3s;
-                border-top: 1px solid var(--color-sand);
-            }
-
-            .navbar-menu.active {
-                left: 0;
-            }
-
-            .navbar-btn {
-                display: none;
-            }
-
             .hero-camila {
                 flex-direction: column;
                 text-align: center;
@@ -453,18 +225,6 @@
             .frase p {
                 font-size: 1.4rem;
             }
-
-            .footer {
-                padding: 40px 20px 20px;
-            }
-
-            .footer-container {
-                text-align: center;
-            }
-
-            .redes-sociales {
-                align-items: center;
-            }
         }
 
         @media (max-width: 480px) {
@@ -495,15 +255,20 @@
             <img src="assets/logo.png" alt="Camila Caballero">
         </a>
 
-        <ul class="navbar-menu" id="navbarMenu">
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="servicios.html">Servicios</a></li>
-            <li><a href="testimonios.html">Testimonios</a></li>
-        </ul>
+        <button class="navbar-toggle" id="navbarToggle" aria-label="Abrir menú">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
 
-        <a href="servicios.html" class="navbar-btn">Quiero un servicio</a>
-
-        <button class="navbar-toggle" id="navbarToggle" aria-label="Abrir menú">☰</button>
+        <div class="navbar-menu" id="navbarMenu">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="servicios.html">Servicios</a></li>
+                <li><a href="testimonios.html">Testimonios</a></li>
+                <li><a href="servicios.html" class="navbar-btn">Quiero un servicio</a></li>
+            </ul>
+        </div>
     </div>
 </nav>
 
@@ -593,21 +358,8 @@
     </div>
 </footer>
 
-<!-- ===== SCRIPT NAVBAR ===== -->
-<script>
-    const toggle = document.getElementById('navbarToggle');
-    const menu = document.getElementById('navbarMenu');
-
-    toggle.addEventListener('click', () => {
-        menu.classList.toggle('active');
-    });
-
-    document.querySelectorAll('.navbar-menu a').forEach(link => {
-        link.addEventListener('click', () => {
-            menu.classList.remove('active');
-        });
-    });
-</script>
+<!-- ===== SCRIPT ===== -->
+<script src="script.js"></script>
 
 </body>
 </html>
