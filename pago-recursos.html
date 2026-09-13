@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pago de Recursos | Camila Caballero</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        .pago-page {
+            max-width: 800px;
+            margin: 80px auto;
+            padding: 0 40px;
+        }
+
+        .pago-card {
+            background: var(--color-white);
+            padding: 60px 50px;
+            border: 1px solid var(--color-sand);
+        }
+
+        .pago-card h1 {
+            font-family: var(--font-editorial);
+            font-size: 2.5rem;
+            color: var(--color-black);
+            margin-bottom: 12px;
+            font-weight: 400;
+        }
+
+        .pago-card .pais-badge {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--color-taupe);
+            margin-bottom: 40px;
+            display: block;
+        }
+
+        .bloque {
+            padding: 30px 0;
+            border-top: 1px solid var(--color-sand);
+        }
+
+        .bloque h3 {
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--color-taupe);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .bloque p {
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            color: var(--color-espresso);
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .bloque ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .bloque ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--color-greige);
+            font-size: 0.9rem;
+            color: var(--color-espresso);
+            line-height: 1.6;
+        }
+
+        .bloque ul li:last-child {
+            border-bottom: none;
+        }
+
+        .form-pago {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .form-pago label {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--color-taupe);
+            margin-bottom: 6px;
+            display: block;
+            font-weight: 500;
+        }
+
+        .form-pago input,
+        .form-pago select {
+            padding: 14px 18px;
+            border: 1px solid var(--color-sand);
+            background: var(--color-white);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            color: var(--color-black);
+            transition: border-color 0.3s;
+        }
+
+        .form-pago input:focus,
+        .form-pago select:focus {
+            outline: none;
+            border-color: var(--color-espresso);
+        }
+
+        .form-pago .campo {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-pago .fila {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .btn-pago {
+            background: var(--color-espresso);
+            color: var(--color-white);
+            padding: 18px 36px;
+            border: none;
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            width: 100%;
+            margin-top: 16px;
+        }
+
+        .btn-pago:hover:not(:disabled) {
+            opacity: 0.85;
+        }
+
+        .btn-pago:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .mensaje-pago {
+            margin-top: 20px;
+            padding: 16px;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            display: none;
+            text-align: center;
+        }
+
+        .mensaje-pago.exito {
+            background: #E8F0E5;
+            color: #2D4A2A;
+            display: block;
+        }
+
+        .mensaje-pago.error {
+            background: #F5E5E5;
+            color: #8B2A2A;
+            display: block;
+        }
+
+        .link-pago-generado {
+            margin-top: 24px;
+            padding: 24px;
+            background: var(--color-ivory);
+            border: 1px solid var(--color-sand);
+            word-break: break-all;
+            display: none;
+            text-align: center;
+        }
+
+        .link-pago-generado a {
+            color: var(--color-espresso);
+            font-weight: 600;
+            text-decoration: none;
+            display: block;
+            margin: 12px 0;
+        }
+
+        .link-pago-generado a:hover {
+            text-decoration: underline;
+        }
+
+        .link-pago-generado .btn-abrir {
+            background: var(--color-espresso);
+            color: var(--color-white);
+            border: none;
+            padding: 12px 28px;
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+
+        .confirmacion-whatsapp {
+            background: var(--color-ivory);
+            padding: 40px 30px;
+            text-align: center;
+            margin: 20px 0;
+            border: 1px solid var(--color-sand);
+        }
+
+        .confirmacion-whatsapp h3 {
+            font-family: var(--font-editorial);
+            font-size: 1.8rem;
+            color: var(--color-black);
+            margin-bottom: 12px;
+            text-transform: none;
+            letter-spacing: 0;
+            font-weight: 400;
+        }
+
+        .confirmacion-whatsapp p {
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            color: var(--color-espresso);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .btn-whatsapp-pago {
+            background: var(--color-espresso);
+            color: var(--color-white);
+            padding: 16px 36px;
+            border: none;
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .btn-whatsapp-pago:hover {
+            opacity: 0.85;
+        }
+
+        .nota-validacion {
+            font-size: 0.8rem;
+            color: var(--color-taupe);
+            font-style: italic;
+            margin-top: 24px;
+        }
+
+        .volver {
+            display: inline-block;
+            margin-top: 40px;
+            color: var(--color-taupe);
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            text-decoration: none;
+        }
+
+        .volver:hover {
+            color: var(--color-espresso);
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            margin-right: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .pago-page {
+                padding: 0 20px;
+                margin: 40px auto;
+            }
+
+            .pago-card {
+                padding: 40px 24px;
+            }
+
+            .pago-card h1 {
+                font-size: 1.8rem;
+            }
+
+            .form-pago .fila {
+                grid-template-columns: 1fr;
+            }
+
+            .confirmacion-whatsapp {
+                padding: 30px 20px;
+            }
+
+            .confirmacion-whatsapp h3 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar">
+    <div class="navbar-container">
+        <a href="index.html" class="navbar-logo">
+            <img src="assets/logo blanco.png" alt="Camila Caballero">
+        </a>
+
+        <button class="navbar-toggle" id="navbarToggle" aria-label="Abrir menú">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+
+    <div class="navbar-menu" id="navbarMenu">
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="recursos.html">Recursos</a></li>
+            <li><a href="testimonios.html">Testimonios</a></li>
+            <li><a href="servicios.html" class="navbar-btn">Quiero un servicio</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- ===== PAGO ===== -->
+<main>
+    <div class="pago-page">
+        <div class="pago-card">
+            <h1>Pago de Recursos</h1>
+            <span class="pais-badge">🇧🇴 Bolivia · Guías digitales</span>
+
+            <!-- PASO 1: Pago -->
+            <div class="bloque">
+                <h3>Paso 1 · Realiza el pago</h3>
+                <p><strong>Pago con tarjeta de crédito/débito, QR, Tigo Money y más:</strong></p>
+                <ul>
+                    <li>💳 Tarjetas Visa, Mastercard, American Express</li>
+                    <li>📱 Pago QR (BCP y BNB)</li>
+                    <li>📱 Tigo Money y BNBNet</li>
+                    <li>🔒 Pago 100% seguro a través de Libélula</li>
+                </ul>
+
+                <div style="margin-top: 30px;">
+                    <p style="font-size: 0.85rem; color: var(--color-taupe); margin-bottom: 20px;">Generaremos un link de pago seguro para que completes la transacción.</p>
+
+                    <div class="form-pago">
+                        <div class="campo">
+                            <label>Correo electrónico</label>
+                            <input type="email" id="emailCliente" placeholder="tu@email.com" required>
+                        </div>
+                        <div class="fila">
+                            <div class="campo">
+                                <label>Nombre</label>
+                                <input type="text" id="nombreCliente" placeholder="Tu nombre" required>
+                            </div>
+                            <div class="campo">
+                                <label>Apellido</label>
+                                <input type="text" id="apellidoCliente" placeholder="Tu apellido" required>
+                            </div>
+                        </div>
+                        <div class="fila">
+                            <div class="campo">
+                                <label>Monto (Bs)</label>
+                                <input type="number" id="montoPago" placeholder="0" step="0.01" required>
+                            </div>
+                            <div class="campo">
+                                <label>Descripción</label>
+                                <input type="text" id="descripcionPago" placeholder="Recurso" value="Recurso digital">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button id="btnGenerarPago" class="btn-pago">
+                        <i class="fas fa-spinner fa-pulse loading-spinner" style="display: none;"></i>
+                        Generar link de pago
+                    </button>
+
+                    <div id="mensajePago" class="mensaje-pago"></div>
+
+                    <div id="linkPagoGenerado" class="link-pago-generado">
+                        <strong>Link de pago generado</strong>
+                        <a href="#" id="linkPagoUrl" target="_blank">Cargando...</a>
+                        <button class="btn-abrir" onclick="window.open(document.getElementById('linkPagoUrl').href, '_blank')">Abrir link de pago</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PASO 2: Confirmación -->
+            <div class="bloque">
+                <h3>Paso 2 · Confirma tu compra</h3>
+
+                <!-- FORMULARIO DE CONFIRMACIÓN -->
+                <div class="form-pago" style="margin-bottom: 30px;">
+                    <div class="campo">
+                        <label>Nombre completo</label>
+                        <input type="text" id="nombreConfirmacion" placeholder="Tu nombre completo" required>
+                    </div>
+                    <div class="campo">
+                        <label>Correo electrónico (aquí recibirás tus recursos)</label>
+                        <input type="email" id="emailConfirmacion" placeholder="tu@email.com" required>
+                    </div>
+                </div>
+
+                <!-- MENSAJE DE CONFIRMACIÓN -->
+                <div class="confirmacion-whatsapp">
+                    <h3>¡YA CASI ESTÁ! 🤍</h3>
+                    <p>Tu compra fue realizada correctamente.</p>
+                    <p>Para poder validar tu pago y enviarte tus recursos, envíame tu comprobante por WhatsApp haciendo clic en el siguiente botón.</p>
+                    <a href="#" id="btnWhatsApp" class="btn-whatsapp-pago" target="_blank">
+                        Confirmar mi compra por WhatsApp
+                    </a>
+                    <p class="nota-validacion">La validación puede tomar algunas horas. Una vez confirmada, recibirás tus recursos por correo.</p>
+                </div>
+            </div>
+
+            <a href="recursos.html" class="volver">← Volver a recursos</a>
+        </div>
+    </div>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-logo">
+            <img src="assets/logo blanco.png" alt="Camila Caballero">
+            <p>Transformando imágenes, potenciando confianza.</p>
+        </div>
+
+        <div class="footer-redes">
+            <h4>Sígueme</h4>
+            <div class="redes-sociales">
+                <a href="https://www.instagram.com/camilacaballerot" target="_blank">Instagram</a>
+                <a href="https://www.facebook.com/share/1AzXtD2ey5/" target="_blank">Facebook</a>
+                <a href="https://www.tiktok.com/@camila.caballerot" target="_blank">TikTok</a>
+                <a href="https://youtube.com/@camila.caballero" target="_blank">YouTube</a>
+            </div>
+        </div>
+
+        <div class="footer-contacto">
+            <h4>Contacto</h4>
+            <a href="https://wa.me/59169696211" class="whatsapp-footer">+591 69696211</a>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2025 Camila Caballero · Todos los derechos reservados.</p>
+    </div>
+</footer>
+
+<!-- ===== SCRIPT NAVBAR ===== -->
+<script src="script.js"></script>
+
+<!-- ===== SCRIPT PAGO ===== -->
+<script>
+    const API_URL = '/.netlify/functions/registrar-deuda';
+    const STORAGE_KEY = 'camila_recursos_carrito';
+
+    // Leer parámetros de la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const montoDesdeURL = urlParams.get('monto');
+    const descripcionDesdeURL = urlParams.get('descripcion');
+
+    if (montoDesdeURL) {
+        document.getElementById('montoPago').value = montoDesdeURL;
+    }
+    if (descripcionDesdeURL) {
+        document.getElementById('descripcionPago').value = descripcionDesdeURL;
+    }
+
+    // Recuperar recursos del carrito
+    function obtenerCarrito() {
+        try {
+            return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+        } catch (e) {
+            return [];
+        }
+    }
+
+    // Elementos DOM
+    const btnGenerar = document.getElementById('btnGenerarPago');
+    const emailInput = document.getElementById('emailCliente');
+    const nombreInput = document.getElementById('nombreCliente');
+    const apellidoInput = document.getElementById('apellidoCliente');
+    const montoInput = document.getElementById('montoPago');
+    const descripcionInput = document.getElementById('descripcionPago');
+    const mensajeDiv = document.getElementById('mensajePago');
+    const linkDiv = document.getElementById('linkPagoGenerado');
+    const linkUrl = document.getElementById('linkPagoUrl');
+    const spinner = document.querySelector('.loading-spinner');
+
+    // ===== WHATSAPP DINÁMICO =====
+    const nombreConfirmacion = document.getElementById('nombreConfirmacion');
+    const emailConfirmacion = document.getElementById('emailConfirmacion');
+    const btnWhatsApp = document.getElementById('btnWhatsApp');
+
+    function actualizarWhatsApp() {
+        const nombre = nombreConfirmacion.value.trim() || '[tu nombre]';
+        const email = emailConfirmacion.value.trim() || '[tu correo]';
+        const carrito = obtenerCarrito();
+        const conCosto = carrito.filter(i => parseFloat(i.precio) > 0);
+
+        // Lista de recursos
+        let recursosTexto = '';
+        if (conCosto.length > 0) {
+            recursosTexto = conCosto.map(i => `• ${i.nombre}`).join('\n');
+        } else if (descripcionDesdeURL) {
+            recursosTexto = `• ${descripcionDesdeURL}`;
+        } else {
+            recursosTexto = '• [recursos]';
+        }
+
+        const totalBs = conCosto.reduce((sum, i) => sum + parseFloat(i.precio), 0) || montoDesdeURL || 0;
+
+        const mensaje = `Hola Cami. Soy ${nombre}.\n\nAcabo de realizar la compra de:\n${recursosTexto}\n\nTotal: Bs ${totalBs}\nCorreo: ${email}\n\nTe envío mi comprobante para confirmar mi compra.`;
+
+        btnWhatsApp.href = `https://wa.me/59169696211?text=${encodeURIComponent(mensaje)}`;
+    }
+
+    actualizarWhatsApp();
+    nombreConfirmacion.addEventListener('input', actualizarWhatsApp);
+    emailConfirmacion.addEventListener('input', actualizarWhatsApp);
+    departamentoSelect.addEventListener('change', actualizarWhatsApp);
+
+    // Pre-rellenar nombre y correo desde el paso 1 al pasar al paso 2
+    emailInput.addEventListener('input', () => {
+        if (!emailConfirmacion.value) emailConfirmacion.value = emailInput.value;
+        actualizarWhatsApp();
+    });
+    nombreInput.addEventListener('input', () => {
+        if (!nombreConfirmacion.value) nombreConfirmacion.value = nombreInput.value;
+        actualizarWhatsApp();
+    });
+
+    // ===== GENERAR PAGO =====
+    async function generarPago() {
+        const email = emailInput.value.trim();
+        const nombre = nombreInput.value.trim() || 'Cliente';
+        const apellido = apellidoInput.value.trim() || 'Ejemplo';
+        const monto = parseFloat(montoInput.value);
+        const descripcion = descripcionInput.value.trim() || 'Recurso digital';
+
+        if (!email) {
+            mostrarMensaje('Por favor, ingresa un correo electrónico válido', 'error');
+            return;
+        }
+        if (!monto || monto <= 0) {
+            mostrarMensaje('Por favor, ingresa un monto válido', 'error');
+            return;
+        }
+
+        btnGenerar.disabled = true;
+        spinner.style.display = 'inline-block';
+        btnGenerar.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Generando...';
+        mensajeDiv.className = 'mensaje-pago';
+        mensajeDiv.style.display = 'none';
+        linkDiv.style.display = 'none';
+
+        try {
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, nombre, apellido, monto, descripcion })
+            });
+
+            const data = await response.json();
+
+            if (data.success && data.url_pasarela_pagos) {
+                mostrarMensaje('Link de pago generado con éxito', 'exito');
+                linkDiv.style.display = 'block';
+                linkUrl.href = data.url_pasarela_pagos;
+                linkUrl.textContent = data.url_pasarela_pagos;
+                linkDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                throw new Error(data.error || 'Error al generar el pago');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            mostrarMensaje(`Error: ${error.message}`, 'error');
+        }
+
+        btnGenerar.disabled = false;
+        spinner.style.display = 'none';
+        btnGenerar.innerHTML = '<i class="fas fa-link"></i> Generar link de pago';
+    }
+
+    function mostrarMensaje(texto, tipo) {
+        mensajeDiv.textContent = texto;
+        mensajeDiv.className = `mensaje-pago ${tipo}`;
+        mensajeDiv.style.display = 'block';
+    }
+
+    btnGenerar.addEventListener('click', generarPago);
+
+    document.querySelectorAll('.form-pago input').forEach(input => {
+        input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                generarPago();
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
