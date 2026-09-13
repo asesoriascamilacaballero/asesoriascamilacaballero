@@ -62,12 +62,27 @@
         .recurso-imagen {
             flex: 0 0 220px;
             max-width: 220px;
+            position: relative;
         }
 
         .recurso-imagen img {
             width: 100%;
             height: auto;
             display: block;
+        }
+
+        .badge-pago {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--color-espresso);
+            color: var(--color-white);
+            padding: 6px 12px;
+            font-family: var(--font-body);
+            font-size: 0.6rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
         }
 
         .recurso-info {
@@ -99,6 +114,19 @@
             color: var(--color-espresso);
             line-height: 1.8;
             margin-bottom: 24px;
+        }
+
+        .recurso .precio {
+            font-family: var(--font-editorial);
+            font-size: 1.8rem;
+            color: var(--color-black);
+            margin-bottom: 20px;
+        }
+
+        .recurso .precio .gratis {
+            color: var(--color-taupe);
+            font-size: 1.2rem;
+            font-style: italic;
         }
 
         .recurso-botones {
@@ -154,6 +182,26 @@
             color: var(--color-white);
         }
 
+        .btn-comprar {
+            display: inline-block;
+            background: var(--color-espresso);
+            color: var(--color-white);
+            padding: 14px 36px;
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .btn-comprar:hover {
+            opacity: 0.85;
+        }
+
         /* ===== CARRITO EN NAVBAR ===== */
         .navbar-cart {
             position: relative;
@@ -191,7 +239,7 @@
             position: fixed;
             top: 65px;
             right: -100%;
-            width: 380px;
+            width: 400px;
             max-width: 100%;
             height: calc(100vh - 65px);
             background: var(--color-white);
@@ -282,6 +330,21 @@
             text-transform: uppercase;
             letter-spacing: 0.15em;
             color: var(--color-taupe);
+            display: block;
+        }
+
+        .cart-item-info .item-precio {
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--color-black);
+            margin-top: 4px;
+            display: block;
+        }
+
+        .cart-item-info .item-precio.gratis {
+            color: var(--color-taupe);
+            font-style: italic;
         }
 
         .cart-item .btn-eliminar {
@@ -304,11 +367,30 @@
             background: var(--color-ivory);
         }
 
-        .cart-footer .btn-descargar-todos {
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            font-family: var(--font-body);
+        }
+
+        .cart-total .label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--color-taupe);
+        }
+
+        .cart-total .monto {
+            font-family: var(--font-editorial);
+            font-size: 1.5rem;
+            color: var(--color-black);
+        }
+
+        .cart-footer .btn-accion {
             display: block;
             width: 100%;
-            background: var(--color-espresso);
-            color: var(--color-white);
             padding: 16px;
             font-family: var(--font-body);
             font-size: 0.75rem;
@@ -321,29 +403,38 @@
             margin-bottom: 12px;
         }
 
-        .cart-footer .btn-descargar-todos:hover {
+        .btn-abrir-todos {
+            background: var(--color-espresso);
+            color: var(--color-white);
+        }
+
+        .btn-abrir-todos:hover {
             opacity: 0.85;
         }
 
-        .cart-footer .btn-vaciar {
-            display: block;
-            width: 100%;
-            background: transparent;
-            color: var(--color-taupe);
-            padding: 12px;
-            font-family: var(--font-body);
-            font-size: 0.7rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            border: 1px solid var(--color-taupe);
-            cursor: pointer;
-            transition: all 0.3s;
+        .btn-pagar-todo {
+            background: var(--color-espresso);
+            color: var(--color-white);
         }
 
-        .cart-footer .btn-vaciar:hover {
+        .btn-pagar-todo:hover {
+            opacity: 0.85;
+        }
+
+        .btn-vaciar {
+            background: transparent;
+            color: var(--color-taupe);
+            border: 1px solid var(--color-taupe);
+        }
+
+        .btn-vaciar:hover {
             background: var(--color-taupe);
             color: var(--color-white);
+        }
+
+        .cart-footer .btn-accion:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
         }
 
         /* ===== RESPONSIVE ===== */
@@ -405,12 +496,10 @@
         </a>
 
         <div style="display: flex; gap: 12px; align-items: center;">
-            <!-- Carrito -->
             <button class="navbar-cart" id="navbarCart" aria-label="Carrito">
                 🛒 <span class="cart-badge" id="cartBadge">0</span>
             </button>
 
-            <!-- Hamburguesa -->
             <button class="navbar-toggle" id="navbarToggle" aria-label="Abrir menú">
                 <span></span>
                 <span></span>
@@ -440,8 +529,22 @@
         <!-- Los items se cargan con JS -->
     </div>
     <div class="cart-footer">
-        <button class="btn-descargar-todos" id="btnDescargarTodos">Abrir todos los recursos</button>
-        <button class="btn-vaciar" id="btnVaciar">Vaciar selección</button>
+        <div class="cart-total">
+            <span class="label">Total</span>
+            <span class="monto" id="cartTotal">Bs 0</span>
+        </div>
+
+        <button class="btn-accion btn-abrir-todos" id="btnAbrirTodos">
+            Abrir recursos gratuitos
+        </button>
+
+        <button class="btn-accion btn-pagar-todo" id="btnPagarTodo" style="display:none;">
+            Pagar recursos con costo
+        </button>
+
+        <button class="btn-accion btn-vaciar" id="btnVaciar">
+            Vaciar selección
+        </button>
     </div>
 </div>
 
@@ -453,23 +556,59 @@
             <p>Una selección de herramientas, guías y materiales creados para acompañarte en el proceso de entender y potenciar tu imagen. Explora, aprende y aplica.</p>
         </div>
 
-        <!-- RECURSO 1: Test de tipo de rostro -->
+        <!-- RECURSO 1: Test de tipo de rostro (GRATUITO) -->
         <article class="recurso">
             <div class="recurso-contenido">
                 <div class="recurso-imagen">
                     <img src="assets/TIPODEROSTRO.png" alt="Test de tipo de rostro">
                 </div>
                 <div class="recurso-info">
-                    <span class="categoria">Herramienta interactiva</span>
+                    <span class="categoria">Herramienta interactiva · Gratuito</span>
                     <h2>Test de tipo de rostro</h2>
                     <p>Una guía para identificar la forma de tu rostro y descubrir qué cortes de cabello, accesorios y gafas mejor se adaptan a tus facciones. Una herramienta para conocerte mejor.</p>
                     <div class="recurso-botones">
-                        <a href="https://carolinacaba.github.io/camilafashionstylist.rostros/" target="_blank" class="btn-recurso">Abrir ahora</a>
-                        <button class="btn-agregar" 
+                        <a href="https://carolinacaba.github.io/face-analyzer-demo/" target="_blank" class="btn-recurso">Abrir ahora</a>
+                        <button class="btn-agregar"
                                 data-id="test-rostro"
                                 data-nombre="Test de tipo de rostro"
                                 data-categoria="Herramienta interactiva"
+                                data-precio="0"
                                 data-url="https://carolinacaba.github.io/face-analyzer-demo/">
+                            + Agregar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- RECURSO 2: Test de tipo de rostro PLUS (CON COSTO - ficticio) -->
+        <article class="recurso">
+            <div class="recurso-contenido">
+                <div class="recurso-imagen">
+                    <img src="assets/TIPODEROSTRO.png" alt="Test de tipo de rostro PLUS">
+                    <span class="badge-pago">Con costo</span>
+                </div>
+                <div class="recurso-info">
+                    <span class="categoria">Herramienta interactiva · Premium</span>
+                    <h2>Test de tipo de rostro PLUS</h2>
+                    <p>La versión completa del test, con análisis detallado de tus facciones, recomendaciones personalizadas de cortes, gafas y accesorios, y una guía descargable con todo tu resultado.</p>
+                    <div class="precio">Bs 49 <span style="color: var(--color-taupe); font-size: 0.9rem; font-family: var(--font-body);">· US$5</span></div>
+                    <div class="recurso-botones">
+                        <button class="btn-comprar"
+                                data-id="test-rostro-plus"
+                                data-nombre="Test de tipo de rostro PLUS"
+                                data-categoria="Herramienta Premium"
+                                data-precio="49"
+                                data-precio-usd="5">
+                            Comprar ahora
+                        </button>
+                        <button class="btn-agregar"
+                                data-id="test-rostro-plus"
+                                data-nombre="Test de tipo de rostro PLUS"
+                                data-categoria="Herramienta Premium"
+                                data-precio="49"
+                                data-precio-usd="5"
+                                data-url="">
                             + Agregar
                         </button>
                     </div>
@@ -513,10 +652,8 @@
 
 <!-- ===== SCRIPT CARRITO ===== -->
 <script>
-    // ===== CARRITO =====
     const STORAGE_KEY = 'camila_recursos_carrito';
 
-    // Cargar carrito desde localStorage
     function obtenerCarrito() {
         try {
             return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
@@ -525,46 +662,63 @@
         }
     }
 
-    // Guardar carrito
     function guardarCarrito(carrito) {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(carrito));
     }
 
-    // Actualizar UI del carrito
     function actualizarUI() {
         const carrito = obtenerCarrito();
         const badge = document.getElementById('cartBadge');
         const itemsContainer = document.getElementById('cartItems');
-        const btnDescargar = document.getElementById('btnDescargarTodos');
+        const btnAbrir = document.getElementById('btnAbrirTodos');
+        const btnPagar = document.getElementById('btnPagarTodo');
         const btnVaciar = document.getElementById('btnVaciar');
+        const totalElement = document.getElementById('cartTotal');
 
-        // Badge
         badge.textContent = carrito.length;
+
+        // Calcular totales
+        const gratuitos = carrito.filter(i => parseFloat(i.precio) === 0);
+        const conCosto = carrito.filter(i => parseFloat(i.precio) > 0);
+        const totalBs = conCosto.reduce((sum, i) => sum + parseFloat(i.precio), 0);
 
         // Items
         if (carrito.length === 0) {
             itemsContainer.innerHTML = '<div class="cart-empty">Tu selección está vacía.</div>';
-            btnDescargar.disabled = true;
-            btnDescargar.style.opacity = '0.5';
-            btnDescargar.style.cursor = 'not-allowed';
+            btnAbrir.style.display = 'none';
+            btnPagar.style.display = 'none';
             btnVaciar.style.display = 'none';
+            totalElement.textContent = 'Bs 0';
         } else {
-            itemsContainer.innerHTML = carrito.map(item => `
-                <div class="cart-item">
-                    <div class="cart-item-info">
-                        <span class="nombre">${item.nombre}</span>
-                        <span class="categoria">${item.categoria}</span>
+            itemsContainer.innerHTML = carrito.map(item => {
+                const precio = parseFloat(item.precio);
+                const esGratis = precio === 0;
+                return `
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <span class="nombre">${item.nombre}</span>
+                            <span class="categoria">${item.categoria}</span>
+                            <span class="item-precio ${esGratis ? 'gratis' : ''}">
+                                ${esGratis ? 'Gratuito' : 'Bs ' + precio}
+                            </span>
+                        </div>
+                        <button class="btn-eliminar" onclick="eliminarDelCarrito('${item.id}')">&times;</button>
                     </div>
-                    <button class="btn-eliminar" onclick="eliminarDelCarrito('${item.id}')">&times;</button>
-                </div>
-            `).join('');
-            btnDescargar.disabled = false;
-            btnDescargar.style.opacity = '1';
-            btnDescargar.style.cursor = 'pointer';
+                `;
+            }).join('');
+
+            // Mostrar/ocultar botones según lo que haya
+            btnAbrir.style.display = gratuitos.length > 0 ? 'block' : 'none';
+            btnPagar.style.display = conCosto.length > 0 ? 'block' : 'none';
             btnVaciar.style.display = 'block';
+
+            btnAbrir.disabled = gratuitos.length === 0;
+            btnPagar.disabled = conCosto.length === 0;
+
+            totalElement.textContent = 'Bs ' + totalBs;
         }
 
-        // Actualizar botones "Agregar" según el estado
+        // Actualizar botones "Agregar"
         document.querySelectorAll('.btn-agregar').forEach(btn => {
             const id = btn.dataset.id;
             const existe = carrito.some(item => item.id === id);
@@ -578,18 +732,23 @@
         });
     }
 
-    // Agregar al carrito
-    function agregarAlCarrito(id, nombre, categoria, url) {
+    function agregarAlCarrito(id, nombre, categoria, precio, precioUsd, url) {
         let carrito = obtenerCarrito();
         const existe = carrito.some(item => item.id === id);
         if (!existe) {
-            carrito.push({ id, nombre, categoria, url });
+            carrito.push({
+                id,
+                nombre,
+                categoria,
+                precio: precio || 0,
+                precioUsd: precioUsd || 0,
+                url: url || ''
+            });
             guardarCarrito(carrito);
             actualizarUI();
         }
     }
 
-    // Eliminar del carrito
     function eliminarDelCarrito(id) {
         let carrito = obtenerCarrito();
         carrito = carrito.filter(item => item.id !== id);
@@ -597,7 +756,6 @@
         actualizarUI();
     }
 
-    // Vaciar carrito
     function vaciarCarrito() {
         if (confirm('¿Vaciar toda tu selección?')) {
             localStorage.removeItem(STORAGE_KEY);
@@ -605,15 +763,36 @@
         }
     }
 
-    // Abrir todos los recursos
-    function abrirTodos() {
+    // Abrir recursos gratuitos
+    function abrirGratuitos() {
         const carrito = obtenerCarrito();
-        carrito.forEach(item => {
-            window.open(item.url, '_blank');
+        const gratuitos = carrito.filter(i => parseFloat(i.precio) === 0);
+        gratuitos.forEach(item => {
+            if (item.url) window.open(item.url, '_blank');
         });
     }
 
-    // Abrir/cerrar panel
+    // Pagar recursos con costo
+    function pagarConCosto() {
+        const carrito = obtenerCarrito();
+        const conCosto = carrito.filter(i => parseFloat(i.precio) > 0);
+
+        if (conCosto.length === 0) return;
+
+        // Si hay más de uno, sumamos los precios
+        const totalBs = conCosto.reduce((sum, i) => sum + parseFloat(i.precio), 0);
+        const descripcion = conCosto.map(i => i.nombre).join(' + ');
+
+        // Redirigir a pago-bolivia.html con el monto total
+        window.location.href = `pago-bolivia.html?monto=${totalBs}&descripcion=${encodeURIComponent(descripcion)}`;
+    }
+
+    // Comprar ahora (botón directo)
+    function comprarAhora(id, nombre, precio, precioUsd) {
+        const url = `pago-bolivia.html?monto=${precio}&descripcion=${encodeURIComponent(nombre)}`;
+        window.location.href = url;
+    }
+
     function toggleCart() {
         const panel = document.getElementById('cartPanel');
         panel.classList.toggle('active');
@@ -626,7 +805,8 @@
     // ===== EVENTOS =====
     document.getElementById('navbarCart').addEventListener('click', toggleCart);
     document.getElementById('closeCart').addEventListener('click', cerrarCart);
-    document.getElementById('btnDescargarTodos').addEventListener('click', abrirTodos);
+    document.getElementById('btnAbrirTodos').addEventListener('click', abrirGratuitos);
+    document.getElementById('btnPagarTodo').addEventListener('click', pagarConCosto);
     document.getElementById('btnVaciar').addEventListener('click', vaciarCarrito);
 
     document.querySelectorAll('.btn-agregar').forEach(btn => {
@@ -635,7 +815,20 @@
                 btn.dataset.id,
                 btn.dataset.nombre,
                 btn.dataset.categoria,
+                btn.dataset.precio,
+                btn.dataset.precioUsd,
                 btn.dataset.url
+            );
+        });
+    });
+
+    document.querySelectorAll('.btn-comprar').forEach(btn => {
+        btn.addEventListener('click', () => {
+            comprarAhora(
+                btn.dataset.id,
+                btn.dataset.nombre,
+                btn.dataset.precio,
+                btn.dataset.precioUsd
             );
         });
     });
