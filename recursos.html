@@ -123,12 +123,6 @@
             margin-bottom: 20px;
         }
 
-        .recurso .precio .gratis {
-            color: var(--color-taupe);
-            font-size: 1.2rem;
-            font-style: italic;
-        }
-
         .recurso-botones {
             display: flex;
             gap: 12px;
@@ -579,40 +573,41 @@
                     </div>
                 </div>
             </div>
-            </article>
-    <!-- RECURSO 2: The Perfect Jeans Guide (CON COSTO) -->
-    <article class="recurso">
-        <div class="recurso-contenido">
-            <div class="recurso-imagen">
-                <img src="assets/theperfectjeans .png" alt="The Perfect Jeans Guide">
-                <span class="badge-pago">Con costo</span>
-            </div>
-            <div class="recurso-info">
-                <span class="categoria">Guía digital · Premium</span>
-                <h2>The Perfect Jeans Guide</h2>
-                <p>Deja de probarte 20 jeans para terminar comprando el que tampoco te convence. Encuentra los cortes, tiros y fits que realmente funcionan para ti.</p>
-                <div class="precio">US$7 · Bs 81</div>
-                <div class="recurso-botones">
-                    <button class="btn-comprar"
-                            data-id="perfect-jeans-guide"
-                            data-nombre="The Perfect Jeans Guide"
-                            data-precio="81"
-                            data-precio-usd="7">
-                        Comprar ahora
-                    </button>
-                    <button class="btn-agregar"
-                            data-id="perfect-jeans-guide"
-                            data-nombre="The Perfect Jeans Guide"
-                            data-categoria="Guía digital"
-                            data-precio="81"
-                            data-precio-usd="7"
-                            data-url="">
-                        + Agregar
-                    </button>
+        </article>
+
+        <!-- RECURSO 2: The Perfect Jeans Guide (CON COSTO) -->
+        <article class="recurso">
+            <div class="recurso-contenido">
+                <div class="recurso-imagen">
+                    <img src="assets/THEPERFECTJEANSGUIDE.webp" alt="The Perfect Jeans Guide">
+                    <span class="badge-pago">Con costo</span>
+                </div>
+                <div class="recurso-info">
+                    <span class="categoria">Guía digital · Premium</span>
+                    <h2>The Perfect Jeans Guide</h2>
+                    <p>Deja de probarte 20 jeans para terminar comprando el que tampoco te convence. Encuentra los cortes, tiros y fits que realmente funcionan para ti.</p>
+                    <div class="precio">US$7 · Bs 81</div>
+                    <div class="recurso-botones">
+                        <button class="btn-comprar"
+                                data-id="perfect-jeans-guide"
+                                data-nombre="The Perfect Jeans Guide"
+                                data-precio="81"
+                                data-precio-usd="7">
+                            Comprar ahora
+                        </button>
+                        <button class="btn-agregar"
+                                data-id="perfect-jeans-guide"
+                                data-nombre="The Perfect Jeans Guide"
+                                data-categoria="Guía digital"
+                                data-precio="81"
+                                data-precio-usd="7"
+                                data-url="">
+                            + Agregar
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </article>
+        </article>
     </section>
 </main>
 
@@ -705,7 +700,6 @@
                 `;
             }).join('');
 
-            // Mostrar/ocultar botones según lo que haya
             btnAbrir.style.display = gratuitos.length > 0 ? 'block' : 'none';
             btnPagar.style.display = conCosto.length > 0 ? 'block' : 'none';
             btnVaciar.style.display = 'block';
@@ -777,18 +771,15 @@
 
         if (conCosto.length === 0) return;
 
-        // Si hay más de uno, sumamos los precios
         const totalBs = conCosto.reduce((sum, i) => sum + parseFloat(i.precio), 0);
         const descripcion = conCosto.map(i => i.nombre).join(' + ');
 
-        // Redirigir a pago-bolivia.html con el monto total
-        window.location.href = `pago-bolivia.html?monto=${totalBs}&descripcion=${encodeURIComponent(descripcion)}`;
+        window.location.href = `pago-recursos.html?monto=${totalBs}&descripcion=${encodeURIComponent(descripcion)}`;
     }
 
     // Comprar ahora (botón directo)
     function comprarAhora(id, nombre, precio, precioUsd) {
-        const url = `pago-bolivia.html?monto=${precio}&descripcion=${encodeURIComponent(nombre)}`;
-        window.location.href = url;
+        window.location.href = `pago-recursos.html?monto=${precio}&descripcion=${encodeURIComponent(nombre)}`;
     }
 
     function toggleCart() {
