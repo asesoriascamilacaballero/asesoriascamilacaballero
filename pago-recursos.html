@@ -418,6 +418,21 @@
                         <label>Correo electrónico (aquí recibirás tus recursos)</label>
                         <input type="email" id="emailConfirmacion" placeholder="tu@email.com" required>
                     </div>
+                    <div class="campo">
+                        <label>Departamento</label>
+                        <select id="departamentoSeleccionado" required>
+                            <option value="">Selecciona tu departamento</option>
+                            <option value="La Paz">La Paz</option>
+                            <option value="Santa Cruz">Santa Cruz</option>
+                            <option value="Cochabamba">Cochabamba</option>
+                            <option value="Oruro">Oruro</option>
+                            <option value="Potosí">Potosí</option>
+                            <option value="Tarija">Tarija</option>
+                            <option value="Chuquisaca">Chuquisaca</option>
+                            <option value="Beni">Beni</option>
+                            <option value="Pando">Pando</option>
+                        </select>
+                    </div>
                 </div>
 
                 <!-- MENSAJE DE CONFIRMACIÓN -->
@@ -471,153 +486,171 @@
 
 <!-- ===== SCRIPT PAGO ===== -->
 <script>
-    const API_URL = '/.netlify/functions/registrar-deuda';
-    const STORAGE_KEY = 'camila_recursos_carrito';
+    (function() {
+        const API_URL = '/.netlify/functions/registrar-deuda';
+        const STORAGE_KEY = 'camila_recursos_carrito';
 
-    // Leer parámetros de la URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const montoDesdeURL = urlParams.get('monto');
-    const descripcionDesdeURL = urlParams.get('descripcion');
+        // ===== LEER PARÁMETROS DE LA URL =====
+        const urlParams = new URLSearchParams(window.location.search);
+        const montoDesdeURL = urlParams.get('monto');
+        const descripcionDesdeURL = urlParams.get('descripcion');
 
-    if (montoDesdeURL) {
-        document.getElementById('montoPago').value = montoDesdeURL;
-    }
-    if (descripcionDesdeURL) {
-        document.getElementById('descripcionPago').value = descripcionDesdeURL;
-    }
+        const montoInput = document.getElementById('montoPago');
+        const descripcionInput = document.getElementById('descripcionPago');
 
-    // Recuperar recursos del carrito
-    function obtenerCarrito() {
-        try {
-            return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-        } catch (e) {
-            return [];
+        if (montoInput && montoDesdeURL) {
+            montoInput.value = montoDesdeURL;
         }
-    }
-
-    // Elementos DOM
-    const btnGenerar = document.getElementById('btnGenerarPago');
-    const emailInput = document.getElementById('emailCliente');
-    const nombreInput = document.getElementById('nombreCliente');
-    const apellidoInput = document.getElementById('apellidoCliente');
-    const montoInput = document.getElementById('montoPago');
-    const descripcionInput = document.getElementById('descripcionPago');
-    const mensajeDiv = document.getElementById('mensajePago');
-    const linkDiv = document.getElementById('linkPagoGenerado');
-    const linkUrl = document.getElementById('linkPagoUrl');
-    const spinner = document.querySelector('.loading-spinner');
-
-    // ===== WHATSAPP DINÁMICO =====
-    const nombreConfirmacion = document.getElementById('nombreConfirmacion');
-    const emailConfirmacion = document.getElementById('emailConfirmacion');
-    const btnWhatsApp = document.getElementById('btnWhatsApp');
-
-    function actualizarWhatsApp() {
-        const nombre = nombreConfirmacion.value.trim() || '[tu nombre]';
-        const email = emailConfirmacion.value.trim() || '[tu correo]';
-        const carrito = obtenerCarrito();
-        const conCosto = carrito.filter(i => parseFloat(i.precio) > 0);
-
-        // Lista de recursos
-        let recursosTexto = '';
-        if (conCosto.length > 0) {
-            recursosTexto = conCosto.map(i => `• ${i.nombre}`).join('\n');
-        } else if (descripcionDesdeURL) {
-            recursosTexto = `• ${descripcionDesdeURL}`;
-        } else {
-            recursosTexto = '• [recursos]';
+        if (descripcionInput && descripcionDesdeURL) {
+            descripcionInput.value = descripcionDesdeURL;
         }
 
-        const totalBs = conCosto.reduce((sum, i) => sum + parseFloat(i.precio), 0) || montoDesdeURL || 0;
-
-        const mensaje = `Hola Cami. Soy ${nombre}.\n\nAcabo de realizar la compra de:\n${recursosTexto}\n\nTotal: Bs ${totalBs}\nCorreo: ${email}\n\nTe envío mi comprobante para confirmar mi compra.`;
-
-        btnWhatsApp.href = `https://wa.me/59169696211?text=${encodeURIComponent(mensaje)}`;
-    }
-
-    actualizarWhatsApp();
-    nombreConfirmacion.addEventListener('input', actualizarWhatsApp);
-    emailConfirmacion.addEventListener('input', actualizarWhatsApp);
-    departamentoSelect.addEventListener('change', actualizarWhatsApp);
-
-    // Pre-rellenar nombre y correo desde el paso 1 al pasar al paso 2
-    emailInput.addEventListener('input', () => {
-        if (!emailConfirmacion.value) emailConfirmacion.value = emailInput.value;
-        actualizarWhatsApp();
-    });
-    nombreInput.addEventListener('input', () => {
-        if (!nombreConfirmacion.value) nombreConfirmacion.value = nombreInput.value;
-        actualizarWhatsApp();
-    });
-
-    // ===== GENERAR PAGO =====
-    async function generarPago() {
-        const email = emailInput.value.trim();
-        const nombre = nombreInput.value.trim() || 'Cliente';
-        const apellido = apellidoInput.value.trim() || 'Ejemplo';
-        const monto = parseFloat(montoInput.value);
-        const descripcion = descripcionInput.value.trim() || 'Recurso digital';
-
-        if (!email) {
-            mostrarMensaje('Por favor, ingresa un correo electrónico válido', 'error');
-            return;
-        }
-        if (!monto || monto <= 0) {
-            mostrarMensaje('Por favor, ingresa un monto válido', 'error');
-            return;
+        // ===== CARRITO =====
+        function obtenerCarrito() {
+            try {
+                return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+            } catch (e) {
+                return [];
+            }
         }
 
-        btnGenerar.disabled = true;
-        spinner.style.display = 'inline-block';
-        btnGenerar.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Generando...';
-        mensajeDiv.className = 'mensaje-pago';
-        mensajeDiv.style.display = 'none';
-        linkDiv.style.display = 'none';
+        // ===== ELEMENTOS DOM =====
+        const btnGenerar = document.getElementById('btnGenerarPago');
+        const emailInput = document.getElementById('emailCliente');
+        const nombreInput = document.getElementById('nombreCliente');
+        const apellidoInput = document.getElementById('apellidoCliente');
+        const mensajeDiv = document.getElementById('mensajePago');
+        const linkDiv = document.getElementById('linkPagoGenerado');
+        const linkUrl = document.getElementById('linkPagoUrl');
+        const spinner = document.querySelector('.loading-spinner');
 
-        try {
-            const response = await fetch(API_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, nombre, apellido, monto, descripcion })
-            });
+        // ===== WHATSAPP DINÁMICO =====
+        const nombreConfirmacion = document.getElementById('nombreConfirmacion');
+        const emailConfirmacion = document.getElementById('emailConfirmacion');
+        const departamentoSelect = document.getElementById('departamentoSeleccionado');
+        const btnWhatsApp = document.getElementById('btnWhatsApp');
 
-            const data = await response.json();
+        function actualizarWhatsApp() {
+            if (!btnWhatsApp) return;
 
-            if (data.success && data.url_pasarela_pagos) {
-                mostrarMensaje('Link de pago generado con éxito', 'exito');
-                linkDiv.style.display = 'block';
-                linkUrl.href = data.url_pasarela_pagos;
-                linkUrl.textContent = data.url_pasarela_pagos;
-                linkDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            const nombre = (nombreConfirmacion && nombreConfirmacion.value.trim()) || '[tu nombre]';
+            const email = (emailConfirmacion && emailConfirmacion.value.trim()) || '[tu correo]';
+            const departamento = (departamentoSelect && departamentoSelect.value) || '[departamento]';
+            const carrito = obtenerCarrito();
+            const conCosto = carrito.filter(i => parseFloat(i.precio) > 0);
+
+            let recursosTexto = '';
+            if (conCosto.length > 0) {
+                recursosTexto = conCosto.map(i => `• ${i.nombre}`).join('\n');
+            } else if (descripcionDesdeURL) {
+                recursosTexto = `• ${descripcionDesdeURL}`;
             } else {
-                throw new Error(data.error || 'Error al generar el pago');
+                recursosTexto = '• [recursos]';
             }
-        } catch (error) {
-            console.error('Error:', error);
-            mostrarMensaje(`Error: ${error.message}`, 'error');
+
+            const totalBs = conCosto.reduce((sum, i) => sum + parseFloat(i.precio), 0) || montoDesdeURL || 0;
+
+            const mensaje = `Hola Cami. Soy ${nombre}.\n\nAcabo de realizar la compra de:\n${recursosTexto}\n\nTotal: Bs ${totalBs}\nDesde: ${departamento}\nCorreo: ${email}\n\nTe envío mi comprobante para confirmar mi compra.`;
+
+            btnWhatsApp.href = `https://wa.me/59169696211?text=${encodeURIComponent(mensaje)}`;
         }
 
-        btnGenerar.disabled = false;
-        spinner.style.display = 'none';
-        btnGenerar.innerHTML = '<i class="fas fa-link"></i> Generar link de pago';
-    }
+        actualizarWhatsApp();
 
-    function mostrarMensaje(texto, tipo) {
-        mensajeDiv.textContent = texto;
-        mensajeDiv.className = `mensaje-pago ${tipo}`;
-        mensajeDiv.style.display = 'block';
-    }
+        if (nombreConfirmacion) nombreConfirmacion.addEventListener('input', actualizarWhatsApp);
+        if (emailConfirmacion) emailConfirmacion.addEventListener('input', actualizarWhatsApp);
+        if (departamentoSelect) departamentoSelect.addEventListener('change', actualizarWhatsApp);
 
-    btnGenerar.addEventListener('click', generarPago);
+        // Pre-rellenar desde el paso 1
+        if (emailInput && emailConfirmacion) {
+            emailInput.addEventListener('input', () => {
+                if (!emailConfirmacion.value) emailConfirmacion.value = emailInput.value;
+                actualizarWhatsApp();
+            });
+        }
+        if (nombreInput && nombreConfirmacion) {
+            nombreInput.addEventListener('input', () => {
+                if (!nombreConfirmacion.value) nombreConfirmacion.value = nombreInput.value;
+                actualizarWhatsApp();
+            });
+        }
 
-    document.querySelectorAll('.form-pago input').forEach(input => {
-        input.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                generarPago();
+        // ===== GENERAR PAGO =====
+        async function generarPago() {
+            const email = emailInput ? emailInput.value.trim() : '';
+            const nombre = nombreInput ? nombreInput.value.trim() || 'Cliente' : 'Cliente';
+            const apellido = apellidoInput ? apellidoInput.value.trim() || 'Ejemplo' : 'Ejemplo';
+            const monto = montoInput ? parseFloat(montoInput.value) : 0;
+            const descripcion = descripcionInput ? descripcionInput.value.trim() || 'Recurso digital' : 'Recurso digital';
+
+            if (!email) {
+                mostrarMensaje('Por favor, ingresa un correo electrónico válido', 'error');
+                return;
             }
+            if (!monto || monto <= 0) {
+                mostrarMensaje('Por favor, ingresa un monto válido', 'error');
+                return;
+            }
+
+            btnGenerar.disabled = true;
+            if (spinner) spinner.style.display = 'inline-block';
+            btnGenerar.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Generando...';
+            if (mensajeDiv) {
+                mensajeDiv.className = 'mensaje-pago';
+                mensajeDiv.style.display = 'none';
+            }
+            if (linkDiv) linkDiv.style.display = 'none';
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, nombre, apellido, monto, descripcion })
+                });
+
+                const data = await response.json();
+
+                if (data.success && data.url_pasarela_pagos) {
+                    mostrarMensaje('Link de pago generado con éxito', 'exito');
+                    if (linkDiv) linkDiv.style.display = 'block';
+                    if (linkUrl) {
+                        linkUrl.href = data.url_pasarela_pagos;
+                        linkUrl.textContent = data.url_pasarela_pagos;
+                    }
+                    if (linkDiv) linkDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } else {
+                    throw new Error(data.error || 'Error al generar el pago');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                mostrarMensaje(`Error: ${error.message}`, 'error');
+            }
+
+            btnGenerar.disabled = false;
+            if (spinner) spinner.style.display = 'none';
+            btnGenerar.innerHTML = '<i class="fas fa-link"></i> Generar link de pago';
+        }
+
+        function mostrarMensaje(texto, tipo) {
+            if (!mensajeDiv) return;
+            mensajeDiv.textContent = texto;
+            mensajeDiv.className = `mensaje-pago ${tipo}`;
+            mensajeDiv.style.display = 'block';
+        }
+
+        if (btnGenerar) {
+            btnGenerar.addEventListener('click', generarPago);
+        }
+
+        document.querySelectorAll('.form-pago input').forEach(input => {
+            input.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    generarPago();
+                }
+            });
         });
-    });
+    })();
 </script>
 
 </body>
