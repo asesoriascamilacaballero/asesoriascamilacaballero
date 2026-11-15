@@ -1,1 +1,492 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Better You · La Paz | Camila Caballero</title>
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* ===== PÁGINA DE PAGO / REGISTRO ===== */
+        .pago-page {
+            max-width: 800px;
+            margin: 80px auto;
+            padding: 0 40px;
+        }
+
+        .pago-card {
+            background: var(--white);
+            padding: 60px 50px;
+            border: 1px solid var(--sand);
+        }
+
+        .pago-card h1 {
+            font-family: var(--font-title);
+            font-size: 2.5rem;
+            color: var(--black);
+            margin-bottom: 12px;
+            font-weight: 400;
+        }
+
+        .pago-card .pais-badge {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--taupe);
+            margin-bottom: 40px;
+            display: block;
+        }
+
+        /* Bloque */
+        .bloque {
+            padding: 30px 0;
+            border-top: 1px solid var(--sand);
+        }
+
+        .bloque h3 {
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--taupe);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .bloque p {
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            color: var(--espresso);
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .bloque ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .bloque ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--greige);
+            font-size: 0.9rem;
+            color: var(--espresso);
+            line-height: 1.6;
+        }
+
+        .bloque ul li:last-child {
+            border-bottom: none;
+        }
+
+        /* Formulario */
+        .form-pago {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .form-pago label {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--taupe);
+            margin-bottom: 6px;
+            display: block;
+            font-weight: 500;
+        }
+
+        .form-pago input,
+        .form-pago select {
+            padding: 14px 18px;
+            border: 1px solid var(--sand);
+            background: var(--white);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            color: var(--black);
+            transition: border-color 0.3s;
+            width: 100%;
+        }
+
+        .form-pago input:focus,
+        .form-pago select:focus {
+            outline: none;
+            border-color: var(--espresso);
+        }
+
+        .form-pago .campo {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-pago .fila {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        /* QR */
+        .qr-container {
+            text-align: center;
+            margin: 24px 0;
+        }
+
+        .qr-container img {
+            max-width: 260px;
+            width: 100%;
+            border: 1px solid var(--sand);
+            padding: 10px;
+            background: var(--white);
+        }
+
+        .qr-container .qr-nota {
+            font-size: 0.8rem;
+            color: var(--taupe);
+            margin-top: 12px;
+            font-style: italic;
+        }
+
+        /* Botón principal */
+        .btn-pago {
+            background-color: var(--color-espresso);
+            color: var(--color-white);
+            padding: 18px 36px;
+            border: none;
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            width: 100%;
+            margin-top: 16px;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-pago:hover {
+            opacity: 0.85;
+        }
+
+        /* Precios */
+        .precio-bloque {
+            background: var(--ivory);
+            padding: 24px;
+            border: 1px solid var(--sand);
+            margin: 16px 0;
+        }
+
+        .precio-bloque h4 {
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--espresso);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .precio-bloque .precio-regular {
+            font-size: 0.85rem;
+            color: var(--taupe);
+            text-decoration: line-through;
+            margin-bottom: 4px;
+        }
+
+        .precio-bloque .precio-especial {
+            font-family: var(--font-title);
+            font-size: 1.4rem;
+            color: var(--black);
+            margin-bottom: 8px;
+        }
+
+        .precio-bloque .precio-nota {
+            font-size: 0.85rem;
+            color: var(--espresso);
+            line-height: 1.6;
+        }
+
+        /* Volver */
+        .volver {
+            display: inline-block;
+            margin-top: 40px;
+            color: var(--taupe);
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            text-decoration: none;
+        }
+
+        .volver:hover {
+            color: var(--espresso);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .pago-page {
+                padding: 0 20px;
+                margin: 40px auto;
+            }
+
+            .pago-card {
+                padding: 40px 24px;
+            }
+
+            .pago-card h1 {
+                font-size: 1.8rem;
+            }
+
+            .form-pago .fila {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar">
+    <div class="navbar-container">
+        <a href="index.html" class="navbar-logo">
+            <img src="assets/logo blanco.png" alt="Camila Caballero">
+        </a>
+
+        <button class="navbar-toggle" id="navbarToggle" aria-label="Abrir menú">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+
+    <div class="navbar-menu" id="navbarMenu">
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="recursos.html">Recursos</a></li>
+            <li><a href="testimonios.html">Testimonios</a></li>
+            <li><a href="servicios.html" class="navbar-btn">Quiero un servicio</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- ===== PAGO ===== -->
+<main>
+    <div class="pago-page">
+        <div class="pago-card">
+            <h1>Better You</h1>
+            <span class="pais-badge">🇧🇴 La Paz · Presencial</span>
+
+            <!-- INFO DEL EVENTO -->
+            <div class="bloque">
+                <h3>Detalles del evento</h3>
+                <ul>
+                    <li><strong>Fecha:</strong> Sábado 5 de diciembre de 2026</li>
+                    <li><strong>Horario:</strong> 10:00 a 12:30 h</li>
+                    <li><strong>Lugar:</strong> Calle 23 de Calacoto</li>
+                </ul>
+                <p style="margin-top: 20px;">
+                    Una experiencia para transformar tu imagen, descubrir tu estilo y aprender a vestir como la mujer que quieres ser.
+                </p>
+            </div>
+
+            <!-- QUÉ APRENDERÁS -->
+            <div class="bloque">
+                <h3>¿Qué aprenderás?</h3>
+                <ul>
+                    <li>Mindset, imagen personal y marca personal.</li>
+                    <li>Estilos personales.</li>
+                    <li>Tipos de cuerpo.</li>
+                    <li>Ilusiones ópticas aplicadas al vestir.</li>
+                    <li>Colorimetría.</li>
+                    <li>Armario inteligente.</li>
+                </ul>
+            </div>
+
+            <!-- QUÉ INCLUYE -->
+            <div class="bloque">
+                <h3>Tu experiencia incluye</h3>
+                <ul>
+                    <li>Masterclass presencial en vivo.</li>
+                    <li>Workbook de ejercicios prácticos.</li>
+                    <li>Resumen digital de la clase.</li>
+                    <li>7-Day Style Challenge.</li>
+                    <li>3 guías digitales: zapatos, jeans y looks elevados.</li>
+                    <li>Color Edit: clase pregrabada sobre combinación de colores y psicología del color.</li>
+                    <li>Regalos exclusivos de nuestras marcas aliadas.</li>
+                </ul>
+            </div>
+
+            <!-- INVERSIÓN -->
+            <div class="bloque">
+                <h3>Inversión</h3>
+
+                <div class="precio-bloque">
+                    <h4>Masterclass</h4>
+                    <div class="precio-regular">Precio regular: Bs 308</div>
+                    <div class="precio-especial">Precio especial: Bs 280</div>
+                </div>
+
+                <div class="precio-bloque">
+                    <h4>Experiencia Plus</h4>
+                    <div class="precio-nota" style="margin-bottom: 10px;">Masterclass + colorimetría personalizada presencial.</div>
+                    <div class="precio-regular">Precio regular: Bs 605</div>
+                    <div class="precio-especial">Precio especial: Bs 550</div>
+                    <div class="precio-nota" style="margin-top: 10px;">Agrega tu colorimetría personalizada por solo Bs 270 adicionales.</div>
+                </div>
+
+                <div class="precio-bloque">
+                    <h4>Colorimetrías personalizadas</h4>
+                    <div class="precio-nota">Horario: 15:00 a 18:00 h</div>
+                    <div class="precio-nota">Podrás elegir tu horario individual según disponibilidad de cupos.</div>
+                </div>
+
+                <p style="margin-top: 20px; font-size: 0.85rem; color: var(--taupe); font-style: italic;">
+                    Precios exclusivos para nuestra lista de espera · Inscripción anticipada · Cupos limitados.
+                </p>
+            </div>
+
+            <!-- FORMULARIO DE DATOS -->
+            <div class="bloque">
+                <h3>Paso 1 · Tus datos</h3>
+                <div class="form-pago">
+                    <div class="fila">
+                        <div class="campo">
+                            <label>Nombre</label>
+                            <input type="text" id="nombreCliente" placeholder="Tu nombre" required>
+                        </div>
+                        <div class="campo">
+                            <label>Apellido</label>
+                            <input type="text" id="apellidoCliente" placeholder="Tu apellido" required>
+                        </div>
+                    </div>
+                    <div class="campo">
+                        <label>Correo electrónico</label>
+                        <input type="email" id="emailCliente" placeholder="tu@email.com" required>
+                    </div>
+                    <div class="campo">
+                        <label>Número de celular / WhatsApp</label>
+                        <input type="tel" id="telefonoCliente" placeholder="+591 70000000" required>
+                    </div>
+                    <div class="campo">
+                        <label>Opción de inscripción</label>
+                        <select id="opcionInscripcion" required>
+                            <option value="">Selecciona una opción</option>
+                            <option value="Masterclass · Bs 280">Masterclass · Bs 280</option>
+                            <option value="Experiencia Plus · Bs 550">Experiencia Plus · Bs 550</option>
+                            <option value="Colorimetría personalizada · Bs 270">Colorimetría personalizada · Bs 270</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DATOS DE PAGO + QR -->
+            <div class="bloque">
+                <h3>Paso 2 · Realiza el pago</h3>
+                <p>Realiza el pago por el monto correspondiente a tu opción de inscripción y guarda tu comprobante.</p>
+
+                <div class="qr-container">
+                    <img src="assets/qrlapaz.jpg" alt="Código QR para pago Better You La Paz">
+                    <p class="qr-nota">Escanea el código QR para completar tu pago.</p>
+                </div>
+
+                <p style="margin-top: 20px; font-size: 0.85rem; color: var(--taupe);">
+                    Una vez realizado el pago, envía tu comprobante por WhatsApp para confirmar tu reserva.
+                </p>
+            </div>
+
+            <!-- CONFIRMACIÓN WHATSAPP -->
+            <div class="bloque">
+                <h3>Paso 3 · Confirma tu reserva</h3>
+                <p>Envía tu comprobante y datos por WhatsApp para validar tu inscripción.</p>
+
+                <a href="#" id="btnWhatsApp" class="btn-pago" target="_blank">
+                    Enviar a WhatsApp
+                </a>
+            </div>
+
+            <a href="servicios.html" class="volver">← Volver a servicios</a>
+        </div>
+    </div>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-logo">
+            <img src="assets/logo blanco.png" alt="Camila Caballero">
+            <p>Transformando imágenes, potenciando confianza.</p>
+        </div>
+
+        <div class="footer-redes">
+            <h4>Sígueme</h4>
+            <div class="redes-sociales">
+                <a href="https://www.instagram.com/camilacaballerot" target="_blank">Instagram</a>
+                <a href="https://www.facebook.com/share/1AzXtD2ey5/" target="_blank">Facebook</a>
+                <a href="https://www.tiktok.com/@camila.caballerot" target="_blank">TikTok</a>
+                <a href="https://youtube.com/@camila.caballero" target="_blank">YouTube</a>
+            </div>
+        </div>
+
+        <div class="footer-contacto">
+            <h4>Contacto</h4>
+            <a href="https://wa.me/59169696211" class="whatsapp-footer">+591 69696211</a>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2025 Camila Caballero · Todos los derechos reservados.</p>
+    </div>
+</footer>
+
+<!-- ===== SCRIPT NAVBAR ===== -->
+<script src="script.js"></script>
+
+<!-- ===== SCRIPT WHATSAPP DINÁMICO ===== -->
+<script>
+    const nombreInput = document.getElementById('nombreCliente');
+    const apellidoInput = document.getElementById('apellidoCliente');
+    const emailInput = document.getElementById('emailCliente');
+    const telefonoInput = document.getElementById('telefonoCliente');
+    const opcionSelect = document.getElementById('opcionInscripcion');
+    const btnWhatsApp = document.getElementById('btnWhatsApp');
+
+    function actualizarWhatsApp() {
+        const nombre = nombreInput.value.trim() || '[nombre]';
+        const apellido = apellidoInput.value.trim() || '[apellido]';
+        const email = emailInput.value.trim() || '[correo]';
+        const telefono = telefonoInput.value.trim() || '[teléfono]';
+        const opcion = opcionSelect.value || '[opción de inscripción]';
+
+        const mensaje = `Hola Cami. Acabo de inscribirme a Better You La Paz.\n\n` +
+            `Nombre: ${nombre} ${apellido}\n` +
+            `Correo: ${email}\n` +
+            `Teléfono: ${telefono}\n` +
+            `Opción: ${opcion}\n\n` +
+            `Te envío mi comprobante de pago para confirmar mi reserva.`;
+
+        btnWhatsApp.href = `https://wa.me/59169696211?text=${encodeURIComponent(mensaje)}`;
+    }
+
+    // Inicializar y actualizar en cada cambio
+    actualizarWhatsApp();
+    [nombreInput, apellidoInput, emailInput, telefonoInput, opcionSelect].forEach(el => {
+        el.addEventListener('input', actualizarWhatsApp);
+        el.addEventListener('change', actualizarWhatsApp);
+    });
+</script>
+
+</body>
+</html>
