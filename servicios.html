@@ -229,6 +229,84 @@
             margin-bottom: 16px;
         }
 
+        /* ===== CARRUSEL (para Better You) ===== */
+        .carrusel {
+            position: relative;
+            width: 100%;
+            max-width: 380px;
+            aspect-ratio: 4 / 5;
+            overflow: hidden;
+        }
+
+        .carrusel-track {
+            display: flex;
+            height: 100%;
+            transition: transform 0.4s ease;
+        }
+
+        .carrusel-slide {
+            min-width: 100%;
+            height: 100%;
+        }
+
+        .carrusel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .carrusel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.45);
+            color: #fff;
+            border: none;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+            z-index: 2;
+        }
+
+        .carrusel-btn:hover {
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .carrusel-btn.prev { left: 10px; }
+        .carrusel-btn.next { right: 10px; }
+
+        .carrusel-dots {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 2;
+        }
+
+        .carrusel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .carrusel-dot.activo {
+            background: #fff;
+        }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 900px) {
             .servicio-detalle-inner {
@@ -250,7 +328,8 @@
                 gap: 30px;
             }
 
-            .servicio-imagen {
+            .servicio-imagen,
+            .carrusel {
                 flex: 0 0 100%;
                 max-width: 100%;
             }
@@ -309,7 +388,40 @@
             <p>Elige el que mejor se adapte a ti</p>
         </div>
 
-        <!-- ===== COLORIMETRÍA ===== -->
+        <!-- ===== 1. BETTER YOU (habilitado, con carrusel, sin detalles) ===== -->
+        <article class="servicio">
+            <div class="servicio-header">
+                <div class="carrusel" id="carruselBetterYou">
+                    <div class="carrusel-track">
+                        <div class="carrusel-slide">
+                            <img src="assets/servicios/BETTER YOU 1.webp" alt="Better You - Imagen 1">
+                        </div>
+                        <div class="carrusel-slide">
+                            <img src="assets/servicios/BETTER YOU 2.webp" alt="Better You - Imagen 2">
+                        </div>
+                        <div class="carrusel-slide">
+                            <img src="assets/servicios/BETTER YOU 3.webp" alt="Better You - Imagen 3">
+                        </div>
+                    </div>
+                    <button class="carrusel-btn prev" onclick="moverCarrusel('carruselBetterYou', -1)" aria-label="Anterior">&#10094;</button>
+                    <button class="carrusel-btn next" onclick="moverCarrusel('carruselBetterYou', 1)" aria-label="Siguiente">&#10095;</button>
+                    <div class="carrusel-dots">
+                        <button class="carrusel-dot activo" onclick="irASlide('carruselBetterYou', 0)" aria-label="Ir a imagen 1"></button>
+                        <button class="carrusel-dot" onclick="irASlide('carruselBetterYou', 1)" aria-label="Ir a imagen 2"></button>
+                        <button class="carrusel-dot" onclick="irASlide('carruselBetterYou', 2)" aria-label="Ir a imagen 3"></button>
+                    </div>
+                </div>
+                <div class="servicio-info">
+                    <span class="categoria">Curso</span>
+                    <h2>Better You</h2>
+                    <p class="descripcion-corta">
+                        La mujer en la que te estás convirtiendo.
+                    </p>
+                </div>
+            </div>
+        </article>
+
+        <!-- ===== 2. COLORIMETRÍA ===== -->
         <article class="servicio">
             <div class="servicio-header">
                 <div class="servicio-imagen">
@@ -367,49 +479,8 @@
                 </div>
             </div>
         </article>
-                <!-- ===== Personal Shopper ===== -->
-        <article class="servicio">
-            <div class="servicio-header">
-                <div class="servicio-imagen">
-                    <img src="assets/servicios/armariointeligente.jpg" alt="Colorimetría">
-                </div>
-                <div class="servicio-info">
-                    <span class="categoria">The Shopping Edit</span>
-                    <h2>Personal Shopper Experience</h2>
-                    <p class="descripcion-corta">
-                      Una experiencia de compras personalizada para llevar tu estilo al siguiente nivel, eligiendo prendas que realmente conecten contigo y con todo lo aprendido en tu asesoría.
-                    </p>
-                    <div class="precio">US$55 · Bs 662</div>
-                    <button class="btn-desplegar" onclick="toggleDetalle(this)">Ver detalles</button>
-                </div>
-            </div>
 
-            <div class="servicio-detalle">
-                <div class="servicio-detalle-inner">
-                    <div class="bloque">
-                        <h3>Hasta 20 prendas - Solo para alumnas </h3>
-                        <div class="modalidad">
-                            <p><strong>🌎 Online · Desde cualquier lugar</strong>
-                            A través de WhatsApp podrás enviarme fotografías y enlaces de prendas, y también exploraremos tiendas en línea.</p>
-                        </div>
-
-                        <h3>¿Cómo funciona?</h3>
-                        <div class="modalidad">
-                            <p>Creamos una selección de compras adaptadas a tu estilo, necesidades y presupuesto.</p>
-                             <p><strong>Compra con intención. Viste con autenticidad.</strong></p>
-                        </div>
-                        <h3 style="margin-top: 40px;">Inversión</h3>
-                        <div class="precio" style="margin-bottom: 20px;">US$55 · Bs 662</div>
-                        <div class="botones-pago">
-                            <button class="button-primary" onclick="abrirModalBolivia('pago-bolivia.html?monto=662&descripcion=PersonalShopper')">🇧🇴 Pago Bolivia</button>
-                            <button class="button-primary" onclick="abrirModalInternacional('pago-mundo.html?monto=662&descripcion=PersonalShopper&moneda=Bs')">🌎 Pago Internacional</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </article>
-
-        <!-- ===== STYLING + COLORIMETRÍA ===== -->
+        <!-- ===== 3. STYLING + COLORIMETRÍA ===== -->
         <article class="servicio">
             <div class="servicio-header">
                 <div class="servicio-imagen">
@@ -456,59 +527,7 @@
             </div>
         </article>
 
-        <!-- ===== GLOW UP PRO ===== -->
-        <article class="servicio">
-            <div class="servicio-header">
-                <div class="servicio-imagen">
-                    <img src="assets/servicios/asesoriasgrupales.jpg" alt="Glow Up Pro">
-                </div>
-                <div class="servicio-info">
-                    <span class="categoria">Asesoría grupal</span>
-                    <h2>Glow Up Pro</h2>
-                    <p class="descripcion-corta">
-                        Un taller exclusivo para mujeres que quieren verse y sentirse imparables. Eleva tu autoestima, confianza y estilo con herramientas de imagen estratégica.
-                    </p>
-                    <div class="precio">Bs 320 · Preventa Bs 280</div>
-                    <button class="btn-desplegar" onclick="toggleDetalle(this)">Ver detalles</button>
-                </div>
-            </div>
-
-            <div class="servicio-detalle">
-                <div class="servicio-detalle-inner">
-                    <div class="bloque">
-                        <h3>Contenido</h3>
-                        <ul>
-                            <li>Marca personal</li>
-                            <li>Estilo personal</li>
-                            <li>Tipo de cuerpo</li>
-                            <li>Colorimetría (incluye test personalizado básico)</li>
-                            <li>Psicología del color y combinaciones</li>
-                            <li>Armario inteligente</li>
-                        </ul>
-                    </div>
-                    <div class="bloque">
-                        <h3>Material</h3>
-                        <ul>
-                            <li>Workbook para la clase</li>
-                            <li>Paleta de color personalizada</li>
-                            <li>7 ebooks de regalo</li>
-                            <li>Test online tipo de rostro</li>
-                            <li>Challenge de 21 días (videos)</li>
-                            <li>Incluye certificado digital</li>
-                        </ul>
-
-                        <h3 style="margin-top: 40px;">Inversión</h3>
-                        <div class="precio" style="margin-bottom: 20px;">Bs 320 · Preventa Bs 280</div>
-                        <div class="botones-pago">
-                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSf7OwDWWS0Txg5X-b_MXMEMoIuuEv2wPlvxmEpvGsf9_cCB6A/viewform" target="_blank" class="button-primary">📋 Lista de espera</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </article>
-              
-
-        <!-- ===== BECOMING HER (Próximamente) ===== -->
+        <!-- ===== 4. BECOMING HER (Próximamente) ===== -->
         <article class="servicio proximamente">
             <div class="servicio-header">
                 <div class="servicio-imagen">
@@ -524,18 +543,44 @@
             </div>
         </article>
 
-        <!-- ===== BETTER YOU (Próximamente) ===== -->
-        <article class="servicio proximamente">
+        <!-- ===== 5. PERSONAL SHOPPER (al final) ===== -->
+        <article class="servicio">
             <div class="servicio-header">
                 <div class="servicio-imagen">
-                    <img src="assets/servicios/BETTER YOU.webp" alt="Better You">
+                    <img src="assets/servicios/armariointeligente.jpg" alt="Personal Shopper Experience">
                 </div>
                 <div class="servicio-info">
-                    <span class="badge-proximamente">Próximamente</span>
-                    <h2>Better You</h2>
+                    <span class="categoria">The Shopping Edit</span>
+                    <h2>Personal Shopper Experience</h2>
                     <p class="descripcion-corta">
-                        La mujer en la que te estás convirtiendo.
+                        Una experiencia de compras personalizada para llevar tu estilo al siguiente nivel, eligiendo prendas que realmente conecten contigo y con todo lo aprendido en tu asesoría.
                     </p>
+                    <div class="precio">US$55 · Bs 662</div>
+                    <button class="btn-desplegar" onclick="toggleDetalle(this)">Ver detalles</button>
+                </div>
+            </div>
+
+            <div class="servicio-detalle">
+                <div class="servicio-detalle-inner">
+                    <div class="bloque">
+                        <h3>Hasta 20 prendas - Solo para alumnas</h3>
+                        <div class="modalidad">
+                            <p><strong>🌎 Online · Desde cualquier lugar</strong>
+                            A través de WhatsApp podrás enviarme fotografías y enlaces de prendas, y también exploraremos tiendas en línea.</p>
+                        </div>
+
+                        <h3>¿Cómo funciona?</h3>
+                        <div class="modalidad">
+                            <p>Creamos una selección de compras adaptadas a tu estilo, necesidades y presupuesto.</p>
+                            <p><strong>Compra con intención. Viste con autenticidad.</strong></p>
+                        </div>
+                        <h3 style="margin-top: 40px;">Inversión</h3>
+                        <div class="precio" style="margin-bottom: 20px;">US$55 · Bs 662</div>
+                        <div class="botones-pago">
+                            <button class="button-primary" onclick="abrirModalBolivia('pago-bolivia.html?monto=662&descripcion=PersonalShopper')">🇧🇴 Pago Bolivia</button>
+                            <button class="button-primary" onclick="abrirModalInternacional('pago-mundo.html?monto=662&descripcion=PersonalShopper&moneda=Bs')">🌎 Pago Internacional</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </article>
@@ -628,6 +673,44 @@
             detalle.classList.add('abierto');
             btn.textContent = 'Cerrar';
         }
+    }
+
+    // ===== CARRUSEL (Better You) =====
+    const carruselEstado = {};
+
+    function obtenerEstado(id) {
+        if (!carruselEstado[id]) {
+            carruselEstado[id] = { indice: 0 };
+        }
+        return carruselEstado[id];
+    }
+
+    function moverCarrusel(id, direccion) {
+        const contenedor = document.getElementById(id);
+        const slides = contenedor.querySelectorAll('.carrusel-slide');
+        const estado = obtenerEstado(id);
+
+        estado.indice = (estado.indice + direccion + slides.length) % slides.length;
+        actualizarCarrusel(id);
+    }
+
+    function irASlide(id, indice) {
+        const estado = obtenerEstado(id);
+        estado.indice = indice;
+        actualizarCarrusel(id);
+    }
+
+    function actualizarCarrusel(id) {
+        const contenedor = document.getElementById(id);
+        const track = contenedor.querySelector('.carrusel-track');
+        const dots = contenedor.querySelectorAll('.carrusel-dot');
+        const estado = obtenerEstado(id);
+
+        track.style.transform = `translateX(-${estado.indice * 100}%)`;
+
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('activo', i === estado.indice);
+        });
     }
 
     // ===== MODAL BOLIVIA =====
