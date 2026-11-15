@@ -324,6 +324,92 @@
             line-height: 1.6;
         }
 
+        /* ===== CARDS DE INVERSIÓN ===== */
+        .cards-inversion {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .card-inversion {
+            background: var(--ivory);
+            border: 1px solid var(--sand);
+            padding: 28px 24px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .card-inversion.destacada {
+            border: 2px solid var(--espresso);
+        }
+
+        .card-inversion .card-badge {
+            position: absolute;
+            top: -12px;
+            left: 24px;
+            background: var(--espresso);
+            color: var(--white);
+            font-family: var(--font-body);
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            padding: 4px 12px;
+        }
+
+        .card-inversion h4 {
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--espresso);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .card-inversion .card-precio {
+            font-family: var(--font-title);
+            font-size: 1.8rem;
+            color: var(--black);
+            margin-bottom: 4px;
+            line-height: 1.1;
+        }
+
+        .card-inversion .card-precio-usd {
+            font-size: 0.85rem;
+            color: var(--taupe);
+            margin-bottom: 16px;
+        }
+
+        .card-inversion .card-incluye {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            color: var(--espresso);
+            line-height: 1.5;
+            margin-bottom: 16px;
+            flex-grow: 1;
+        }
+
+        .card-inversion .card-incluye strong {
+            font-weight: 600;
+            color: var(--black);
+        }
+
+        .card-inversion .card-extra {
+            background: var(--white);
+            border: 1px dashed var(--sand);
+            padding: 12px 14px;
+            font-size: 0.8rem;
+            color: var(--espresso);
+            line-height: 1.5;
+        }
+
+        .card-inversion .card-extra strong {
+            color: var(--black);
+        }
+
+        /* Bonus */
         .bonus-bloque {
             background: var(--ivory);
             padding: 24px;
@@ -349,6 +435,7 @@
             margin-bottom: 0;
         }
 
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             .pago-page {
                 padding: 0 20px;
@@ -373,6 +460,10 @@
 
             .confirmacion-whatsapp h3 {
                 font-size: 1.4rem;
+            }
+
+            .cards-inversion {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -463,15 +554,30 @@
             <div class="bloque">
                 <h3>Inversión</h3>
 
-                <div class="precio-bloque">
-                    <h4>Masterclass Online</h4>
-                    <div class="precio-especial">Bs 259 · USD 22</div>
-                </div>
+                <div class="cards-inversion">
+                    <!-- Card 1: Masterclass -->
+                    <div class="card-inversion">
+                        <h4>Masterclass Online</h4>
+                        <div class="card-precio">Bs 259</div>
+                        <div class="card-precio-usd">≈ USD 22</div>
+                        <div class="card-incluye">
+                            Incluye la <strong>masterclass online en vivo</strong> + todos los materiales, workbook, resumen digital, 7-Day Style Challenge, 3 guías digitales y acceso a la grabación durante 7 días.
+                        </div>
+                    </div>
 
-                <div class="precio-bloque">
-                    <h4>Experiencia Completa</h4>
-                    <div class="precio-nota" style="margin-bottom: 10px;">Masterclass + colorimetría personalizada virtual. Agrega tu colorimetría personalizada virtual por solo USD 25</div>
-                    <div class="precio-especial">Bs 559 · USD 47</div>
+                    <!-- Card 2: Experiencia Completa -->
+                    <div class="card-inversion destacada">
+                        <span class="card-badge">Más completa</span>
+                        <h4>Experiencia Completa</h4>
+                        <div class="card-precio">Bs 559</div>
+                        <div class="card-precio-usd">≈ USD 47</div>
+                        <div class="card-incluye">
+                            Incluye <strong>todo lo de la Masterclass</strong> + tu <strong>colorimetría personalizada virtual</strong>.
+                        </div>
+                        <div class="card-extra">
+                            💡 ¿Ya tienes la Masterclass? Agrega tu colorimetría personalizada virtual por solo <strong>USD 25 adicionales</strong>.
+                        </div>
+                    </div>
                 </div>
 
                 <p style="margin-top: 20px; font-size: 0.85rem; color: var(--taupe); font-style: italic;">
