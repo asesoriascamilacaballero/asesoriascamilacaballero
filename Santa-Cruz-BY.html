@@ -87,6 +87,30 @@
         .bloque ul li:last-child {
             border-bottom: none;
         }
+           /* ===== LISTAS CON PUNTITOS ===== */
+        .bloque ul {
+            list-style: disc;
+            padding-left: 22px;
+            margin: 20px 0;
+        }
+
+        .bloque ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--greige);
+            font-size: 0.9rem;
+            color: var(--espresso);
+            line-height: 1.6;
+            padding-left: 4px;
+        }
+
+        .bloque ul li:last-child {
+            border-bottom: none;
+        }
+
+        .bloque ul li::marker {
+            color: var(--espresso);
+        }
+
 
         /* Formulario */
         .form-pago {
