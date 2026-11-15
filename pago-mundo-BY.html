@@ -602,24 +602,11 @@
     // ========== API URL (Netlify Function) ==========
     const API_URL = '/.netlify/functions/registrar-deuda';
 
-    // ========== LEER PARÁMETROS DE LA URL ==========
-    const urlParams = new URLSearchParams(window.location.search);
-    const montoDesdeURL = urlParams.get('monto');
-    const descripcionDesdeURL = urlParams.get('descripcion');
-
-    if (montoDesdeURL) {
-        document.getElementById('montoPago').value = montoDesdeURL;
-    }
-    if (descripcionDesdeURL) {
-        document.getElementById('descripcionPago').value = descripcionDesdeURL;
-        const selectServicio = document.getElementById('servicioSeleccionado');
-        for (let opt of selectServicio.options) {
-            if (descripcionDesdeURL.toLowerCase().includes(opt.value.toLowerCase())) {
-                selectServicio.value = opt.value;
-                break;
-            }
-        }
-    }
+    // ========== PRECIOS POR OPCIÓN ==========
+    const PRECIOS = {
+        'Masterclass Online': 259,
+        'Experiencia Completa': 559
+    };
 
     // ========== ELEMENTOS DOM ==========
     const btnGenerar = document.getElementById('btnGenerarPago');
@@ -632,29 +619,68 @@
     const linkDiv = document.getElementById('linkPagoGenerado');
     const linkUrl = document.getElementById('linkPagoUrl');
     const spinner = document.querySelector('.loading-spinner');
-
-    // ========== WHATSAPP DINÁMICO ==========
     const servicioSelect = document.getElementById('servicioSeleccionado');
     const paisInput = document.getElementById('paisCliente');
     const btnWhatsApp = document.getElementById('btnWhatsApp');
 
+    // ========== FUNCIÓN: SINCRONIZAR MONTO Y DESCRIPCIÓN CON EL SELECT ==========
+    function sincronizarConSelect() {
+        const opcion = servicioSelect.value;
+        if (opcion && PRECIOS[opcion]) {
+            montoInput.value = PRECIOS[opcion];
+            descripcionInput.value = opcion;
+        }
+    }
+
+    // ========== LEER PARÁMETROS DE LA URL ==========
+    const urlParams = new URLSearchParams(window.location.search);
+    const montoDesdeURL = urlParams.get('monto');
+    const descripcionDesdeURL = urlParams.get('descripcion');
+
+    // 1) Si viene descripción por URL, auto-seleccionar la opción
+    if (descripcionDesdeURL) {
+        for (let opt of servicioSelect.options) {
+            if (descripcionDesdeURL.toLowerCase().includes(opt.value.toLowerCase())) {
+                servicioSelect.value = opt.value;
+                break;
+            }
+        }
+    }
+
+    // 2) Sincronizar monto y descripción con la opción seleccionada (prioridad: select > URL)
+    if (servicioSelect.value && PRECIOS[servicioSelect.value]) {
+        // Si hay opción seleccionada, usar su precio oficial
+        sincronizarConSelect();
+    } else {
+        // Si no hay opción, usar lo que venga por URL
+        if (montoDesdeURL) montoInput.value = montoDesdeURL;
+        if (descripcionDesdeURL) descripcionInput.value = descripcionDesdeURL;
+    }
+
+    // 3) Si el usuario cambia el select, actualizar monto y descripción automáticamente
+    servicioSelect.addEventListener('change', sincronizarConSelect);
+
+    // ========== WHATSAPP DINÁMICO ==========
     function actualizarWhatsApp() {
         const servicio = servicioSelect.value || '[opción adquirida]';
         const pais = paisInput.value.trim() || '[país]';
 
         const mensaje = `Hola Cami. Acabo de realizar la compra de Better You Online (${servicio}), desde ${pais}. Te envío mi comprobante para confirmar mi reserva.`;
 
-        const url = `https://wa.me/59169696211?text=${encodeURIComponent(mensaje)}`;
-        btnWhatsApp.href = url;
+        btnWhatsApp.href = `https://wa.me/59169696211?text=${encodeURIComponent(mensaje)}`;
     }
 
     actualizarWhatsApp();
-
     servicioSelect.addEventListener('change', actualizarWhatsApp);
     paisInput.addEventListener('input', actualizarWhatsApp);
 
     // ========== GENERAR PAGO ==========
     async function generarPago() {
+        // Asegurar que el monto y la descripción coincidan con la opción del select
+        if (servicioSelect.value && PRECIOS[servicioSelect.value]) {
+            sincronizarConSelect();
+        }
+
         const email = emailInput.value.trim();
         const nombre = nombreInput.value.trim() || 'Cliente';
         const apellido = apellidoInput.value.trim() || 'Ejemplo';
@@ -667,6 +693,10 @@
         }
         if (!monto || monto <= 0) {
             mostrarMensaje('Por favor, ingresa un monto válido', 'error');
+            return;
+        }
+        if (!servicioSelect.value) {
+            mostrarMensaje('Por favor, selecciona la opción que adquiriste', 'error');
             return;
         }
 
