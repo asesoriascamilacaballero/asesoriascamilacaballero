@@ -68,9 +68,10 @@
             margin-bottom: 16px;
         }
 
+        /* ===== LISTAS CON PUNTITOS ===== */
         .bloque ul {
-            list-style: none;
-            padding: 0;
+            list-style: disc;
+            padding-left: 22px;
             margin: 20px 0;
         }
 
@@ -80,10 +81,15 @@
             font-size: 0.9rem;
             color: var(--espresso);
             line-height: 1.6;
+            padding-left: 4px;
         }
 
         .bloque ul li:last-child {
             border-bottom: none;
+        }
+
+        .bloque ul li::marker {
+            color: var(--espresso);
         }
 
         /* Formulario */
@@ -426,7 +432,7 @@
                     <li>Estilos personales.</li>
                     <li>Tipos de cuerpo.</li>
                     <li>Ilusiones ópticas aplicadas al vestir.</li>
-                    <li>Colorimetría.</li>
+                    <li>Colorimetría Básica.</li>
                     <li>Armario inteligente.</li>
                 </ul>
             </div>
@@ -464,7 +470,7 @@
 
                 <div class="precio-bloque">
                     <h4>Experiencia Completa</h4>
-                    <div class="precio-nota" style="margin-bottom: 10px;">Masterclass + colorimetría personalizada virtual.</div>
+                    <div class="precio-nota" style="margin-bottom: 10px;">Masterclass + colorimetría personalizada virtual. Agrega tu colorimetría personalizada virtual por solo USD 25</div>
                     <div class="precio-especial">Bs 559 · USD 47</div>
                 </div>
 
@@ -649,10 +655,8 @@
 
     // 2) Sincronizar monto y descripción con la opción seleccionada (prioridad: select > URL)
     if (servicioSelect.value && PRECIOS[servicioSelect.value]) {
-        // Si hay opción seleccionada, usar su precio oficial
         sincronizarConSelect();
     } else {
-        // Si no hay opción, usar lo que venga por URL
         if (montoDesdeURL) montoInput.value = montoDesdeURL;
         if (descripcionDesdeURL) descripcionInput.value = descripcionDesdeURL;
     }
@@ -676,7 +680,6 @@
 
     // ========== GENERAR PAGO ==========
     async function generarPago() {
-        // Asegurar que el monto y la descripción coincidan con la opción del select
         if (servicioSelect.value && PRECIOS[servicioSelect.value]) {
             sincronizarConSelect();
         }
